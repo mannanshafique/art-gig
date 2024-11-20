@@ -1,125 +1,332 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'dart:io';
+
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'Common/Pre_Login/Screens/pre_login_screen.dart';
+import 'Common/Splash/Controller/splash_controller.dart';
+import 'Utils/app_colors.dart';
+import 'Utils/app_constants.dart';
+import 'Utils/app_size.dart';
+import 'Utils/app_theme.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final splashPermanentController =
+      Get.put(SplashController(), permanent: true);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return ScreenUtilInit(
+        designSize:
+            const Size(AppSize.FULL_SCREEN_WIDTH, AppSize.FULL_SCREEN_HEIGHT),
+        builder: (context, child) {
+          return GetBuilder<SplashController>(
+              init: SplashController(),
+              builder: (splashController) {
+                return GetMaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Art-Gig',
+                    navigatorKey: Constants.navigatorKey,
+                    scrollBehavior: CustomScrollBehavior(),
+                    themeMode: splashController.themeMode,
+                    theme: AppThemes.lightTheme,
+                    darkTheme: AppThemes.darkTheme,
+                    // onGenerateRoute: AppRouter.onGenerateRoute,
+                    home: PreLoginScreen()
+                    // home: MainMenuScreen()
+
+                    );
+              });
+        });
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class CustomScrollBehavior extends ScrollBehavior {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class MyHttpOverrides extends HttpOverrides {
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
+
+//  pod deintegrate
+// pod repo update
+// pod install
+
+// class MyApp extends StatelessWidget {
+//   final ValueNotifier<ThemeMode> _themeNotifier =
+//       ValueNotifier(ThemeMode.light);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ValueListenableBuilder<ThemeMode>(
+//       valueListenable: _themeNotifier,
+//       builder: (context, currentTheme, child) {
+//         return MaterialApp(
+//           title: 'Login Screen',
+//           theme: ThemeData(
+//             brightness: Brightness.light,
+//             primaryColor: Colors.pink,
+//             inputDecorationTheme: InputDecorationTheme(
+//               filled: true,
+//               fillColor: Colors.white,
+//               border: OutlineInputBorder(
+//                 borderRadius: BorderRadius.circular(8.0),
+//                 borderSide: BorderSide.none,
+//               ),
+//             ),
+//           ),
+//           darkTheme: ThemeData(
+//             brightness: Brightness.dark,
+//             primaryColor: Colors.pink,
+//             inputDecorationTheme: InputDecorationTheme(
+//               filled: true,
+//               fillColor: Colors.black54,
+//               border: OutlineInputBorder(
+//                 borderRadius: BorderRadius.circular(8.0),
+//                 borderSide: BorderSide.none,
+//               ),
+//             ),
+//           ),
+//           themeMode: currentTheme,
+//           home: LoginScreen(toggleTheme: () {
+//             _themeNotifier.value = _themeNotifier.value == ThemeMode.light
+//                 ? ThemeMode.dark
+//                 : ThemeMode.light;
+//           }),
+//         );
+//       },
+//     );
+//   }
+// }
+
+// class LoginScreen extends StatelessWidget {
+//   final VoidCallback toggleTheme;
+
+//   const LoginScreen({required this.toggleTheme});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(
+//         decoration: BoxDecoration(
+//           image: DecorationImage(
+//             image: AssetImage(
+//                 'assets/background_${Theme.of(context).brightness == Brightness.dark ? "dark" : "light"}.png'),
+//             fit: BoxFit.cover,
+//           ),
+//         ),
+//         child: Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               // Image.asset(
+//               //   'assets/logo.png',
+//               //   height: 120,
+//               // ),
+//               SizedBox(height: 20),
+//               Text(
+//                 'Login',
+//                 style: TextStyle(
+//                   fontSize: 24,
+//                   color: Theme.of(context).textTheme.bodyLarge?.color,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//               SizedBox(height: 20),
+//               TextField(
+//                 decoration: InputDecoration(
+//                   prefixIcon:
+//                       Icon(Icons.email, color: Theme.of(context).primaryColor),
+//                   hintText: 'jane.william@gmail.com',
+//                 ),
+//               ),
+//               SizedBox(height: 20),
+//               ElevatedButton(
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor: Theme.of(context).primaryColor,
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(8.0),
+//                   ),
+//                 ),
+//                 onPressed: () {},
+//                 child: SizedBox(
+//                   width: double.infinity,
+//                   child: Center(
+//                     child: Text(
+//                       'Next',
+//                       style: TextStyle(color: Colors.white),
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               Spacer(),
+//               Text(
+//                 'By signing up you agree to our\nTerms & Conditions & Privacy Policy',
+//                 textAlign: TextAlign.center,
+//                 style: TextStyle(
+//                   fontSize: 12,
+//                   color: Theme.of(context).textTheme.bodySmall?.color,
+//                 ),
+//               ),
+//               SizedBox(height: 10),
+//               IconButton(
+//                 icon: Icon(Icons.light_mode),
+//                 onPressed: toggleTheme,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class CreateProfileScreen extends StatelessWidget {
+//   final VoidCallback toggleTheme;
+
+//   const CreateProfileScreen({super.key, required this.toggleTheme});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         leading: IconButton(
+//           icon:
+//               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+//           onPressed: () {},
+//         ),
+//         backgroundColor: Colors.transparent,
+//         elevation: 0,
+//       ),
+//       body: Container(
+//         decoration: BoxDecoration(
+//           image: DecorationImage(
+//             image: AssetImage(
+//                 'assets/background_${Theme.of(context).brightness == Brightness.dark ? "dark" : "light"}.png'),
+//             fit: BoxFit.cover,
+//           ),
+//         ),
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//           child: Column(
+//             children: [
+//               SizedBox(height: 20),
+//               IconButton(
+//                 icon: Icon(Icons.light_mode),
+//                 onPressed: toggleTheme,
+//               ),
+//               Text(
+//                 'Create Profile',
+//                 style: TextStyle(
+//                   fontSize: 24,
+//                   fontWeight: FontWeight.bold,
+//                   color: Theme.of(context).textTheme.bodyText1?.color,
+//                 ),
+//               ),
+//               SizedBox(height: 20),
+//               Stack(
+//                 alignment: Alignment.bottomRight,
+//                 children: [
+//                   CircleAvatar(
+//                     radius: 50,
+//                     backgroundImage:
+//                         AssetImage('assets/profile_placeholder.png'),
+//                   ),
+//                   CircleAvatar(
+//                     backgroundColor: Theme.of(context).primaryColor,
+//                     radius: 18,
+//                     child:
+//                         Icon(Icons.camera_alt, color: Colors.white, size: 18),
+//                   ),
+//                 ],
+//               ),
+//               SizedBox(height: 20),
+//               Expanded(
+//                 child: ListView(
+//                   children: [
+//                     _buildTextField(context, hint: 'Full Name'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Email'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Phone Number'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Location'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Date Of Birth'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Gender'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Hourly Rate'),
+//                     SizedBox(height: 10),
+//                     _buildTextField(context, hint: 'Write Your Bio...'),
+//                     SizedBox(height: 20),
+//                     ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                         backgroundColor: Theme.of(context).primaryColor,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(8.0),
+//                         ),
+//                       ),
+//                       onPressed: () {},
+//                       child: SizedBox(
+//                         width: double.infinity,
+//                         child: Center(
+//                           child: Text(
+//                             'Next',
+//                             style: TextStyle(color: Colors.white),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(height: 20),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget _buildTextField(BuildContext context, {required String hint}) {
+//     return TextField(
+//       decoration: InputDecoration(
+//         hintText: hint,
+//         hintStyle: TextStyle(color: Theme.of(context).hintColor),
+//         filled: true,
+//         fillColor: Theme.of(context).brightness == Brightness.dark
+//             ? Colors.black54
+//             : Colors.white,
+//         border: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(8.0),
+//           borderSide: BorderSide.none,
+//         ),
+//       ),
+//     );
+//   }
+// }
