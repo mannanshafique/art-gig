@@ -5,6 +5,10 @@ class AppThemes {
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: AppColors.PINK_COLOR,
+    appBarTheme: const AppBarTheme(
+      scrolledUnderElevation: 0, // Removes elevation splash when scrolling
+      surfaceTintColor: AppColors.TRANSPARENT_COLOR, // Removes the tint effect
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.WHITE_COLOR,
@@ -18,6 +22,10 @@ class AppThemes {
   static final darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: AppColors.PINK_COLOR,
+    appBarTheme: const AppBarTheme(
+      scrolledUnderElevation: 0, // Removes elevation splash when scrolling
+      surfaceTintColor: AppColors.TRANSPARENT_COLOR, // Removes the tint effect
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.BLACK_COLOR,

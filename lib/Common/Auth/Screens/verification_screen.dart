@@ -55,7 +55,7 @@ class _OtpState extends State<Otp> {
   Widget build(BuildContext context) {
     return CustomAuthScaffold(
         isLeading: true,
-        title: AppStrings.OTP_VERIFICATION,
+        title: AppStrings.ENTER_AUTH_CODE,
         bottomNavigationWidget: _didnotReceiveCodeWidget(),
         showLogo: true,
         child: CustomPadding(
@@ -66,9 +66,9 @@ class _OtpState extends State<Otp> {
                 text: AppStrings.PLZ_VERIFY_YOUR_ACCOUNT,
                 fontSize: 14.sp,
                 maxLines: 3,
-                lineSpacing: 1.2,
+                lineSpacing: 1.3,
                 letterSpacing: 1.0,
-                fontColor: AppColors.BLACK_COLOR,
+                fontColor: Theme.of(context).textTheme.bodySmall?.color,
                 fontFamily: AppFonts.MONTSERRAT_REGULAR,
               ),
             ),

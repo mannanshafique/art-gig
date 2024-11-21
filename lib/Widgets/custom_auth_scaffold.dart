@@ -33,23 +33,26 @@ class CustomAuthScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Stack(
-        children: [
-          Container(
-            height: 1.sh,
-            width: 1.sw,
-            color: AppColors.WHITE_COLOR,
-          ),
-          Container(
-            height: 1.sh,
-            width: 1.sw,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      AssetPaths.BACKGROUNG_AUTH_IMAGE,
-                    ),
-                    fit: BoxFit.fill)),
-            child: Scaffold(
+      child: Container(
+        height: 1.sh,
+        width: 1.sw,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? AssetPaths.BACKGROUNG_DARK_SPLASH_IMAGE
+                        : AssetPaths.BACKGROUNG_LIGHT_SPLASH_IMAGE),
+                fit: BoxFit.fill)),
+        child: Stack(
+          children: [
+            Container(
+              height: 1.sh,
+              width: 1.sw,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? AppColors.WHITE_COLOR.withOpacity(0.5)
+                  : AppColors.BLACK_COLOR.withOpacity(0.05),
+            ),
+            Scaffold(
               backgroundColor: AppColors.TRANSPARENT_COLOR,
               bottomNavigationBar: bottomNavigationWidget,
               appBar: AppBar(
@@ -70,7 +73,10 @@ class CustomAuthScaffold extends StatelessWidget {
                             },
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Image.asset(AssetPaths.BACK_ARROW_ICON),
+                          child: Image.asset(
+                            AssetPaths.BACK_ARROW_ICON,
+                            color: Theme.of(context).iconTheme.color,
+                          ),
                         ))
                     : const SizedBox.shrink(),
               ),
@@ -80,7 +86,7 @@ class CustomAuthScaffold extends StatelessWidget {
                     if (showLogo == true) ...[
                       30.ph,
                       CustomLogo(
-                        width: 220.w,
+                        width: 240.h,
                       ),
                       20.ph,
                       title != null
@@ -114,8 +120,8 @@ class CustomAuthScaffold extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -108,7 +108,7 @@ class CustomTextField extends StatelessWidget {
         keyboardType: keyboardType,
         onChanged: onchange,
         validator: validator,
-        cursorColor: AppColors.BLACK_COLOR,
+        cursorColor: Theme.of(context).iconTheme.color,
         maxLines: maxlines ?? 1,
         controller: controller,
         // minLines: lines ?? 1,
@@ -119,7 +119,7 @@ class CustomTextField extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         style: TextStyle(
           fontSize: fontsize ?? 16.sp,
-          color: AppColors.MEDIUM_BLACK_COLOR,
+          color: Theme.of(context).textTheme.bodySmall?.color,
           fontFamily: AppFonts.MONTSERRAT_MEDIUM,
         ),
         decoration:
@@ -137,6 +137,8 @@ class CustomTextField extends StatelessWidget {
       // contentPadding: prefxicon == null
       //     ? EdgeInsets.symmetric(vertical: 6.sp, horizontal: 14.sp)
       //     : contentPadding,
+      fillColor: AppColors.TRANSPARENT_COLOR,
+      filled: true,
       contentPadding: contentPadding ?? const EdgeInsets.all(12),
       labelText: label ? hint : null,
       hintText: label ? null : hint,

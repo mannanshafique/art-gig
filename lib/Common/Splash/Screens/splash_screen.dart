@@ -20,67 +20,20 @@ class SplashScreen extends StatelessWidget {
         body: Container(
             width: 1.sw,
             height: 1.sh,
+            decoration: const BoxDecoration(color: AppColors.WHITE_COLOR),
             child: Stack(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: AssetImage(AssetPaths.BACKGROUNG_SPLASH_IMAGE),
+                    image: AssetImage(
+                        Theme.of(context).brightness == Brightness.dark
+                            ? AssetPaths.BACKGROUNG_DARK_SPLASH_IMAGE
+                            : AssetPaths.BACKGROUNG_LIGHT_SPLASH_IMAGE),
                     fit: BoxFit.fill,
                   )),
                 ),
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        60.ph,
-                        _centerLogo(),
-                        const Spacer(),
-                        Column(
-                          children: [
-                            CustomText(
-                              text: AppStrings.ALL_YOUR_WISH,
-                              fontColor: AppColors.BLACK_COLOR,
-                              fontSize: 22.sp,
-                              textAlign: TextAlign.start,
-                              fontFamily: AppFonts.MONTSERRAT_BOLD,
-                            ),
-                            14.ph,
-                            CustomText(
-                              text: AppStrings.IN_ONE_PLACE,
-                              fontColor: AppColors.BLACK_COLOR,
-                              fontSize: 35.sp,
-                              textAlign: TextAlign.start,
-                              fontFamily: AppFonts.MONTSERRAT_BOLD,
-                            ),
-                            20.ph,
-                            CustomText(
-                              text: AppStrings.STORE_AND_SHARE_YOUR,
-                              fontColor: AppColors.BLACK_COLOR,
-                              fontSize: 17.sp,
-                              lineSpacing: 1.3,
-                              letterSpacing: 1.3,
-                              textAlign: TextAlign.start,
-                              fontFamily: AppFonts.MONTSERRAT_MEDIUM,
-                            ),
-                            50.ph,
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 30.h, vertical: 10.h),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30.r),
-                                  color: AppColors.BLACK_COLOR),
-                              child: const Icon(
-                                Icons.arrow_forward_outlined,
-                                color: AppColors.WHITE_COLOR,
-                              ),
-                            ),
-                            60.ph,
-                          ],
-                        ),
-                      ],
-                    )),
+                Align(alignment: Alignment.center, child: _centerLogo()),
               ],
             )),
       ),

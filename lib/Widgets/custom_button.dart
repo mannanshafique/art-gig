@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
     this.isGradientBg = true,
     this.horizontalPadding = 5,
     this.fontSize,
-    this.containerColor = AppColors.BLACK_COLOR,
+    this.containerColor = AppColors.PINK_COLOR,
     this.width = AppSize.fullScreenWidth,
     this.verticalPadding,
     // this.fontFamily = AppFonts.openSansSemiBold,
@@ -94,7 +94,7 @@ class CustomButton extends StatelessWidget {
                           ),
                     10.pw,
                     haveIconOnLeft == true
-                        ? SizedBox.shrink()
+                        ? const SizedBox.shrink()
                         : Image.asset(
                             iconPath ?? '',
                             scale: 4,

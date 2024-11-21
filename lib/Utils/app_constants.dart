@@ -82,6 +82,10 @@ class Constants {
   //   return (await getApplicationDocumentsDirectory()).path;
   // }
 
+  static bool isDarkTheme({required BuildContext context}) {
+    return Theme.of(context).brightness == Brightness.dark ? true : false;
+  }
+
   static Future<String?> writeFile(
       {required String directoryPath,
       required String fileName,

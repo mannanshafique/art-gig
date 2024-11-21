@@ -5,16 +5,18 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const PINK_COLOR = Color(0xffFD008F);
   static const BLACK_COLOR = Color(0xff000000);
+  static const YELLOW_COLOR = Color(0xffE5D100);
+  static const RED_COLOR = Color(0xffEA4335);
+  static const WHITE_COLOR = Color(0xffFFFFFF);
+  static const ORANGE_COLOR = Color(0xffFE5600);
 
   //!
-  static const RED_COLOR = Color(0xffEA4235);
   static const MAROON_COLOR = Color(0xff36110C);
   static const MEDIUM_BLACK_COLOR = Color(0xff3F3F3F);
   static const LIGHT_GREY_COLOR = Color(0xffD4D4D4);
   static const MEDIUM_LIGHT_GREY_COLOR = Color(0xffA7A6A6);
   static const GREY_COLOR = Color(0xffAFAFAF);
   // static const DARK_GREY_COLOR = Color(0xff818181);
-  static const YELLOW_COLOR = Color(0xffF3A925);
   static const DARK_YELLOW_COLOR = Color(0xffF07600);
   static const MEDIUM_YELLOW_COLOR = Color(0xffFCC17A);
   static const LIGHT_YELLOW_COLOR = Color(0xffFFF3DA);
@@ -22,7 +24,6 @@ class AppColors {
   static const GREEN_COLOR = Color(0xff7ED058);
 
   static const TRANSPARENT_COLOR = Colors.transparent;
-  static const WHITE_COLOR = Color(0xffFFFFFF);
   static const LIGHT_WHITE_COLOR = Color(0xffFFF6E3);
 
   //Shimmer Color

@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Splash/Controller/splash_controller.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,25 +27,33 @@ class LoginWithEmailScreen extends StatelessWidget {
         title: AppStrings.LOGIN_WITH_EMAIL,
         child: CustomPadding(
           child: Column(children: [
-            _emailTextField(),
+            _emailTextField(context: context),
             20.ph,
             _loginButton(context),
+            10.ph,
           ]),
         ));
   }
 
-  Widget _emailTextField() {
+  Widget _emailTextField({required BuildContext context}) {
     return CustomTextField(
       controller: AuthController.i.emailEditingController,
       keyboardType: TextInputType.emailAddress,
       prefxicon: AssetPaths.EMAIL_ICON,
       hint: AppStrings.EMAIL_ADDRESS,
       borderRadius: 50.r,
-      bgColor: AppColors.LIGHT_GREY_COLOR,
-      prefixIconColor: AppColors.BLACK_COLOR,
+      bgColor: Constants.isDarkTheme(context: context)
+          ? AppColors.TRANSPARENT_COLOR
+          : AppColors.WHITE_COLOR,
+      borderColor: Constants.isDarkTheme(context: context)
+          ? AppColors.WHITE_COLOR
+          : AppColors.TRANSPARENT_COLOR,
+      prefixIconColor: Constants.isDarkTheme(context: context)
+          ? AppColors.PINK_COLOR
+          : AppColors.ORANGE_COLOR,
       isDense: false,
-      verticalPadding: 0.0,
-      label: true,
+      verticalPadding: 2.0,
+      label: false,
       divider: false,
       textCapitalization: TextCapitalization.none,
       inputFormatters: [
@@ -55,8 +64,8 @@ class LoginWithEmailScreen extends StatelessWidget {
 
   Widget _loginButton(BuildContext context) {
     return CustomButton(
-      title: AppStrings.CONTINUE,
-      containerColor: AppColors.BLACK_COLOR,
+      title: AppStrings.NEXT,
+      containerColor: AppColors.PINK_COLOR,
       onTap: () {
         Constants.unFocusKeyboardMethod(context: context);
         bool isValidate = FieldValidator().validateEmail(

@@ -30,14 +30,12 @@ class AppStrings {
   static const String STORE_AND_SHARE_YOUR =
       "Store and share your wishlists\neffortlessly with Giftify.";
 
-  static const String SIGN_IN_WITH_EMAIL = "Sign In with Email";
+  static const String NEXT = "Next";
   static const String LOGIN_WITH_EMAIL = "Login with Email";
   static const String LOGIN_WITH_PHONE = "Login with Phone";
-  static const String SIGN_IN_WITH_PHONE = "Sign In with Phone";
-  static const String SIGN_IN_WITH_GOOGLE = "Sign In with Google";
-  static const String SIGN_IN_WITH_APPLE = "Sign In with Apple";
-  static const String SIGN_IN_WITH_GUEST = "Sign In with Guest";
-  static const String OTP_VERIFICATION = "OTP Verification";
+  static const String LOGIN_WITH_GOOGLE = "Login with Google";
+  static const String LOGIN_WITH_APPLE = "Login with Apple";
+  static const String ENTER_AUTH_CODE = "Enter authentication code";
   static const String MY_INTERESTS = "My Interests";
   static const String PRODUCT_LISTINGS = "Product Listings";
   static const String ADD_NEW_PRODUCT = "Add New Product";
@@ -124,7 +122,7 @@ class AppStrings {
   /////////////// OTP VERIFICATION ////////////////
   static const String VERIFICATION = "Verification";
   static const String PLZ_VERIFY_YOUR_ACCOUNT =
-      "We have sent you containing 6 digits verification code. Please enter the code to verify your identity.";
+      "To verify your identity please enter the 6 digit verification code that we sent.";
   static const String SEND_SIX_DIGIT_CODE =
       "We send you a six-digit verification code\nto verify your account";
   static const String DONT_RECEIVED_CODE = "Don't received the code?  ";
@@ -259,7 +257,6 @@ class AppStrings {
   static const String MENU_EDITED_SUCESS_TOAST =
       "Your Menu has been \nedited successfully";
 
-  static const String NEXT = "next";
   static const String SEARCH = "Search";
   static const String HELLO = "HELLO";
   static const String LIVE_STREAMS = "liveStreams";

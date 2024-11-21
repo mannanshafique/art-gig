@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Splash/Controller/splash_controller.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -122,7 +123,16 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
           child: Column(
-            children: [10.ph, userProfileDetailForm(context: context)],
+            children: [
+              10.ph,
+              userProfileDetailForm(context: context),
+              Switch(
+                value: SplashController.i.isDarkMode,
+                onChanged: (value) {
+                  SplashController.i.toggleTheme(value);
+                },
+              ),
+            ],
           ),
         ),
       ),
@@ -143,15 +153,10 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           ),
         ),
         20.ph,
-        CustomTextField(
-          controller: AuthController.i.fullNameEditingController,
-          keyboardType: TextInputType.text,
+        _customTextField(
           hint: AppStrings.FULL_NAME,
-          bgColor: AppColors.LIGHT_GREY_COLOR,
-          isDense: true,
-          verticalPadding: 0.0,
-          label: true,
-          textCapitalization: TextCapitalization.none,
+          textEditingController: AuthController.i.fullNameEditingController,
+          keyboardType: TextInputType.text,
           inputFormatters: [
             LengthLimitingTextInputFormatter(Constants.NAME_MAX_LENGHT)
           ],
@@ -161,19 +166,15 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
             : Column(
                 children: [
                   10.ph,
-                  CustomTextField(
-                    controller: AuthController.i.emailEditingController,
-                    keyboardType: TextInputType.emailAddress,
+                  _customTextField(
+                    hint: AppStrings.EMAIL_ADDRESS,
                     readOnly: AuthController.i.loginType.value ==
                             AppStrings.EMAIL_ADDRESS
                         ? true
                         : false,
-                    hint: AppStrings.EMAIL_ADDRESS,
-                    bgColor: AppColors.LIGHT_GREY_COLOR,
-                    isDense: false,
-                    verticalPadding: 0.0,
-                    label: true,
-                    textCapitalization: TextCapitalization.none,
+                    textEditingController:
+                        AuthController.i.emailEditingController,
+                    keyboardType: TextInputType.text,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(
                           Constants.EMAIL_MAX_LENGTH)
@@ -182,18 +183,13 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
                 ],
               ),
         10.ph,
-        CustomTextField(
-          controller: AuthController.i.phNoEditingController,
-          keyboardType: TextInputType.phone,
-          label: true,
+        _customTextField(
+          hint: AppStrings.PHONE_NUMBER,
           readOnly: AuthController.i.loginType.value == AppStrings.PHONE_NUMBER
               ? true
               : false,
-          hint: AppStrings.PHONE_NUMBER,
-          bgColor: AppColors.LIGHT_GREY_COLOR,
-          isDense: false,
-          verticalPadding: 0.0,
-          textCapitalization: TextCapitalization.none,
+          textEditingController: AuthController.i.phNoEditingController,
+          keyboardType: TextInputType.phone,
           inputFormatters: [
             LengthLimitingTextInputFormatter(Constants.PHONE_MAX_LENGHT),
             MaskTextInputFormatter(
@@ -201,71 +197,45 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           ],
         ),
         10.ph,
-        CustomTextField(
-          controller: AuthController.i.locationEditingController,
-          keyboardType: TextInputType.text,
-          hint: AppStrings.ADDRESS,
-          bgColor: AppColors.LIGHT_GREY_COLOR,
-          isDense: false,
-          verticalPadding: 0.0,
-          label: true,
+        _customTextField(
+          hint: AppStrings.LOCATION,
           readOnly: true,
-          textCapitalization: TextCapitalization.none,
+          textEditingController: AuthController.i.locationEditingController,
+          keyboardType: TextInputType.text,
           onTap: () async {
             Constants.unFocusKeyboardMethod(context: context);
             // await authController.getAddress(context);
           },
         ),
         10.ph,
-        CustomTextField(
-          controller: AuthController.i.cityEditingController,
-          keyboardType: TextInputType.text,
-          hint: AppStrings.CITY,
-          bgColor: AppColors.LIGHT_GREY_COLOR,
-          isDense: false,
-          verticalPadding: 0.0,
-          label: true,
-          readOnly: true,
-          textCapitalization: TextCapitalization.none,
-          onTap: () async {},
-        ),
-        10.ph,
-        Row(
-          children: [
-            Expanded(
-              child: CustomTextField(
-                controller: AuthController.i.stateEditingController,
-                keyboardType: TextInputType.text,
-                hint: AppStrings.STATE,
-                label: true,
-                bgColor: AppColors.LIGHT_GREY_COLOR,
-                isDense: false,
-                readOnly: true,
-                verticalPadding: 0.0,
-                textCapitalization: TextCapitalization.none,
-                onTap: () async {},
-              ),
-            ),
-            10.pw,
-            Expanded(
-              child: CustomTextField(
-                controller: AuthController.i.zipEditingController,
-                keyboardType: TextInputType.text,
-                hint: AppStrings.ZIP,
-                bgColor: AppColors.LIGHT_GREY_COLOR,
-                isDense: false,
-                verticalPadding: 0.0,
-                label: true,
-                textCapitalization: TextCapitalization.none,
-                readOnly: true,
-                onTap: () async {},
-              ),
-            ),
-          ],
-        ),
-        10.ph,
       ],
     );
+  }
+
+  Widget _customTextField(
+      {required TextEditingController textEditingController,
+      required TextInputType keyboardType,
+      required String hint,
+      List<TextInputFormatter>? inputFormatters,
+      bool? readOnly,
+      Function()? onTap}) {
+    return CustomTextField(
+        controller: textEditingController,
+        keyboardType: keyboardType,
+        hint: hint,
+        readOnly: readOnly ?? false,
+        label: false,
+        isDense: false,
+        onTap: onTap,
+        verticalPadding: 2.0,
+        bgColor: Constants.isDarkTheme(context: context)
+            ? AppColors.TRANSPARENT_COLOR
+            : AppColors.WHITE_COLOR,
+        borderColor: Constants.isDarkTheme(context: context)
+            ? AppColors.WHITE_COLOR
+            : AppColors.TRANSPARENT_COLOR,
+        textCapitalization: TextCapitalization.none,
+        inputFormatters: inputFormatters);
   }
 
   // Widget customizedDropDown(

@@ -7,7 +7,8 @@ class AssetPaths {
   //----------------------- IMAGES -------------------------//
   // static const String BACKGROUNG_IMAGES = "$images/im_bg.png";
   static const String BACKGROUNG_AUTH_IMAGE = "$images/im_splash.png";
-  static const String BACKGROUNG_SPLASH_IMAGE = "$images/im_splash.png";
+  static const String BACKGROUNG_DARK_SPLASH_IMAGE = "$images/im_splash_background_dark.jpg";
+  static const String BACKGROUNG_LIGHT_SPLASH_IMAGE = "$images/im_splash_background_light.jpg";
   static const String BACKGROUNG_DRAWER_IMAGES = "$images/im_drawer.png";
 
   //----------------------- ICONS -------------------------//

@@ -7,8 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Common/Pre_Login/Screens/pre_login_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
+import 'Common/Splash/Screens/splash_screen.dart';
 import 'Utils/app_colors.dart';
 import 'Utils/app_constants.dart';
+import 'Utils/app_routers.dart';
 import 'Utils/app_size.dart';
 import 'Utils/app_theme.dart';
 
@@ -44,8 +46,8 @@ class MyApp extends StatelessWidget {
                     themeMode: splashController.themeMode,
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
-                    // onGenerateRoute: AppRouter.onGenerateRoute,
-                    home: PreLoginScreen()
+                    onGenerateRoute: AppRouter.onGenerateRoute,
+                    // home: PreLoginScreen()
                     // home: MainMenuScreen()
 
                     );
@@ -70,6 +72,13 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 }
+
+// Switch(
+//               value: SplashController.i.isDarkMode,
+//               onChanged: (value) {
+//                 SplashController.i.toggleTheme(value);
+//               },
+//             ),
 
 //  pod deintegrate
 // pod repo update
