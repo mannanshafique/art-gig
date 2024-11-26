@@ -80,8 +80,7 @@ class CustomButton extends StatelessWidget {
                               textAlign: TextAlign.start,
                               fontSize: fontSize ?? 16.sp,
                               fontColor: fontColor,
-                              fontFamily:
-                                  fontFamily ?? AppFonts.MONTSERRAT_MEDIUM,
+                              fontFamily: fontFamily ?? AppFonts.JONES_MEDIUM,
                             ),
                           )
                         : CustomText(
@@ -89,8 +88,7 @@ class CustomButton extends StatelessWidget {
                             textAlign: TextAlign.start,
                             fontSize: fontSize ?? 16.sp,
                             fontColor: fontColor,
-                            fontFamily:
-                                fontFamily ?? AppFonts.MONTSERRAT_MEDIUM,
+                            fontFamily: fontFamily ?? AppFonts.JONES_MEDIUM,
                           ),
                     10.pw,
                     haveIconOnLeft == true
@@ -108,7 +106,7 @@ class CustomButton extends StatelessWidget {
                     text: title,
                     fontSize: fontSize ?? 16.sp,
                     fontColor: fontColor,
-                    fontFamily: fontFamily ?? AppFonts.MONTSERRAT_MEDIUM,
+                    fontFamily: fontFamily ?? AppFonts.JONES_MEDIUM,
                   ),
                 ),
         ),

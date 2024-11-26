@@ -64,7 +64,7 @@ class LoginWithPhoneScreen extends StatelessWidget {
   //                     text: '+1',
   //                     fontSize: 14.sp,
   //                     fontColor: AppColors.MEDIUM_BLACK_COLOR,
-  //                     fontFamily: AppFonts.MONTSERRAT_MEDIUM),
+  //                     fontFamily: AppFonts.JONES_MEDIUM),
   //               ],
   //             ),
   //           ),

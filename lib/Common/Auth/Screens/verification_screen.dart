@@ -69,7 +69,7 @@ class _OtpState extends State<Otp> {
                 lineSpacing: 1.3,
                 letterSpacing: 1.0,
                 fontColor: Theme.of(context).textTheme.bodySmall?.color,
-                fontFamily: AppFonts.MONTSERRAT_REGULAR,
+                fontFamily: AppFonts.JONES_REGULAR,
               ),
             ),
             10.ph,
@@ -98,7 +98,7 @@ class _OtpState extends State<Otp> {
                 autoHideKeyboard: false,
                 fieldBackgroundColor: AppColors.LIGHT_GREY_COLOR,
                 textStyle: TextStyle(
-                    fontSize: 16.sp, fontFamily: AppFonts.MONTSERRAT_MEDIUM),
+                    fontSize: 16.sp, fontFamily: AppFonts.JONES_MEDIUM),
                 onComplete: (output) {
                   Get.to(() => CreateEditProfileScreen(isFromEdit: false));
                   // if (AuthController.i.loginType.value ==
@@ -142,7 +142,7 @@ class _OtpState extends State<Otp> {
                 textStyle: TextStyle(
                   color: AppColors.BLACK_COLOR,
                   fontSize: 15.sp,
-                  fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+                  fontFamily: AppFonts.JONES_MEDIUM,
                 ),
                 onComplete: () {
                   setState(() {
@@ -166,7 +166,7 @@ class _OtpState extends State<Otp> {
             text: AppStrings.DONT_RECEIVED_CODE,
             fontColor: AppColors.BLACK_COLOR,
             fontSize: 14.sp,
-            fontFamily: AppFonts.MONTSERRAT_REGULAR,
+            fontFamily: AppFonts.JONES_REGULAR,
           ),
           GestureDetector(
             onTap: () {
@@ -187,7 +187,7 @@ class _OtpState extends State<Otp> {
                   : AppColors.LIGHT_GREY_COLOR,
               fontSize: 14.sp,
               underlined: true,
-              fontFamily: AppFonts.MONTSERRAT_BOLD,
+              fontFamily: AppFonts.JONES_BOLD,
             ),
           )
         ],

@@ -60,7 +60,7 @@ class CustomOptionsAlertDialogue extends StatelessWidget {
               fontSize: 15.sp,
               lineSpacing: 1.3,
               textAlign: TextAlign.center,
-              fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+              fontFamily: AppFonts.JONES_MEDIUM,
             ),
             30.ph,
             haveTwoButton
@@ -120,7 +120,7 @@ class CustomOptionsAlertDialogue extends StatelessWidget {
                               text: b1Text ?? '',
                               fontColor: AppColors.WHITE_COLOR,
                               fontSize: 15.sp,
-                              fontFamily: AppFonts.MONTSERRAT_LIGHT,
+                              fontFamily: AppFonts.JONES_LIGHT,
                               textAlign: TextAlign.center,
                             ),
                           ),

@@ -76,7 +76,7 @@ class AppBottomSheet {
                                   text: title,
                                   fontSize: 16.sp,
                                   fontColor: AppColors.BLACK_COLOR,
-                                  fontFamily: AppFonts.MONTSERRAT_BOLD,
+                                  fontFamily: AppFonts.JONES_BOLD,
                                 ),
                               ),
                               isSuffix ?? false

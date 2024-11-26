@@ -63,7 +63,7 @@ class CustomDropDown2 extends StatelessWidget {
         style: TextStyle(
             fontSize: fontSize,
             color: AppColors.WHITE_COLOR,
-            fontFamily: AppFonts.MONTSERRAT_MEDIUM),
+            fontFamily: AppFonts.JONES_MEDIUM),
         validator: validator,
 
         // : dropIconSize ?? 20.h,
@@ -155,7 +155,7 @@ class CustomDropDown2 extends StatelessWidget {
       color: Colors.red,
       height: 0.7,
       fontSize: 11.sp,
-      fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+      fontFamily: AppFonts.JONES_MEDIUM,
     );
   }
 
@@ -164,7 +164,7 @@ class CustomDropDown2 extends StatelessWidget {
       lineThrough: false,
       text: text ?? "",
       fontSize: fontSize ?? 16.0,
-      fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+      fontFamily: AppFonts.JONES_MEDIUM,
       textAlign: TextAlign.start,
       fontColor: color ?? AppColors.BLACK_COLOR,
       overflow: TextOverflow.visible,

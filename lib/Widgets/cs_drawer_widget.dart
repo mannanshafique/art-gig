@@ -95,7 +95,7 @@ class CustomDrawerWidget extends StatelessWidget {
           text: 'John Smith',
           fontColor: AppColors.WHITE_COLOR,
           fontSize: 16.sp,
-          fontFamily: AppFonts.MONTSERRAT_BOLD,
+          fontFamily: AppFonts.JONES_BOLD,
         ),
         8.ph,
         Padding(
@@ -104,7 +104,7 @@ class CustomDrawerWidget extends StatelessWidget {
             text: 'john.smith@example.com',
             fontColor: AppColors.LIGHT_GREY_COLOR,
             fontSize: 14.sp,
-            fontFamily: AppFonts.MONTSERRAT_REGULAR,
+            fontFamily: AppFonts.JONES_REGULAR,
           ),
         ),
       ],
@@ -140,7 +140,7 @@ class CustomDrawerWidget extends StatelessWidget {
                   text: title,
                   fontColor: AppColors.BLACK_COLOR,
                   fontSize: 16.sp,
-                  fontFamily: AppFonts.MONTSERRAT_BOLD,
+                  fontFamily: AppFonts.JONES_BOLD,
                 )
               ],
             ),
@@ -149,7 +149,6 @@ class CustomDrawerWidget extends StatelessWidget {
       ),
     );
   }
-
 
   Widget drawerItems({required BuildContext context}) {
     return Column(
@@ -236,7 +235,7 @@ class CustomDrawerWidget extends StatelessWidget {
               text: AppStrings.LOGOUT,
               fontColor: AppColors.WHITE_COLOR,
               fontSize: 17.sp,
-              fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+              fontFamily: AppFonts.JONES_MEDIUM,
             ),
           ],
         ),

@@ -45,7 +45,7 @@ class CustomSwitchButtonWidget extends StatelessWidget {
             fontColor: fontColor ?? AppColors.WHITE_COLOR,
             fontSize: fontSize ?? 15.sp,
             textAlign: TextAlign.start,
-            fontFamily: fontFamily ?? AppFonts.MONTSERRAT_REGULAR,
+            fontFamily: fontFamily ?? AppFonts.JONES_REGULAR,
           ),
         ),
         Transform.scale(

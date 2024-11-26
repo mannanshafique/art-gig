@@ -26,7 +26,7 @@ class DialogHeaderWidget extends StatelessWidget {
               text: headerText,
               fontColor: AppColors.WHITE_COLOR,
               fontSize: 16.sp,
-              fontFamily: AppFonts.MONTSERRAT_BOLD,
+              fontFamily: AppFonts.JONES_BOLD,
               textAlign: TextAlign.center,
             ),
           ),

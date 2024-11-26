@@ -1,4 +1,3 @@
-
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +36,7 @@ class ImagePickerDialog extends StatelessWidget {
               containerColor: AppColors.PINK_COLOR,
               title: AppStrings.CAMERA,
               // fontFamily: AppFonts.AVERIA_REGULAR,
-              fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+              fontFamily: AppFonts.JONES_MEDIUM,
               fontSize: 14.sp,
               haveIcon: false,
               onTap: () async {
@@ -59,7 +58,7 @@ class ImagePickerDialog extends StatelessWidget {
             CustomButton(
               containerColor: AppColors.PINK_COLOR,
               title: AppStrings.GALLERY,
-              fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+              fontFamily: AppFonts.JONES_MEDIUM,
               fontSize: 14.sp,
               haveIcon: false,
               onTap: () async {

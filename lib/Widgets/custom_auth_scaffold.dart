@@ -62,7 +62,7 @@ class CustomAuthScaffold extends StatelessWidget {
                   text: appBarTitle,
                   fontSize: 16.sp,
                   fontColor: Theme.of(context).textTheme.bodyLarge?.color,
-                  fontFamily: AppFonts.MONTSERRAT_BOLD,
+                  fontFamily: AppFonts.JONES_BOLD,
                 ),
                 backgroundColor: AppColors.TRANSPARENT_COLOR,
                 leading: isLeading == true
@@ -100,7 +100,7 @@ class CustomAuthScaffold extends StatelessWidget {
                                       .textTheme
                                       .bodyLarge
                                       ?.color,
-                                  fontFamily: AppFonts.MONTSERRAT_BOLD,
+                                  fontFamily: AppFonts.JONES_BOLD,
                                 ),
                                 12.ph,
                                 CustomText(
@@ -108,7 +108,7 @@ class CustomAuthScaffold extends StatelessWidget {
                                   fontSize: 14.sp,
                                   lineSpacing: 1.3,
                                   fontColor: AppColors.WHITE_COLOR,
-                                  fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+                                  fontFamily: AppFonts.JONES_MEDIUM,
                                 ),
                                 10.ph,
                               ],

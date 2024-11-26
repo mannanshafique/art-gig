@@ -48,7 +48,7 @@
 //                   text: title,
 //                   fontColor: AppColors.BLACK_COLOR,
 //                   fontSize: 14.sp,
-//                   fontFamily: AppFonts.MONTSERRAT_SEMIBOLD,
+//                   fontFamily: AppFonts.JONES_SEMIBOLD,
 //                   textAlign: TextAlign.start,
 //                 ),
 //                 subtitle != null
@@ -59,7 +59,7 @@
 //                             text: subtitle,
 //                             fontColor: AppColors.BLACK_COLOR,
 //                             fontSize: 12.sp,
-//                             fontFamily: AppFonts.MONTSERRAT_REGULAR,
+//                             fontFamily: AppFonts.JONES_REGULAR,
 //                             textAlign: TextAlign.start,
 //                           ),
 //                         ],

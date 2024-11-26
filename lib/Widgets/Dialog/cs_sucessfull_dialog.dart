@@ -39,7 +39,7 @@ class CustomSucessfullDialog extends StatelessWidget {
                 lineSpacing: 1.2,
                 maxLines: 2,
                 fontColor: AppColors.BLACK_COLOR,
-                fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+                fontFamily: AppFonts.JONES_MEDIUM,
               ),
               20.ph,
               CustomButton(

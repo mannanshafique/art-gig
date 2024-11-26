@@ -66,3 +66,20 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+  
+  fonts:
+    - family: Jones-Light
+      fonts:
+        - asset: assets/fonts/Jones-Light.otf
+    - family: Jones-Regular
+      fonts:
+        - asset: assets/fonts/Jones-Book.otf
+    - family: Jones-Medium
+      fonts:
+        - asset: assets/fonts/Jones-Medium.otf
+    - family: Jones-Bold
+      fonts:
+        - asset: assets/fonts/Jones-Bold.otf
+    - family: Jones-ExtraBold
+      fonts:
+        - asset: assets/fonts/Jones-Black.otf

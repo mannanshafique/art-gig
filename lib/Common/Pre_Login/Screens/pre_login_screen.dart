@@ -103,7 +103,7 @@ class PreLoginScreen extends StatelessWidget {
         iconPath: iconPath,
         haveIconOnLeft: true,
         fontColor: fontColor ?? AppColors.WHITE_COLOR,
-        fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+        fontFamily: AppFonts.JONES_MEDIUM,
         fontSize: 16.sp,
         borderRadius: 50.0,
         verticalPadding: 12.h,
@@ -117,7 +117,7 @@ class PreLoginScreen extends StatelessWidget {
       color: Theme.of(context).textTheme.bodySmall?.color,
       decoration: TextDecoration.underline,
       fontSize: 15.sp,
-      fontFamily: AppFonts.MONTSERRAT_BOLD,
+      fontFamily: AppFonts.JONES_BOLD,
     );
     return Center(
       child: RichText(
@@ -132,7 +132,7 @@ class PreLoginScreen extends StatelessWidget {
                 text: AppStrings.BY_SIGN_AGREE,
                 style: TextStyle(
                   fontSize: 15.sp,
-                  fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+                  fontFamily: AppFonts.JONES_MEDIUM,
                 )),
             TextSpan(
                 text: AppStrings.TERMS_AND_CONDITION,
@@ -149,7 +149,7 @@ class PreLoginScreen extends StatelessWidget {
                 text: ' & ',
                 style: TextStyle(
                   fontSize: 15.sp,
-                  fontFamily: AppFonts.MONTSERRAT_BOLD,
+                  fontFamily: AppFonts.JONES_BOLD,
                 )),
             TextSpan(
                 text: AppStrings.PRIVACY_POLICY,

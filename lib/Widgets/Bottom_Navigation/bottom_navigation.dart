@@ -54,9 +54,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               fontColor:
                   isSelected ? AppColors.BLACK_COLOR : AppColors.GREY_COLOR,
               fontSize: 14.sp,
-              fontFamily: isSelected
-                  ? AppFonts.MONTSERRAT_BOLD
-                  : AppFonts.MONTSERRAT_REGULAR,
+              fontFamily:
+                  isSelected ? AppFonts.JONES_BOLD : AppFonts.JONES_REGULAR,
             ),
           ],
         ),

@@ -82,7 +82,7 @@ class _BlockedUserScreenState extends State<BlockedUserScreen> {
                               fontSize: 14.sp,
                               textAlign: TextAlign.start,
                               fontColor: AppColors.BLACK_COLOR,
-                              fontFamily: AppFonts.MONTSERRAT_BOLD,
+                              fontFamily: AppFonts.JONES_BOLD,
                             ),
                           ),
                           Container(
@@ -95,7 +95,7 @@ class _BlockedUserScreenState extends State<BlockedUserScreen> {
                               text: AppStrings.UNBLOCK,
                               fontSize: 14.sp,
                               fontColor: AppColors.WHITE_COLOR,
-                              fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+                              fontFamily: AppFonts.JONES_MEDIUM,
                             ),
                           )
                         ],

@@ -18,7 +18,7 @@ class FlushBar {
         text: text,
         fontSize: 16.sp,
         textAlign: TextAlign.start,
-        fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+        fontFamily: AppFonts.JONES_MEDIUM,
         fontColor: AppColors.WHITE_COLOR,
       ),
       blockBackgroundInteraction: true,

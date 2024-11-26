@@ -77,7 +77,7 @@
 //                       fontSize: 16.sp,
 //                       textAlign: TextAlign.start,
 //                       fontColor: AppColors.BLACK_COLOR,
-//                       fontFamily: AppFonts.MONTSERRAT_SEMIBOLD,
+//                       fontFamily: AppFonts.JONES_SEMIBOLD,
 //                     ),
 //                   ),
 //                   20.pw,
@@ -92,7 +92,7 @@
 //                 fontSize: 16.sp,
 //                 textAlign: TextAlign.start,
 //                 fontColor: AppColors.BLACK_COLOR,
-//                 fontFamily: AppFonts.MONTSERRAT_SEMIBOLD,
+//                 fontFamily: AppFonts.JONES_SEMIBOLD,
 //               ),
 //               5.ph,
 //               CustomText(
@@ -101,7 +101,7 @@
 //                 maxLines: 2,
 //                 textAlign: TextAlign.start,
 //                 fontColor: AppColors.BLACK_COLOR,
-//                 fontFamily: AppFonts.MONTSERRAT_REGULAR,
+//                 fontFamily: AppFonts.JONES_REGULAR,
 //               ),
 //               7.ph,
 //               dataRowWithIcon(
@@ -214,7 +214,7 @@
 //           maxLines: 2,
 //           textAlign: TextAlign.start,
 //           fontColor: AppColors.BLACK_COLOR,
-//           fontFamily: AppFonts.MONTSERRAT_REGULAR,
+//           fontFamily: AppFonts.JONES_REGULAR,
 //         ),
 //       ],
 //     );
@@ -231,7 +231,7 @@
 //           fontSize: 18.sp,
 //           textAlign: TextAlign.start,
 //           fontColor: AppColors.BLACK_COLOR,
-//           fontFamily: AppFonts.MONTSERRAT_SEMIBOLD,
+//           fontFamily: AppFonts.JONES_SEMIBOLD,
 //         ),
 //         5.ph,
 //         CustomText(
@@ -239,7 +239,7 @@
 //           fontSize: 14.sp,
 //           textAlign: TextAlign.start,
 //           fontColor: AppColors.BLACK_COLOR,
-//           fontFamily: AppFonts.MONTSERRAT_REGULAR,
+//           fontFamily: AppFonts.JONES_REGULAR,
 //         ),
 //       ],
 //     );
@@ -323,7 +323,7 @@
 //               fontSize: 15.sp,
 //               fontColor:
 //                   isSelected ? AppColors.WHITE_COLOR : AppColors.BLACK_COLOR,
-//               fontFamily: AppFonts.MONTSERRAT_MEDIUM),
+//               fontFamily: AppFonts.JONES_MEDIUM),
 //         ),
 //       ),
 //     );

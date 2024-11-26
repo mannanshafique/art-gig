@@ -30,14 +30,14 @@ class CustomRichTextWidget extends StatelessWidget {
               text: '$firstText ',
               style: TextStyle(
                 fontSize: fontSize ?? 20.sp,
-                fontFamily: fontFamily ?? AppFonts.MONTSERRAT_MEDIUM,
+                fontFamily: fontFamily ?? AppFonts.JONES_MEDIUM,
               )),
           TextSpan(
             text: secondText,
             style: TextStyle(
               color: AppColors.PINK_COLOR,
               fontSize: fontSize ?? 20.sp,
-              fontFamily: fontFamily ?? AppFonts.MONTSERRAT_MEDIUM,
+              fontFamily: fontFamily ?? AppFonts.JONES_MEDIUM,
             ),
           ),
         ],

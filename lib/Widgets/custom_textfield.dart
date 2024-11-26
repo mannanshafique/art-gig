@@ -120,7 +120,7 @@ class CustomTextField extends StatelessWidget {
         style: TextStyle(
           fontSize: fontsize ?? 16.sp,
           color: Theme.of(context).textTheme.bodySmall?.color,
-          fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+          fontFamily: AppFonts.JONES_MEDIUM,
         ),
         decoration:
             // isColorDecoration == true
@@ -145,7 +145,7 @@ class CustomTextField extends StatelessWidget {
       hintStyle: TextStyle(
         color: AppColors.GREY_COLOR.withOpacity(0.8),
         fontSize: 14.sp,
-        fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+        fontFamily: AppFonts.JONES_MEDIUM,
       ),
       labelStyle: TextStyle(
         color: labelColor ?? AppColors.MEDIUM_LIGHT_GREY_COLOR,

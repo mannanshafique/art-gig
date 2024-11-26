@@ -58,6 +58,15 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            
+            def version = variant.versionName
+            def date = new Date()
+            def formattedDate = date.format('dd-MM-yy')
+            outputFileName = "ArtGig${formattedDate}_${version}.apk"
+        }
+    }    
 }
 
 flutter {

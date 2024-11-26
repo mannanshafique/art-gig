@@ -37,7 +37,7 @@ AppBar customAppBar(
       text: title,
       fontColor: AppColors.BLACK_COLOR,
       fontSize: 18.sp,
-      fontFamily: AppFonts.MONTSERRAT_BOLD,
+      fontFamily: AppFonts.JONES_BOLD,
     ),
     actions: [actionWidget ?? const SizedBox.shrink()],
   );

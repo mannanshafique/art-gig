@@ -33,7 +33,7 @@ class CustomUploadDotted extends StatelessWidget {
                 text: title ?? AppStrings.IMAGE_UPLOAD,
                 fontColor: AppColors.PINK_COLOR,
                 fontSize: 15.sp,
-                fontFamily: AppFonts.MONTSERRAT_MEDIUM,
+                fontFamily: AppFonts.JONES_MEDIUM,
               ),
             ],
           ),
