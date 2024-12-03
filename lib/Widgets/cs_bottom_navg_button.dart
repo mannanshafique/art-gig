@@ -21,7 +21,7 @@ class CustomBottomNavigationWidget extends StatelessWidget {
         title: buttonTitle,
         fontFamily: AppFonts.JONES_MEDIUM,
         onTap: onTap,
-        containerColor: color ?? AppColors.BLACK_COLOR,
+        containerColor: color ?? AppColors.PINK_COLOR,
         verticalPadding: 0.0,
       ),
     );

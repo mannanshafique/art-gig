@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Auth/Screens/Setup_Profile/create_edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:io';
@@ -5,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'Common/Auth/Screens/Setup_Profile/pre_login_test.dart';
 import 'Common/Pre_Login/Screens/pre_login_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
 import 'Common/Splash/Screens/splash_screen.dart';
@@ -46,9 +48,9 @@ class MyApp extends StatelessWidget {
                     themeMode: splashController.themeMode,
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
-                    onGenerateRoute: AppRouter.onGenerateRoute,
+                    // onGenerateRoute: AppRouter.onGenerateRoute,
                     // home: PreLoginScreen()
-                    // home: MainMenuScreen()
+                    home: PreLoginTestScreen()
 
                     );
               });

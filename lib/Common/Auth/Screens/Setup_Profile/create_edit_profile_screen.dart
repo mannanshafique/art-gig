@@ -99,7 +99,7 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
       showLogo: false,
       appBarTitle: widget.isFromEdit
           ? AppStrings.EDIT_PROFILE
-          : AppStrings.COMPLETE_PROFILE,
+          : AppStrings.CREATE_PROFILE,
       bottomNavigationWidget: Padding(
         padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
         child: CustomBottomNavigationWidget(
@@ -208,6 +208,28 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           },
         ),
         10.ph,
+        _customTextField(
+          hint: AppStrings.DATE_OF_BIRTH,
+          readOnly: true,
+          textEditingController: AuthController.i.dateOfBirthEditingController,
+          keyboardType: TextInputType.text,
+          onTap: () async {
+            Constants.unFocusKeyboardMethod(context: context);
+            // await authController.getAddress(context);
+          },
+        ),
+        10.ph,
+        _customTextField(
+          hint: AppStrings.GENDER,
+          readOnly: true,
+          textEditingController: AuthController.i.genderEditingController,
+          keyboardType: TextInputType.text,
+          onTap: () async {
+            Constants.unFocusKeyboardMethod(context: context);
+            // await authController.getAddress(context);
+          },
+        ),
+        10.ph,
       ],
     );
   }
@@ -225,7 +247,7 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
         hint: hint,
         readOnly: readOnly ?? false,
         label: false,
-        isDense: false,
+        isDense: true,
         onTap: onTap,
         verticalPadding: 2.0,
         bgColor: Constants.isDarkTheme(context: context)

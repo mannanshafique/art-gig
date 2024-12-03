@@ -18,6 +18,7 @@ import '../../../Widgets/custom_keyboard_action_widget.dart';
 import '../../../Widgets/custom_padding.dart';
 import '../../../Widgets/custom_text.dart';
 import 'Setup_Profile/create_edit_profile_screen.dart';
+import 'package:artgig/Common/Splash/Controller/splash_controller.dart';
 
 class Otp extends StatefulWidget {
   Otp(
@@ -90,17 +91,23 @@ class _OtpState extends State<Otp> {
                 borderWidth: .9,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 // autofocus: true,
-                activeBorderColor: AppColors.BLACK_COLOR,
+                activeBorderColor:
+                    Theme.of(context).textTheme.bodySmall?.color ??
+                        AppColors.BLACK_COLOR,
                 borderColor: AppColors.LIGHT_GREY_COLOR,
-                activeBackgroundColor: AppColors.WHITE_COLOR,
+                activeBackgroundColor: Constants.isDarkTheme(context: context)
+                    ? AppColors.BLACK_COLOR
+                    : AppColors.WHITE_COLOR,
                 borderRadius: BorderRadius.circular(50.r),
                 keyboardType: TextInputType.number,
                 autoHideKeyboard: false,
-                fieldBackgroundColor: AppColors.LIGHT_GREY_COLOR,
+                fieldBackgroundColor: Constants.isDarkTheme(context: context)
+                    ? AppColors.BLACK_COLOR
+                    : AppColors.WHITE_COLOR,
                 textStyle: TextStyle(
                     fontSize: 16.sp, fontFamily: AppFonts.JONES_MEDIUM),
                 onComplete: (output) {
-                  Get.to(() => CreateEditProfileScreen(isFromEdit: false));
+                  Get.off(() => CreateEditProfileScreen(isFromEdit: false));
                   // if (AuthController.i.loginType.value ==
                   //     AppStrings.PHONE_NUMBER) {
                   //   FirebaseAuthBloc().verifyPhoneCode(
@@ -164,7 +171,7 @@ class _OtpState extends State<Otp> {
         children: [
           CustomText(
             text: AppStrings.DONT_RECEIVED_CODE,
-            fontColor: AppColors.BLACK_COLOR,
+            fontColor: Theme.of(context).textTheme.bodySmall?.color,
             fontSize: 14.sp,
             fontFamily: AppFonts.JONES_REGULAR,
           ),
@@ -183,8 +190,8 @@ class _OtpState extends State<Otp> {
             child: CustomText(
               text: AppStrings.RESEND,
               fontColor: isTimerCompleted
-                  ? AppColors.BLACK_COLOR
-                  : AppColors.LIGHT_GREY_COLOR,
+                  ? Theme.of(context).textTheme.bodySmall?.color
+                  : AppColors.GREY_COLOR,
               fontSize: 14.sp,
               underlined: true,
               fontFamily: AppFonts.JONES_BOLD,
