@@ -10,6 +10,7 @@ import 'Common/Auth/Screens/Setup_Profile/pre_login_test.dart';
 import 'Common/Pre_Login/Screens/pre_login_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
 import 'Common/Splash/Screens/splash_screen.dart';
+import 'Module/Event/Screen/event_listing.dart';
 import 'Utils/app_colors.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
                     darkTheme: AppThemes.darkTheme,
                     // onGenerateRoute: AppRouter.onGenerateRoute,
                     // home: PreLoginScreen()
-                    home: PreLoginTestScreen()
+                    home: EventListingScreen()
 
                     );
               });
