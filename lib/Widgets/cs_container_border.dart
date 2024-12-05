@@ -10,12 +10,14 @@ class CustomContainerBorderWidget extends StatelessWidget {
     this.offset,
     this.child,
     this.bgColor,
+    this.borderRadius,
     this.padding,
   });
   final Offset? offset;
   final double? oppacityValue;
   final Widget? child;
   final Color? bgColor;
+  final double? borderRadius;
   final EdgeInsetsGeometry? padding;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CustomContainerBorderWidget extends StatelessWidget {
       padding: padding ?? const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: bgColor ?? AppColors.WHITE_COLOR,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(borderRadius??12.r),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(oppacityValue ?? 0.2),

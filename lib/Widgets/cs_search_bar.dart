@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../Utils/app_colors.dart';
+import '../Utils/app_constants.dart';
 import '../Utils/app_strings.dart';
 import '../Utils/asset_paths.dart';
 import 'custom_textfield.dart';
@@ -35,10 +36,15 @@ class CustomSearchAndFilter extends StatelessWidget {
             readOnly: isReadOnly ?? false,
             inputFormatters: [LengthLimitingTextInputFormatter(30)],
             hint: hint ?? AppStrings.SEARCH,
-            suffixIcon: AssetPaths.CAMERA_ICON,
-            isSuffixIcon: true,
+            // suffixIcon: AssetPaths.CAMERA_ICON,
+            // isSuffixIcon: true,
             onchange: onChange,
-            bgColor: AppColors.WHITE_COLOR,
+            bgColor: Constants.isDarkTheme(context: context)
+                ? AppColors.TRANSPARENT_COLOR
+                : AppColors.WHITE_COLOR,
+            borderColor: Constants.isDarkTheme(context: context)
+                ? AppColors.WHITE_COLOR
+                : AppColors.TRANSPARENT_COLOR,
             labelColor: AppColors.GREY_COLOR,
             controller: searchController,
             isDense: true,

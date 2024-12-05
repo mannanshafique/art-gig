@@ -7,10 +7,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Common/Auth/Screens/Setup_Profile/pre_login_test.dart';
+import 'Common/Chat/Screen/chat_screen.dart';
+import 'Common/Notifications/Screens/notification_screen.dart';
 import 'Common/Pre_Login/Screens/pre_login_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
 import 'Common/Splash/Screens/splash_screen.dart';
+import 'Module/Event/Model/event_model.dart';
+import 'Module/Event/Screen/event_details_screen.dart';
 import 'Module/Event/Screen/event_listing.dart';
+import 'Module/Event/Screen/host_profile.dart';
+import 'Module/MainMenu/Screen/main_menu_screen.dart';
 import 'Utils/app_colors.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
@@ -51,9 +57,7 @@ class MyApp extends StatelessWidget {
                     darkTheme: AppThemes.darkTheme,
                     // onGenerateRoute: AppRouter.onGenerateRoute,
                     // home: PreLoginScreen()
-                    home: EventListingScreen()
-
-                    );
+                    home: ChatScreen());
               });
         });
   }

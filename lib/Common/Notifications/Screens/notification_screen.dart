@@ -13,6 +13,7 @@ import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
 import '../../../Widgets/no_data_found_widget.dart';
 import '../../../Widgets/user_avatar_widget.dart';
+import '../../Splash/Controller/splash_controller.dart';
 import '../Model/notification_model.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -120,14 +121,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   itemCount: notificationData.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: const EdgeInsets.only(bottom: 10.0),
-                      padding: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                          color: AppColors.LIGHT_GREY_COLOR.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(12.r)),
+                      margin: const EdgeInsets.only(bottom: 15.0),
                       child: Row(
                         children: [
                           CustomCicrleAvatarWidget(
+                            circularColor:
+                                Constants.themeButton(context: context),
                             imgPath:
                                 notificationData[index].user?.profileImage ??
                                     '',
@@ -143,38 +142,65 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   children: [
                                     Expanded(
                                       child: CustomText(
-                                        // text: 'Name',
                                         text:
                                             ('${notificationData[index].user?.firstName ?? ''} ${notificationData[index].user?.lastName ?? ''}')
                                                 .capitalizeFirst,
                                         fontSize: 14.sp,
                                         textAlign: TextAlign.start,
-                                        fontColor: AppColors.BLACK_COLOR,
+                                        fontColor:
+                                            Constants.primaryTextThemeColor(
+                                                context: context),
                                         fontFamily: AppFonts.JONES_BOLD,
                                       ),
                                     ),
+                                    CircleAvatar(
+                                      radius: 10.r,
+                                      backgroundColor: Constants.isDarkTheme(
+                                              context: context)
+                                          ? AppColors.ORANGE_COLOR
+                                          : AppColors.BLACK_COLOR,
+                                      child: Center(
+                                        child: CustomText(
+                                          text: '1',
+                                          fontSize: 10.sp,
+                                          fontColor: AppColors.WHITE_COLOR,
+                                          fontFamily: AppFonts.JONES_REGULAR,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                5.ph,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: CustomText(
+                                        text: notificationData[index].message,
+                                        fontSize: 12.sp,
+                                        textAlign: TextAlign.start,
+                                        fontColor:
+                                            Constants.primaryTextThemeColor(
+                                                context: context),
+                                        fontFamily: AppFonts.JONES_REGULAR,
+                                      ),
+                                    ),
+                                    5.pw,
                                     CustomText(
                                       text: DateTimeManager.timeAgoMethod(
                                           createdDate: notificationData[index]
                                                   .createdAt ??
                                               ''),
                                       fontSize: 12.sp,
-                                      fontColor: AppColors.BLACK_COLOR,
-                                      fontFamily: AppFonts.JONES_REGULAR,
+                                      fontColor:
+                                          Constants.primaryTextThemeColor(
+                                              context: context),
+                                      fontFamily: AppFonts.JONES_LIGHT,
                                     ),
                                   ],
                                 ),
-                                5.ph,
-                                CustomText(
-                                  text: notificationData[index].message,
-                                  fontSize: 12.sp,
-                                  textAlign: TextAlign.start,
-                                  fontColor: AppColors.BLACK_COLOR,
-                                  fontFamily: AppFonts.JONES_REGULAR,
-                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     );

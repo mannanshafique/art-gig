@@ -23,7 +23,12 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Container(
-        color: AppColors.WHITE_COLOR,
+        decoration: BoxDecoration(
+            color: AppColors.BLUE_COLOR,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.r),
+              topRight: Radius.circular(20.r),
+            )),
         // padding: EdgeInsets.fromLTRB(0.04.sw, 2, 0.04.sw, 10),
         height: Platform.isIOS ? 0.24.sw : 0.21.sw,
         width: 1.sw,
@@ -44,15 +49,18 @@ class BottomNavigationBarWidget extends StatelessWidget {
           children: <Widget>[
             Image.asset(
               iconPath,
-              height: 18.h,
-              width: 18.h,
-              color: isSelected ? AppColors.BLACK_COLOR : AppColors.GREY_COLOR,
+              height: 22.h,
+              width: 22.h,
+              color: isSelected
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.WHITE_COLOR.withOpacity(0.7),
             ),
             5.ph,
             CustomText(
               text: title,
-              fontColor:
-                  isSelected ? AppColors.BLACK_COLOR : AppColors.GREY_COLOR,
+              fontColor: isSelected
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.WHITE_COLOR.withOpacity(0.7),
               fontSize: 14.sp,
               fontFamily:
                   isSelected ? AppFonts.JONES_BOLD : AppFonts.JONES_REGULAR,
@@ -79,32 +87,31 @@ class BottomNavigationBarWidget extends StatelessWidget {
         ),
         Expanded(
           child: bottomCustomButton(
-              iconPath: AssetPaths.WHISHLIST_ICON,
+              iconPath: AssetPaths.CALENDER_ICON,
               onPressed: () {
                 bottomNavigationController.onItemTap(1);
               },
-              title: AppStrings.WHISHLIST,
+              title: AppStrings.EVENTS,
               isSelected:
                   bottomNavigationController.selectedIndex == 1 ? true : false),
         ),
-        30.pw,
         Expanded(
           child: bottomCustomButton(
-              iconPath: AssetPaths.CALENDER_ICON,
+              iconPath: AssetPaths.PROFILE_ICON,
               onPressed: () {
                 bottomNavigationController.onItemTap(2);
               },
-              title: AppStrings.CALENDER,
+              title: AppStrings.PROFILE,
               isSelected:
                   bottomNavigationController.selectedIndex == 2 ? true : false),
         ),
         Expanded(
           child: bottomCustomButton(
-              iconPath: AssetPaths.CIRCULAR_PROFILE_ICON,
+              iconPath: AssetPaths.SETTING_ICON,
               onPressed: () {
                 bottomNavigationController.onItemTap(3);
               },
-              title: AppStrings.PROFILE,
+              title: AppStrings.SETTINGS,
               isSelected:
                   bottomNavigationController.selectedIndex == 3 ? true : false),
         ),

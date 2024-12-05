@@ -86,6 +86,23 @@ class Constants {
     return Theme.of(context).brightness == Brightness.dark ? true : false;
   }
 
+  static Color themeButton({required BuildContext context}) {
+    return Constants.isDarkTheme(context: context)
+        ? AppColors.WHITE_COLOR
+        : AppColors.PINK_COLOR;
+  }
+
+  static Color primaryTitleTextThemeColor({required BuildContext context}) {
+    return Theme.of(context).textTheme.bodyLarge?.color ??
+        AppColors.BLACK_COLOR;
+  }
+  static Color primaryTextThemeColor({required BuildContext context}) {
+    return Theme.of(context).textTheme.bodyMedium?.color ?? AppColors.BLACK_COLOR;
+  }
+  static Color secondaryTextThemeColor({required BuildContext context}) {
+    return Theme.of(context).textTheme.bodySmall?.color ?? AppColors.GREY_COLOR;
+  }
+
   static Future<String?> writeFile(
       {required String directoryPath,
       required String fileName,

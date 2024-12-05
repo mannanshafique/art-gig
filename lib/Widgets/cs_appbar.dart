@@ -28,14 +28,19 @@ AppBar customAppBar(
               child: isLeadingBack == true
                   ? Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Image.asset(AssetPaths.BACK_ARROW_ICON),
+                      child: Image.asset(
+                        AssetPaths.BACK_ARROW_ICON,
+                        color: Theme.of(context).textTheme.bodyMedium?.color ??
+                            AppColors.BLACK_COLOR,
+                      ),
                     )
                   : const SizedBox.shrink(),
             )),
     centerTitle: true,
     title: CustomText(
       text: title,
-      fontColor: AppColors.BLACK_COLOR,
+      fontColor: Theme.of(context).textTheme.bodyMedium?.color ??
+          AppColors.BLACK_COLOR,
       fontSize: 18.sp,
       fontFamily: AppFonts.JONES_BOLD,
     ),

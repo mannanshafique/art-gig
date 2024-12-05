@@ -31,6 +31,9 @@ class AppStrings {
       "Store and share your wishlists\neffortlessly with Giftify.";
 
   static const String NEXT = "Next";
+  static const String EVENT_DETAIL = "Event Details";
+  static const String ACTIVITIES = "Activites";
+  static const String MESSAGE = "Message";
   static const String LOGIN_WITH_EMAIL = "Login with Email";
   static const String LOGIN_WITH_PHONE = "Login with Phone";
   static const String LOGIN_WITH_GOOGLE = "Login with Google";
@@ -44,6 +47,7 @@ class AppStrings {
   static const String ADD_URL = "Add URL";
   static const String PRODUCT_NAME = "Product Name";
   static const String WHISHLIST = "Whishlist";
+  static const String EVENTS = "Events";
   static const String CALENDER = "Calender";
 
   static const String CREATE_CHILDERN_PROFILE = "Create Childern Profile";
