@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
                     darkTheme: AppThemes.darkTheme,
                     // onGenerateRoute: AppRouter.onGenerateRoute,
                     // home: PreLoginScreen()
-                    home: ChatScreen());
+                    home: MainMenuScreen());
               });
         });
   }

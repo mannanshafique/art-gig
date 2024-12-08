@@ -1,3 +1,4 @@
+import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,9 +42,11 @@ class CustomOptionsAlertDialogue extends StatelessWidget {
             20.ph,
             if (imagePath != null)
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.BLACK_COLOR,
+                  color: Constants.isDarkTheme(context: context)
+                      ? AppColors.BLACK_COLOR
+                      : AppColors.ORANGE_COLOR,
                 ),
                 height: 100.h,
                 width: 100.h,
@@ -72,7 +75,7 @@ class CustomOptionsAlertDialogue extends StatelessWidget {
                           Expanded(
                             child: CustomButton(
                               title: b1Text ?? '',
-                              containerColor: AppColors.BLACK_COLOR,
+                              containerColor: AppColors.PINK_COLOR,
                               fontColor: AppColors.WHITE_COLOR,
                               borderRadius: 50.0,
                               fontSize: 14.sp,
@@ -88,9 +91,14 @@ class CustomOptionsAlertDialogue extends StatelessWidget {
                               title: b2Text ?? '',
                               borderRadius: 50.0,
                               fontSize: 14.sp,
-                              borderColor: AppColors.BLACK_COLOR,
+                              borderColor:
+                                  Constants.isDarkTheme(context: context)
+                                      ? AppColors.BLACK_COLOR
+                                      : AppColors.PINK_COLOR,
                               containerColor: AppColors.WHITE_COLOR,
-                              fontColor: AppColors.BLACK_COLOR,
+                              fontColor: Constants.isDarkTheme(context: context)
+                                  ? AppColors.BLACK_COLOR
+                                  : AppColors.PINK_COLOR,
                               onTap: b2onTap ?? () {},
                             ),
                           ),

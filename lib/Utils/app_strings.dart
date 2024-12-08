@@ -30,6 +30,8 @@ class AppStrings {
   static const String STORE_AND_SHARE_YOUR =
       "Store and share your wishlists\neffortlessly with Giftify.";
 
+
+
   static const String NEXT = "Next";
   static const String EVENT_DETAIL = "Event Details";
   static const String ACTIVITIES = "Activites";
@@ -225,6 +227,9 @@ class AppStrings {
   static const String YEAR = "Year";
   static const String CVV = "CVV";
 
+  static const String CARD_HOLDER_NAME = "Account Holder Name";
+  static const String EX_DATE = "Exp Date";
+
   static const String SEARCH_NEARBY_FOOD_OUTLETS = "Search nearby food outlets";
   static const String ADD_MULTIPLE_RESTURANT_MENU_ERROR =
       "You can only add items from a single restaurant at a time.";
@@ -342,6 +347,7 @@ class AppStrings {
   static const String CREATE_MENU = "Create Menu";
   static const String CREATED_MENU = "Created Menu";
   static const String EDIT_MENU = "Edit Menu";
+  
 
   static const String ADD_MORE_CHILDERNS = "ADD MORE CHILDRENS";
   static const String ADD_STUDENTS = "Add Students";

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:get/utils.dart';
 
 import '../Widgets/custom_flash_toast_widget.dart';
 import '../Widgets/custom_image_preview.dart';
@@ -92,6 +93,36 @@ class FieldValidator {
     }
   }
 
+ bool creditCardValidate(
+      {required String cardNumber,
+      // required String expMonth,
+      required String expYear,
+      required String cvv,
+      required BuildContext context}) {
+    if (cardNumber.isEmpty) {
+      FlushBar().showFlushBar(context, "Card number field can't be empty.");
+      return false;
+    } else if (cardNumber.length.isLowerThan(16)) {
+      FlushBar().showFlushBar(context, "Card number must be 16 digits.");
+      return false;
+    }
+    //  else if (expMonth.isEmpty) {
+    //   FlushBar().showFlushBar(context, "Expiry month field can't be empty.");
+    //   return false;
+    // } 
+    else if (expYear.isEmpty) {
+      FlushBar().showFlushBar(context, "Expiry year field can't be empty.");
+      return false;
+    } else if (cvv.isEmpty) {
+      FlushBar().showFlushBar(context, "Cvv field can't be empty.");
+      return false;
+    } else if (cvv.length.isLowerThan(3)) {
+      FlushBar().showFlushBar(context, "CVV must be 3 digits.");
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   bool validateEducationDataProfile(
       String gradeLevel, String institueName, String cgpaData, context) {

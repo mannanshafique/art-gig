@@ -1,3 +1,4 @@
+import 'package:artgig/Utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,7 +15,7 @@ class DialogHeaderWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.h),
       decoration: BoxDecoration(
-          color: AppColors.BLACK_COLOR,
+          color: Constants.isDarkTheme(context: context) ? AppColors.PINK_COLOR : AppColors.ORANGE_COLOR,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(0.03.sw),
               topRight: Radius.circular(0.03.sw))),

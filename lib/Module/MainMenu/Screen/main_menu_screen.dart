@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:artgig/Common/Settings/Screen/settings_screen.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:artgig/Widgets/no_data_found_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ import '../../../Widgets/Bottom_Navigation/bottom_navigation_controller.dart';
 import '../../../Widgets/cs_appbar.dart';
 import '../../../Widgets/cs_drawer_widget.dart';
 import '../../../Widgets/custom_scaffold.dart';
+import '../../Event/Screen/host_profile.dart';
+import '../../PaymentCard/Screen/payment_method_screen.dart';
 import '../Controller/main_controller.dart';
 
 class MainMenuScreen extends StatelessWidget {
@@ -29,9 +32,9 @@ class MainMenuScreen extends StatelessWidget {
 
   final List<Widget> screensList = [
     NoDataFoundWidget(),
-    NoDataFoundWidget(),
-    NoDataFoundWidget(),
-    NoDataFoundWidget(),
+   PaymentMethodsScreen(),
+    HostProfileScreen(isFromMainMenu: true),
+    SettingScreen(),
   ];
 
   @override

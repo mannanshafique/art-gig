@@ -12,11 +12,13 @@ class CustomContainerBorderWidget extends StatelessWidget {
     this.bgColor,
     this.borderRadius,
     this.padding,
+    this.borderColor,
   });
   final Offset? offset;
   final double? oppacityValue;
   final Widget? child;
   final Color? bgColor;
+  final Color? borderColor;
   final double? borderRadius;
   final EdgeInsetsGeometry? padding;
   @override
@@ -26,6 +28,7 @@ class CustomContainerBorderWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: bgColor ?? AppColors.WHITE_COLOR,
         borderRadius: BorderRadius.circular(borderRadius??12.r),
+        border: Border.all(color: borderColor?? AppColors.TRANSPARENT_COLOR),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(oppacityValue ?? 0.2),

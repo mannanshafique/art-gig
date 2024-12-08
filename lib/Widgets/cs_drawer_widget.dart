@@ -1,3 +1,4 @@
+import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,9 @@ class CustomDrawerWidget extends StatelessWidget {
                 topRight: Radius.circular(20.0),
                 bottomRight: Radius.circular(20.0))),
         child: Drawer(
-          backgroundColor: AppColors.TRANSPARENT_COLOR,
+          backgroundColor: Constants.isDarkTheme(context: context)
+              ? AppColors.BLACK_COLOR
+              : AppColors.PINK_COLOR,
           shadowColor: AppColors.TRANSPARENT_COLOR,
           surfaceTintColor: AppColors.TRANSPARENT_COLOR,
           elevation: 0.0,
@@ -40,11 +43,14 @@ class CustomDrawerWidget extends StatelessWidget {
             child: Column(
               children: [
                 _headerDrawer(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Divider(),
+                ),
                 25.ph,
                 Expanded(
                   child: Container(
                     decoration: const BoxDecoration(
-                        color: AppColors.WHITE_COLOR,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(20.0))),
                     child: SingleChildScrollView(
@@ -126,8 +132,7 @@ class CustomDrawerWidget extends StatelessWidget {
         children: [
           Image.asset(
             iconPath ?? '',
-            color: AppColors.BLACK_COLOR,
-            // scale: 3.5,
+            color: AppColors.WHITE_COLOR,
             height: 22,
             width: 22,
           ),
@@ -138,7 +143,7 @@ class CustomDrawerWidget extends StatelessWidget {
               children: <Widget>[
                 CustomText(
                   text: title,
-                  fontColor: AppColors.BLACK_COLOR,
+                  fontColor: AppColors.WHITE_COLOR,
                   fontSize: 16.sp,
                   fontFamily: AppFonts.JONES_BOLD,
                 )
@@ -162,10 +167,6 @@ class CustomDrawerWidget extends StatelessWidget {
             },
             title: AppStrings.HOME),
         _createDrawerItem(
-            iconPath: AssetPaths.REMINDER_ICON,
-            onTap: () {},
-            title: AppStrings.SET_REMINDER),
-        _createDrawerItem(
             iconPath: AssetPaths.SETTING_ICON,
             onTap: () {
               // Get.to(() => ScheduleScreen(
@@ -173,22 +174,6 @@ class CustomDrawerWidget extends StatelessWidget {
               //     ));
             },
             title: AppStrings.SETTINGS),
-        _createDrawerItem(
-            iconPath: AssetPaths.TERMS_ICON,
-            onTap: () {
-              // Get.to(() => ScheduleScreen(
-              //       isFromEdit: true,
-              //     ));
-            },
-            title: AppStrings.TERMS_AND_CONDITION),
-        _createDrawerItem(
-            iconPath: AssetPaths.PRIVACY_ICON,
-            onTap: () {
-              // Get.to(() => ScheduleScreen(
-              //       isFromEdit: true,
-              //     ));
-            },
-            title: AppStrings.PRIVACY_POLICY),
         30.ph,
         logoutButton(context: context, onTap: () {})
       ],
@@ -215,9 +200,9 @@ class CustomDrawerWidget extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        decoration: const BoxDecoration(
-            color: AppColors.BLACK_COLOR,
-            borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(50.0),
                 bottomRight: Radius.circular(50.0))),
         child: Row(
@@ -225,7 +210,9 @@ class CustomDrawerWidget extends StatelessWidget {
           children: [
             Image.asset(
               AssetPaths.LOGOUT_ICON,
-              color: AppColors.WHITE_COLOR,
+              color: Constants.isDarkTheme(context: context)
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.PINK_COLOR,
               // scale: 3.5,
               height: 22,
               width: 22,
@@ -233,7 +220,9 @@ class CustomDrawerWidget extends StatelessWidget {
             20.pw,
             CustomText(
               text: AppStrings.LOGOUT,
-              fontColor: AppColors.WHITE_COLOR,
+              fontColor: Constants.isDarkTheme(context: context)
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.PINK_COLOR,
               fontSize: 17.sp,
               fontFamily: AppFonts.JONES_MEDIUM,
             ),

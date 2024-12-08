@@ -20,8 +20,10 @@ import '../../../Widgets/user_avatar_widget.dart';
 class HostProfileScreen extends StatefulWidget {
   const HostProfileScreen({
     super.key,
+    required this.isFromMainMenu,
   });
 
+  final bool isFromMainMenu;
   @override
   State<HostProfileScreen> createState() => _HostProfileScreenState();
 }
@@ -29,13 +31,21 @@ class HostProfileScreen extends StatefulWidget {
 class _HostProfileScreenState extends State<HostProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      scffoldBg: AppColors.TRANSPARENT_COLOR,
-      appBar: customAppBar(
-          context: context,
-          isLeadingBack: true,
-          title: AppStrings.EVENT_DETAIL),
-      body: SingleChildScrollView(
+    return widget.isFromMainMenu
+        ? profileBody()
+        : CustomScaffold(
+            scffoldBg: AppColors.TRANSPARENT_COLOR,
+            appBar: customAppBar(
+                context: context,
+                isLeadingBack: true,
+                title: AppStrings.EVENT_DETAIL),
+            body: profileBody());
+  }
+
+  Widget profileBody() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 1.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -52,34 +62,15 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
               fontColor: Constants.primaryTitleTextThemeColor(context: context),
             ),
             10.ph,
-            Container(
-                padding: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  color: AppColors.PINK_COLOR,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        10.ph,
-                        CustomText(
-                          text: 'Total Event Host',
-                          fontSize: 20.sp,
-                          fontColor: AppColors.WHITE_COLOR,
-                        ),
-                        5.ph,
-                        CustomText(
-                          text: '157K',
-                          fontSize: 26.sp,
-                          fontFamily: AppFonts.JONES_BOLD,
-                          fontColor: AppColors.WHITE_COLOR,
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
+            Row(
+              children: [
+                totalEventAndEarningWigdet(
+                    title: 'Total Event Host', subTitle: '257K'),
+                10.pw,
+                totalEventAndEarningWigdet(
+                    title: 'Total Earning', subTitle: '\$27K'),
+              ],
+            ),
             10.ph,
             _customTextField(
               prefixIconPath: AssetPaths.EMAIL_ICON,
@@ -102,7 +93,7 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
             ),
             10.ph,
             _customTextField(
-              prefixIconPath: AssetPaths.PHONE_ICON,
+              prefixIconPath: AssetPaths.LOCATION_ICON,
               textEditingController: TextEditingController(text: 'dvsdvs'),
             ),
             10.ph,
@@ -110,11 +101,53 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
               textEditingController: TextEditingController(text: 'dvsdvs'),
               isBio: true,
             ),
+            10.ph,
+            Row(
+              children: [
+                CustomText(
+                  text: AppStrings.portfolio,
+                  fontSize: 18.sp,
+                  fontColor:
+                      Constants.primaryTitleTextThemeColor(context: context),
+                ),
+              ],
+            ),
+            //!----Grid View For Host
             Switch(
               value: SplashController.i.isDarkMode,
               onChanged: (value) {
                 SplashController.i.toggleTheme(value);
               },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget totalEventAndEarningWigdet(
+      {required String title, required String subTitle}) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
+          color: AppColors.PINK_COLOR,
+        ),
+        child: Column(
+          children: [
+            10.ph,
+            CustomText(
+              text: title,
+              fontSize: 18.sp,
+              fontColor: AppColors.WHITE_COLOR,
+            ),
+            5.ph,
+            CustomText(
+              text: subTitle,
+              fontSize: 26.sp,
+              fontFamily: AppFonts.JONES_BOLD,
+              fontColor: AppColors.WHITE_COLOR,
             ),
           ],
         ),

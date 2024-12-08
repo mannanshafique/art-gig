@@ -11,6 +11,7 @@ import '../../../Utils/app_strings.dart';
 import '../../../Utils/asset_paths.dart';
 import '../../../Utils/date_time_manager.dart';
 import '../../../Widgets/cs_appbar.dart';
+import '../../../Widgets/cs_container_border.dart';
 import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
 import '../../../Widgets/user_avatar_widget.dart';
@@ -102,16 +103,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
       },
       child: CustomScaffold(
         horizontalPadding: 0.0,
-        appBar: customAppBar(
-            actionWidget: Switch(
-              value: SplashController.i.isDarkMode,
-              onChanged: (value) {
-                SplashController.i.toggleTheme(value);
-              },
-            ),
-            context: context,
-            isLeadingBack: true,
-            title: 'Bob'),
+        appBar:
+            customAppBar(context: context, isLeadingBack: true, title: 'Bob'),
         floatingActionButtonLocation:
             FloatingActionButtonLocation.miniCenterDocked,
         floatingActionButton: Padding(
@@ -272,62 +265,95 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   }
 
   Widget sendChatButton() {
-    return SizedBox(
-      height: 50.0,
+    return CustomContainerBorderWidget(
+      padding: EdgeInsets.zero,
+      bgColor: Constants.isDarkTheme(context: context)
+          ? AppColors.TRANSPARENT_COLOR
+          : AppColors.WHITE_COLOR,
+      borderColor: Constants.isDarkTheme(context: context)
+          ? AppColors.WHITE_COLOR
+          : AppColors.TRANSPARENT_COLOR,
+      borderRadius: 50.r,
+      oppacityValue: Constants.isDarkTheme(context: context) ? 0.0 : 0.4,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.BLACK_COLOR, width: 1),
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.WHITE_COLOR),
-              child: TextField(
-                controller: message_controlller,
-                cursorColor: AppColors.WHITE_COLOR,
-                style: const TextStyle(color: AppColors.BLACK_COLOR),
-                decoration: InputDecoration(
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          Constants.unFocusKeyboardMethod(context: context);
-                          if (message_controlller.text.isEmpty) {
-                          } else {
-                            _sendMessageEmitMethod(
-                                message: message_controlller.text);
-                          }
-                          message_controlller.clear();
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 4.0),
-                        child: Image.asset(
-                          AssetPaths.APPLE_ICON,
-                          scale: 3.0,
-                        ),
-                      ),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 0.025.sw, vertical: 0.02.sh),
-                    hintText: '${AppStrings.TYPE_YOUR_MESSAGE_HERE}...',
-                    hintStyle:
-                        TextStyle(color: AppColors.GREY_COLOR, fontSize: 14.sp),
-                    labelStyle: const TextStyle(color: AppColors.WHITE_COLOR),
-                    border: InputBorder.none),
+            child: TextField(
+              controller: message_controlller,
+              cursorColor: Constants.primaryTextThemeColor(context: context),
+              style: TextStyle(
+                fontFamily: AppFonts.JONES_MEDIUM,
+                fontSize: 15.sp,
+                color: Constants.primaryTextThemeColor(context: context),
               ),
+              decoration: InputDecoration(
+                  fillColor: AppColors.TRANSPARENT_COLOR,
+                  filled: true,
+                  suffixIcon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      suffixIconData(
+                          iconPath: AssetPaths.EMOJI_ICON, onTap: () {}),
+                      suffixIconData(
+                          iconPath: AssetPaths.MIC_ICON, onTap: () {}),
+                      suffixIconData(
+                          iconColor: AppColors.PINK_COLOR,
+                          iconPath: AssetPaths.SEND_ICON,
+                          onTap: () {
+                            if (message_controlller.text.isNotEmpty) {
+                              setState(() {
+                                chatDataList.insert(
+                                  0,
+                                  ChatThreadData(
+                                    firstName: "Bob",
+                                    lastName: "Miller",
+                                    profileImage: "profile_image/user2.jpg",
+                                    id: 4,
+                                    conversationId: 3,
+                                    senderId: 16,
+                                    receiverId: 1,
+                                    type: "image",
+                                    message: message_controlller.text,
+                                    readAt: null,
+                                    status: null,
+                                    createdAt: DateTime.now().toString(),
+                                    updatedAt: null,
+                                  ),
+                                );
+                              });
+                            }
+                          }),
+                      5.pw,
+                    ],
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                      horizontal: 0.025.sw, vertical: 0.02.sh),
+                  hintText: '${AppStrings.TYPE_YOUR_MESSAGE_HERE}...',
+                  hintStyle:
+                      TextStyle(color: AppColors.GREY_COLOR, fontSize: 14.sp),
+                  border: InputBorder.none),
             ),
           ),
-          10.pw,
-          Container(
-            padding: const EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-                border: Border.all(color: AppColors.BLACK_COLOR, width: 1),
-                borderRadius: BorderRadius.circular(10),
-                color: AppColors.WHITE_COLOR),
-            child: Center(child: Image.asset(AssetPaths.HOME_ICON)),
-          )
         ],
+      ),
+    );
+  }
+
+  Widget suffixIconData(
+      {required Function() onTap, required String iconPath, Color? iconColor}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 4.0),
+        child: Image.asset(
+          iconPath,
+          scale: 3.7,
+          color: iconColor ??
+              (Constants.isDarkTheme(context: context)
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.ORANGE_COLOR),
+        ),
       ),
     );
   }
