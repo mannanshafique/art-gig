@@ -23,6 +23,8 @@ import 'Utils/app_routers.dart';
 import 'Utils/app_size.dart';
 import 'Utils/app_theme.dart';
 
+//!-------Flutter Version 3.16.3
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
