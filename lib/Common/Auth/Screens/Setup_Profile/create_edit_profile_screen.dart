@@ -111,13 +111,13 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
         ),
       ),
       // bottomNavigationBar: GetBuilder<SplashController>(builder: (spl) {
-      //   return CustomBottomNavigationWidget(
-      //     buttonTitle: widget.isFromEdit ? AppStrings.UPDATE : AppStrings.NEXT,
-      //     onTap: () {
-      //       Constants.unFocusKeyboardMethod(context: context);
+        // return CustomBottomNavigationWidget(
+        //   buttonTitle: widget.isFromEdit ? AppStrings.UPDATE : AppStrings.NEXT,
+        //   onTap: () {
+        //     Constants.unFocusKeyboardMethod(context: context);
 
-      //     },
-      //   );
+        //   },
+        // );
       // }),
       child: SingleChildScrollView(
         child: Padding(

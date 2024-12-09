@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Utils/app_colors.dart';
+import '../Utils/app_constants.dart';
 
 class CustomText extends StatelessWidget {
   final String? text;
@@ -44,6 +45,7 @@ class CustomText extends StatelessWidget {
         fontSize: fontSize.sp,
         fontFamily: fontFamily,
         decorationThickness: 1.0,
+        decorationColor: Constants.primaryTitleTextThemeColor(context: context),
         decoration: underlined
             ? TextDecoration.underline
             : (lineThrough ? TextDecoration.lineThrough : TextDecoration.none),

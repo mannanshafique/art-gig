@@ -2,6 +2,7 @@ import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../Common/Splash/Controller/splash_controller.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_constants.dart';
 import '../../../Utils/app_dialogs.dart';
@@ -46,11 +47,8 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      scffoldBg: AppColors.WHITE_COLOR,
       appBar: customAppBar(
-          context: context,
-          isLeadingBack: true,
-          title: AppStrings.PAYMENT),
+          context: context, isLeadingBack: true, title: AppStrings.PAYMENT),
       bottomNavigationBar: CustomBottomNavigationWidget(
         buttonTitle: AppStrings.CONTINUE,
         onTap: () {
@@ -60,6 +58,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
       ),
       body: Column(children: [
         10.ph,
+
         Flexible(
           child: RefreshIndicator(
               onRefresh: () async {
@@ -130,21 +129,13 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
               },
               child: Row(
                 children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.GREEN_COLOR,
-                          borderRadius: BorderRadius.circular(3.r)),
-                      padding: const EdgeInsets.all(5.0),
-                      child: const Icon(
-                        Icons.add,
-                        color: AppColors.WHITE_COLOR,
-                      )),
-                  10.pw,
                   CustomText(
                     text: AppStrings.ADD_NEW_CARD,
-                    fontColor: AppColors.BLACK_COLOR,
+                    fontColor:
+                        Constants.primaryTitleTextThemeColor(context: context),
                     fontSize: 16.sp,
                     maxLines: 1,
+                    underlined: true,
                     fontFamily: AppFonts.JONES_BOLD,
                   ),
                 ],
@@ -166,6 +157,12 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
       isenable: true,
       onTap: onTap,
       child: CustomContainerBorderWidget(
+        bgColor: Constants.isDarkTheme(context: context)
+            ? AppColors.TRANSPARENT_COLOR
+            : AppColors.WHITE_COLOR,
+        borderColor: Constants.isDarkTheme(context: context)
+            ? AppColors.WHITE_COLOR
+            : AppColors.TRANSPARENT_COLOR,
         child: Row(
           children: [
             Container(
@@ -178,7 +175,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                     ? AssetPaths.VISA_ICON
                     : AssetPaths.MASTERCARD_ICON,
                 height: 18.h,
-                color: AppColors.GREEN_COLOR,
+                color: Constants.primaryTitleTextThemeColor(context: context),
                 width: 18.h,
               ),
             ),
@@ -189,7 +186,8 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                 children: [
                   CustomText(
                     text: paymentCardData.brand,
-                    fontColor: AppColors.BLACK_COLOR,
+                    fontColor:
+                        Constants.primaryTextThemeColor(context: context),
                     fontSize: 15.sp,
                     maxLines: 1,
                     fontFamily: AppFonts.JONES_MEDIUM,
@@ -207,7 +205,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
             10.pw,
             Radio(
               visualDensity: VisualDensity.compact,
-              activeColor: AppColors.GREEN_COLOR,
+              activeColor: Constants.primaryTextThemeColor(context: context),
               value: optionValue,
               groupValue: groupValue,
               onChanged: onChanged,

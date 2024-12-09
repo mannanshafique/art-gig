@@ -40,6 +40,7 @@ class AssetPaths {
   static const String VISA_ICON = "$icons/ic_visa.png";
   static const String MASTERCARD_ICON = "$icons/ic_mastercard.png";
   static const String TICK_ICON = "$icons/ic_tick.png";
+  static const String ORDER_SUCESS_ICON = "$icons/ic_order_sucess.png";
 
 //!--Old
   static const String GUEST_ICON = "$icons/ic_guest.png";

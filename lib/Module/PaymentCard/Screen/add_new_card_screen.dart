@@ -13,6 +13,7 @@ import '../../../Utils/app_validator.dart';
 import '../../../Utils/asset_paths.dart';
 import '../../../Widgets/cs_appbar.dart';
 import '../../../Widgets/cs_bottom_navg_button.dart';
+import '../../../Widgets/cs_container_border.dart';
 import '../../../Widgets/custom_alert_dialog.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_scaffold.dart';
@@ -21,20 +22,28 @@ import '../../../Widgets/custom_textfield.dart';
 import '../../MainMenu/Controller/main_controller.dart';
 import '../Model/payment_card_model.dart';
 
-class AddNewCardScreen extends StatelessWidget {
+class AddNewCardScreen extends StatefulWidget {
   AddNewCardScreen({super.key});
 
+  @override
+  State<AddNewCardScreen> createState() => _AddNewCardScreenState();
+}
+
+class _AddNewCardScreenState extends State<AddNewCardScreen> {
   final cardNameEditingController = TextEditingController();
+
   final cardNumberEditingController = TextEditingController();
+
   final expMonthEditingController = TextEditingController();
+
   final expYearEditingController = TextEditingController();
+
   final cvvEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
-      
-      headerText: '',
+      headerText: AppStrings.ADD_NEW_CARD,
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -44,31 +53,11 @@ class AddNewCardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                10.ph,
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.close,
-                      color: AppColors.BLACK_COLOR,
-                    )
-                  ],
-                ),
-                10.ph,
-                Center(
-                  child: CustomText(
-                    text: AppStrings.ADD_NEW_CARD,
-                    fontColor: AppColors.BLACK_COLOR,
-                    fontSize: 17.sp,
-                    textAlign: TextAlign.center,
-                    fontFamily: AppFonts.JONES_BOLD,
-                  ),
-                ),
                 14.ph,
                 cardForm(),
                 15.ph,
                 CustomButton(
-                    containerColor: AppColors.GREEN_COLOR,
+                    containerColor: AppColors.PINK_COLOR,
                     fontColor: AppColors.WHITE_COLOR,
                     onTap: () {
                       Constants.unFocusKeyboardMethod(context: context);
@@ -196,6 +185,32 @@ class AddNewCardScreen extends StatelessWidget {
         10.ph,
       ],
     );
+  }
+
+  Widget _customTextField(
+      {required TextEditingController textEditingController,
+      required TextInputType keyboardType,
+      required String hint,
+      List<TextInputFormatter>? inputFormatters,
+      bool? readOnly,
+      Function()? onTap}) {
+    return CustomTextField(
+        controller: textEditingController,
+        keyboardType: keyboardType,
+        hint: hint,
+        readOnly: readOnly ?? false,
+        label: false,
+        isDense: true,
+        onTap: onTap,
+        verticalPadding: 2.0,
+        bgColor: Constants.isDarkTheme(context: context)
+            ? AppColors.TRANSPARENT_COLOR
+            : AppColors.WHITE_COLOR,
+        borderColor: Constants.isDarkTheme(context: context)
+            ? AppColors.WHITE_COLOR
+            : AppColors.TRANSPARENT_COLOR,
+        textCapitalization: TextCapitalization.none,
+        inputFormatters: inputFormatters);
   }
 }
 

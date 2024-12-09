@@ -678,6 +678,7 @@ class AppStrings {
   static const String selectMin = "Select Minutes";
 
   static const String GO_BACK = "Go Back";
+  static const String BACK_TO_HOME = "Back To Home";
 
   /////////////////////////// LIST ///////////////////
 
