@@ -17,6 +17,7 @@ import '../../../Widgets/cs_drawer_widget.dart';
 import '../../../Widgets/custom_scaffold.dart';
 import '../../Event/Screen/host_profile.dart';
 import '../../PaymentCard/Screen/payment_method_screen.dart';
+import '../../Shop/Screen/product_listing.dart';
 import '../../order_sucess_screen.dart';
 import '../Controller/main_controller.dart';
 
@@ -33,7 +34,7 @@ class MainMenuScreen extends StatelessWidget {
 
   final List<Widget> screensList = [
     NoDataFoundWidget(),
-    OrderSuccessScreen(),
+    ProductListScreen(),
     HostProfileScreen(isFromMainMenu: true),
     SettingScreen(),
   ];

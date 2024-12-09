@@ -17,6 +17,7 @@ import 'Module/Event/Screen/event_details_screen.dart';
 import 'Module/Event/Screen/event_listing.dart';
 import 'Module/Event/Screen/host_profile.dart';
 import 'Module/MainMenu/Screen/main_menu_screen.dart';
+import 'Module/Shop/Screen/product_listing.dart';
 import 'Utils/app_colors.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
@@ -58,8 +59,9 @@ class MyApp extends StatelessWidget {
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
                     // onGenerateRoute: AppRouter.onGenerateRoute,
-                    // home: PreLoginScreen()
-                    home: MainMenuScreen());
+                    home: ProductListScreen()
+                    // home: MainMenuScreen()
+                    );
               });
         });
   }

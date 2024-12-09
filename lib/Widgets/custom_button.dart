@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor = AppColors.TRANSPARENT_COLOR,
     this.withBoxShadow = false,
     this.isGradientBg = true,
-    this.horizontalPadding = 5,
+    this.horizontalPadding,
     this.fontSize,
     this.containerColor = AppColors.PINK_COLOR,
     this.width = AppSize.fullScreenWidth,
@@ -58,6 +58,7 @@ class CustomButton extends StatelessWidget {
             border: Border.all(color: borderColor)),
         child: Padding(
           padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding ?? 0,
               vertical: verticalPadding ?? AppPadding.buttonVerticalPadding),
           child: haveIcon == true
               ? Row(
