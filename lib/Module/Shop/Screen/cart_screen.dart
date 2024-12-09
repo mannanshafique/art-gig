@@ -12,6 +12,7 @@ import '../../../Utils/app_fonts.dart';
 import '../../../Widgets/cs_appbar.dart';
 import '../../../Widgets/cs_container_border.dart';
 import '../../../Widgets/cs_slidable_widget.dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
 
@@ -27,16 +28,48 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      bottomNavigationBar: Container(
+          height: 70.h,
+          padding: EdgeInsets.only(bottom: 20.h, top: 5.h),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    text: 'Total',
+                    fontSize: 14.sp,
+                    fontColor:
+                        Constants.primaryTextThemeColor(context: context),
+                    fontFamily: AppFonts.JONES_MEDIUM,
+                  ),
+                  5.ph,
+                  CustomText(
+                    text: '\$347.00',
+                    fontSize: 18.sp,
+                    fontColor:
+                        Constants.primaryTitleTextThemeColor(context: context),
+                    fontFamily: AppFonts.JONES_BOLD,
+                  ),
+                ],
+              ),
+              20.pw,
+              Expanded(
+                child: CustomButton(
+                  fontSize: 17.sp,
+                  title: 'Checkout',
+                  fontFamily: AppFonts.JONES_MEDIUM,
+                  onTap: () {},
+                  containerColor: AppColors.PINK_COLOR,
+                  verticalPadding: 0.0,
+                ),
+              ),
+            ],
+          )),
       appBar:
           customAppBar(context: context, isLeadingBack: true, title: 'My Cart'),
       body: Column(
         children: [
-          Switch(
-            value: SplashController.i.isDarkMode,
-            onChanged: (value) {
-              SplashController.i.toggleTheme(value);
-            },
-          ),
           Flexible(
             child: ListView.builder(
               itemCount: cartItems.length,
@@ -53,7 +86,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 60),
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 60),
             child: Column(
               children: [
                 rowWidget(title: 'Booking Fee', value: '\$25.00'),
@@ -117,7 +150,7 @@ class CartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: CustomSlidableWidget(
         isenable: true,
         onTap: (context) {},

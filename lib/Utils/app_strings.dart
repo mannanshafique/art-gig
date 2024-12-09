@@ -30,9 +30,11 @@ class AppStrings {
   static const String STORE_AND_SHARE_YOUR =
       "Store and share your wishlists\neffortlessly with Giftify.";
 
-
+  static const String WRITE_YOUR_REVIEW = "Write Your Review";
+  static const String DELETE_REVIEW = "Delete Review";
 
   static const String NEXT = "Next";
+  static const String RATING_REVIEWS = "Rating & Reviews";
   static const String EVENT_DETAIL = "Event Details";
   static const String ACTIVITIES = "Activites";
   static const String MESSAGE = "Message";
@@ -347,7 +349,6 @@ class AppStrings {
   static const String CREATE_MENU = "Create Menu";
   static const String CREATED_MENU = "Created Menu";
   static const String EDIT_MENU = "Edit Menu";
-  
 
   static const String ADD_MORE_CHILDERNS = "ADD MORE CHILDRENS";
   static const String ADD_STUDENTS = "Add Students";

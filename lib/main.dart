@@ -10,6 +10,7 @@ import 'Common/Auth/Screens/Setup_Profile/pre_login_test.dart';
 import 'Common/Chat/Screen/chat_screen.dart';
 import 'Common/Notifications/Screens/notification_screen.dart';
 import 'Common/Pre_Login/Screens/pre_login_screen.dart';
+import 'Common/Profile/rating_reviews_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
 import 'Common/Splash/Screens/splash_screen.dart';
 import 'Module/Event/Model/event_model.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
                     // onGenerateRoute: AppRouter.onGenerateRoute,
-                    home: ProductListScreen()
+                    home: RatingReviewsScreen()
                     // home: MainMenuScreen()
                     );
               });

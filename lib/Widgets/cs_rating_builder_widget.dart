@@ -10,11 +10,13 @@ class CustomRatingBarWidget extends StatelessWidget {
       required this.rating,
       this.itemSize,
       this.itemPadding,
+      this.fillIconColor,
       required this.onRatingUpdate,
       this.isIgnoreGesture});
 
   final double rating;
   final double? itemSize;
+  final Color? fillIconColor;
   final bool? isIgnoreGesture;
   final Function(double) onRatingUpdate;
   final EdgeInsetsGeometry? itemPadding;
@@ -32,9 +34,9 @@ class CustomRatingBarWidget extends StatelessWidget {
         itemSize: itemSize ?? 20.h,
         itemPadding: itemPadding ?? EdgeInsets.symmetric(horizontal: 2.w),
         unratedColor: AppColors.GREY_COLOR,
-        itemBuilder: (context, _) => const Icon(
+        itemBuilder: (context, _) => Icon(
               Icons.star,
-              color: Colors.amber,
+              color: fillIconColor ?? Colors.amber,
             ),
         onRatingUpdate: onRatingUpdate);
   }
