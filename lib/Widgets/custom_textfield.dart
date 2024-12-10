@@ -119,7 +119,7 @@ class CustomTextField extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         style: TextStyle(
           fontSize: fontsize ?? 16.sp,
-          color: Theme.of(context).textTheme.bodySmall?.color,
+          color: Theme.of(context).textTheme.bodyMedium?.color,
           fontFamily: AppFonts.JONES_MEDIUM,
         ),
         decoration:

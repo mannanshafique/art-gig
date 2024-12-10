@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:artgig/Common/Settings/Screen/settings_screen.dart';
+import 'package:artgig/Utils/app_constants.dart';
+import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:artgig/Widgets/no_data_found_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,10 @@ import '../../../Widgets/Bottom_Navigation/bottom_navigation.dart';
 import '../../../Widgets/Bottom_Navigation/bottom_navigation_controller.dart';
 import '../../../Widgets/cs_appbar.dart';
 import '../../../Widgets/cs_drawer_widget.dart';
+import '../../../Widgets/cs_filter_bt_sheet.dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_scaffold.dart';
+import '../../../Widgets/custom_text.dart';
 import '../../Event/Screen/host_profile.dart';
 import '../../PaymentCard/Screen/payment_method_screen.dart';
 import '../../Shop/Screen/product_listing.dart';
@@ -121,7 +126,24 @@ class MainMenuScreen extends StatelessWidget {
           ),
           10.pw,
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                // barrierLabel: 'sad',
+                enableDrag: true,
+                isDismissible: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(0.08.sw),
+                  ),
+                ),
+                backgroundColor: AppColors.WHITE_COLOR,
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomFilterBottomSheet();
+                },
+              );
+            },
             child: Image.asset(
               AssetPaths.NOTIFICATION_ICON,
               height: 22.h,

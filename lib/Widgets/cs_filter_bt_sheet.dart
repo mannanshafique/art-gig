@@ -1,182 +1,207 @@
-// import 'dart:developer';
+import 'package:artgig/Utils/app_navigation.dart';
+import 'package:artgig/Utils/app_strings.dart';
+import 'package:artgig/Widgets/custom_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// import 'package:extended_image/extended_image.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:get/get.dart';
-// import 'package:your_fastfood/Common/Auth/Model/user_model.dart';
-// import 'package:your_fastfood/Module/Resturant/Home/Model/res_menu_model.dart';
-// import 'package:your_fastfood/Module/Resturant/Resturant_Menu/Bloc/get_categories_bloc.dart';
-// import 'package:your_fastfood/Module/Resturant/Resturant_Menu/Model/categories_model.dart';
-// import 'package:your_fastfood/Module/Resturant/Resturant_Menu/Model/menu_model.dart';
-// import 'package:your_fastfood/Module/Resturant/resturant_controller.dart';
-// import 'package:your_fastfood/Module/User/user_controller.dart';
-// import 'package:your_fastfood/Utils/app_colors.dart';
-// import 'package:your_fastfood/Utils/app_dialogs.dart';
-// import 'package:your_fastfood/Utils/app_fonts.dart';
-// import 'package:your_fastfood/Utils/app_navigation.dart';
-// import 'package:your_fastfood/Utils/app_route_name.dart';
-// import 'package:your_fastfood/Utils/app_strings.dart';
-// import 'package:your_fastfood/Utils/asset_paths.dart';
-// import 'package:your_fastfood/Utils/extensions.dart';
-// import 'package:your_fastfood/Widgets/cs_drop_down_widget.dart';
-// import 'package:your_fastfood/Widgets/custom_button.dart';
-// import 'package:your_fastfood/Widgets/custom_text.dart';
+import '../Utils/app_colors.dart';
+import '../Utils/app_constants.dart';
+import '../Utils/app_fonts.dart';
+import 'cs_container_border.dart';
+import 'custom_text.dart';
+import 'custom_textfield.dart';
 
-// Future<void> filterBottomSheet(
-//     BuildContext context,
-//     final Function(List<MenuData>) menuDataCallback,
-//     final Function(List<UserData>) resturantDataCallback) {
-//   double _sliderValue = 10;
-//   String? categoriesName;
+class CustomFilterBottomSheet extends StatefulWidget {
+  const CustomFilterBottomSheet({super.key});
 
-//   return showModalBottomSheet<void>(
-//       isScrollControlled: true,
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.vertical(
-//           top: Radius.circular(0.08.sw),
-//         ),
-//       ),
-//       backgroundColor: AppColors.LIGHT_YELLOW_COLOR,
-//       context: context,
-//       builder: (context) {
-//         return StatefulBuilder(builder: (BuildContext context,
-//             StateSetter setState /*You can rename this!*/) {
-//           return SizedBox(
-//             height: Get.height * 0.6,
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     Container(
-//                       height: 10.0,
-//                       width: 100,
-//                       color: AppColors.YELLOW_COLOR,
-//                     )
-//                   ],
-//                 ),
-//                 30.ph,
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-//                   child: Column(
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       CustomText(
-//                         text: AppStrings.FILTER,
-//                         fontColor: AppColors.MEDIUM_BLACK_COLOR,
-//                         fontSize: 16.sp,
-//                         textAlign: TextAlign.start,
-//                         fontFamily: AppFonts.UNBOUNDED_REGULAR,
-//                       ),
-//                       10.ph,
-//                       CustomText(
-//                         text: AppStrings.PRICE,
-//                         fontColor: AppColors.MEDIUM_BLACK_COLOR,
-//                         fontSize: 16.sp,
-//                         textAlign: TextAlign.start,
-//                         fontFamily: AppFonts.UNBOUNDED_REGULAR,
-//                       ),
-//                       10.ph,
-//                     ],
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
-//                   child: Column(
-//                     children: [
-//                       SliderTheme(
-//                         data: SliderThemeData(
-//                             overlayShape: SliderComponentShape.noOverlay),
-//                         child: Slider(
-//                           value: _sliderValue,
-//                           min: 2,
-//                           max: 550,
-//                           divisions: 100,
-//                           label: _sliderValue.round().toString(),
-//                           activeColor: AppColors.YELLOW_COLOR,
-//                           onChanged: (value) {
-//                             _sliderValue = value;
-//                             setState(() {});
-//                           },
-//                         ),
-//                       ),
-//                       5.ph,
-//                       Padding(
-//                         padding: const EdgeInsets.symmetric(horizontal: 11.0),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                           children: [
-//                             CustomText(
-//                               text: '${AppStrings.LOW_PRICE} - \$2',
-//                               fontColor: AppColors.MEDIUM_BLACK_COLOR,
-//                               fontSize: 14.sp,
-//                               textAlign: TextAlign.start,
-//                               fontFamily: AppFonts.UNBOUNDED_REGULAR,
-//                             ),
-//                             CustomText(
-//                               text: '${AppStrings.HIGH_PRICE} - \$550',
-//                               fontColor: AppColors.MEDIUM_BLACK_COLOR,
-//                               fontSize: 14.sp,
-//                               textAlign: TextAlign.start,
-//                               fontFamily: AppFonts.UNBOUNDED_REGULAR,
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                       20.ph,
-//                       Padding(
-//                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-//                         child: GetBuilder<ResturantController>(
-//                             builder: (resturantBuilderController) {
-//                           return CustomDropdown<CategoriesData>(
-//                             options: resturantBuilderController
-//                                 .categoriesDataList.value,
-//                             displayText: (option) => option.title ?? '',
-//                             hintText: AppStrings.CATEGORIES,
-//                             onChanged: (newValue) {
-//                               categoriesName = newValue?.title ?? '';
-//                             },
-//                             value: null, // Set the initial value here
-//                           );
-//                         }),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 10.ph,
-//                 const Spacer(),
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-//                   child: CustomButton(
-//                     title: AppStrings.SEARCH,
-//                     fontFamily: AppFonts.UNBOUNDED_REGULAR,
-//                     onTap: () {
-//                       List<MenuData> menuData = [];
-//                       // List<UserData> resturantData = [];
-//                       for (MenuData v
-//                           in UserController.i.popularItemsList.value) {
-//                         log('message');
-//                         String price = v.cost ?? '';
-//                         String categ = v.category?.title ?? '';
-//                         if (double.parse(price).lessThan(_sliderValue) &&
-//                             categ.toLowerCase().contains(
-//                                 (categoriesName ?? '').toLowerCase())) {
-//                           log('Menu $price');
-//                           menuData.add(v);
-//                         }
-//                       }
-//                       menuDataCallback.call(menuData);
-//                       AppNavigation.navigatorPop(context);
-//                     },
-//                   ),
-//                 ),
-//                 20.ph
-//               ],
-//             ),
-//           );
-//         });
-//       });
-// }
+  @override
+  State<CustomFilterBottomSheet> createState() =>
+      _CustomFilterBottomSheetState();
+}
+
+class _CustomFilterBottomSheetState extends State<CustomFilterBottomSheet> {
+  final TextEditingController nameEditingController = TextEditingController();
+  final TextEditingController userTagEditingController =
+      TextEditingController();
+  final TextEditingController ageGroupEditingController =
+      TextEditingController();
+  final TextEditingController locationEditingController =
+      TextEditingController();
+  final TextEditingController zipCodeEditingController =
+      TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return StatefulBuilder(builder: (context, setState) {
+      return Container(
+        height: 500,
+        padding: const EdgeInsets.all(12),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: ClampingScrollPhysics(),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0.015.sw),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                10.verticalSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(
+                      textAlign: TextAlign.center,
+                      text: "Filter",
+                      fontColor:
+                          Constants.primaryTextThemeColor(context: context),
+                      fontSize: 16.sp,
+                      fontFamily: AppFonts.JONES_BOLD,
+                    ),
+                  ],
+                ),
+                10.verticalSpace,
+                _customTextField(
+                  textEditingController: nameEditingController,
+                  hintText: AppStrings.NAME,
+                  keybordType: TextInputType.name,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(Constants.NAME_MAX_LENGHT)
+                  ],
+                ),
+                5.verticalSpace,
+                _customTextField(
+                  textEditingController: userTagEditingController,
+                  hintText: AppStrings.USER_TAG,
+                  keybordType: TextInputType.name,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(Constants.NAME_MAX_LENGHT)
+                  ],
+                ),
+                5.verticalSpace,
+                _customTextField(
+                  textEditingController: ageGroupEditingController,
+                  hintText: AppStrings.AGE_GROUP,
+                  keybordType: TextInputType.number,
+                  inputFormatters: [LengthLimitingTextInputFormatter(3)],
+                ),
+                5.verticalSpace,
+                _customTextField(
+                  textEditingController: locationEditingController,
+                  hintText: AppStrings.LOCATION,
+                  keybordType: TextInputType.number,
+                  inputFormatters: [LengthLimitingTextInputFormatter(3)],
+                ),
+                15.verticalSpace,
+                CustomText(
+                  text: 'Nearby Location', // Show the current radius
+                  fontColor: Constants.primaryTextThemeColor(context: context),
+                  fontFamily: AppFonts.JONES_BOLD,
+                ),
+                10.verticalSpace,
+                customRadiusSelector(context: context, setState: setState),
+                10.verticalSpace,
+                Row(
+                  children: [
+                    Expanded(
+                        child: CustomButton(
+                            containerColor:
+                                Constants.isDarkTheme(context: context)
+                                    ? AppColors.BLACK_COLOR
+                                    : AppColors.WHITE_COLOR,
+                            borderColor: Constants.isDarkTheme(context: context)
+                                ? AppColors.WHITE_COLOR
+                                : AppColors.PINK_COLOR,
+                            onTap: () {
+                              nameEditingController.clear();
+                              userTagEditingController.clear();
+                              ageGroupEditingController.clear();
+                              locationEditingController.clear();
+                              zipCodeEditingController.clear();
+                              radius = 0.0;
+                            },
+                            fontColor: Constants.isDarkTheme(context: context)
+                                ? AppColors.WHITE_COLOR
+                                : AppColors.PINK_COLOR,
+                            title: AppStrings.RESET)),
+                    10.horizontalSpace,
+                    Expanded(
+                        child: CustomButton(
+                            onTap: () {
+                              AppNavigation.navigatorPop(context);
+                            },
+                            title: AppStrings.APPLY)),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  Widget _customTextField(
+      {required TextEditingController textEditingController,
+      List<TextInputFormatter>? inputFormatters,
+      String? hintText,
+      TextInputType? keybordType,
+      bool? readOnly}) {
+    return CustomContainerBorderWidget(
+      padding: EdgeInsets.zero,
+      bgColor: AppColors.TRANSPARENT_COLOR,
+      borderRadius: 50.r,
+      oppacityValue: Constants.isDarkTheme(context: context) ? 0.0 : 0.4,
+      child: CustomTextField(
+          controller: textEditingController,
+          hint: hintText ?? '',
+          readOnly: readOnly ?? false,
+          label: false,
+          isDense: true,
+          divider: false,
+          keyboardType: keybordType,
+          verticalPadding: 2.0,
+          bgColor: Constants.isDarkTheme(context: context)
+              ? AppColors.TRANSPARENT_COLOR
+              : AppColors.WHITE_COLOR,
+          borderColor: Constants.isDarkTheme(context: context)
+              ? AppColors.WHITE_COLOR
+              : AppColors.ORANGE_COLOR,
+          textCapitalization: TextCapitalization.none,
+          inputFormatters: inputFormatters),
+    );
+  }
+
+  double radius = 20.0; // Default radius value
+  Widget customRadiusSelector(
+      {required BuildContext context, required dynamic setState}) {
+    return Column(
+      // mainAxisSize: MainAxisSize.min,
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: CustomText(
+            text:
+                'Selected Radius: ${radius.toInt()} Miles', // Show the current radius
+            fontColor: Constants.primaryTextThemeColor(context: context),
+          ),
+        ),
+        Slider(
+          value: radius,
+          min: 0,
+          max: 60,
+          activeColor: AppColors.ORANGE_COLOR,
+          divisions: 60, // Creates 59 divisions (1 to 60)
+          label: radius.toInt().toString(),
+          onChanged: (value) {
+            setState(() {
+              radius = value; // Update the radius value
+            });
+          },
+        ),
+      ],
+    );
+  }
+}

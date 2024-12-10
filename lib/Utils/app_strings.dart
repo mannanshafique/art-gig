@@ -6,8 +6,8 @@ class AppStrings {
   static const String LOGIN_AS_PARENTS = "Login as a Parents";
   static const String LOGIN_AS_COUNSELOR = "Login as a Counselor/Consultant";
   static const String ROLE_SELECTION = "Role Selection";
-  static const String STUDENT = "user";
-  static const String PARENT = "parent";
+  static const String ARTIST = "Artist";
+  static const String USER = "User";
   static const String CONSELOR = "consultant";
 
   static const String StartEndTimeZero = "Start and end hour cannot be 00";
@@ -36,6 +36,9 @@ class AppStrings {
   static const String NEXT = "Next";
   static const String RATING_REVIEWS = "Rating & Reviews";
   static const String EVENT_DETAIL = "Event Details";
+  static const String SUPPORT_HELP = "Support & Help";
+  static const String FAQ = "FAQ";
+  static const String QUESTION = "Question";
   static const String ACTIVITIES = "Activites";
   static const String MESSAGE = "Message";
   static const String LOGIN_WITH_EMAIL = "Login with Email";
@@ -156,6 +159,9 @@ class AppStrings {
   static const String COMPLETE_PROFILE = "Complete Profile";
   static const String FULL_NAME = "Full Name";
   static const String FIRST_NAME = "First Name";
+  static const String NAME = "Name";
+  static const String USER_TAG = "User Tag";
+  static const String AGE_GROUP = "Age Group";
   static const String LAST_NAME = "Last Name";
   static const String LOCATION = "Location";
   static const String ADDRESS = "Address";
@@ -300,7 +306,8 @@ class AppStrings {
   static const String WANT_TO_EDIT_POST = "wantToEditPost";
   static const String WANT_TO_DELETE_POST = "wantToDeletePost";
   static const String DELETE_THIS_POST = "deleteThisPost";
-  static const String APPLY_FILTER = "applyFilter";
+  static const String APPLY = "Apply";
+  static const String RESET = "Reset";
   static const String SEARCH_RESULT = "searchResult";
   static const String FILTER = "Filter";
   static const String DISTANCE = "distance";

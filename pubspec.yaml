@@ -51,6 +51,10 @@ dependencies:
   # flutter_stripe: ^6.0.0
   dotted_border: ^2.1.0
 
+  place_picker:
+    path: locationpicker
+  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

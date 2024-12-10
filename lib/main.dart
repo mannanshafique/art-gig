@@ -1,4 +1,5 @@
 import 'package:artgig/Common/Auth/Screens/Setup_Profile/create_edit_profile_screen.dart';
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:io';
@@ -11,6 +12,8 @@ import 'Common/Chat/Screen/chat_screen.dart';
 import 'Common/Notifications/Screens/notification_screen.dart';
 import 'Common/Pre_Login/Screens/pre_login_screen.dart';
 import 'Common/Profile/rating_reviews_screen.dart';
+import 'Common/Role_Selection/Screens/role_selection_screen.dart';
+import 'Common/Settings/Screen/support_help.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
 import 'Common/Splash/Screens/splash_screen.dart';
 import 'Module/Event/Model/event_model.dart';
@@ -41,6 +44,8 @@ class MyApp extends StatelessWidget {
   final splashPermanentController =
       Get.put(SplashController(), permanent: true);
 
+  final RoleController roleController = Get.put(RoleController());
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -60,8 +65,8 @@ class MyApp extends StatelessWidget {
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
                     // onGenerateRoute: AppRouter.onGenerateRoute,
-                    home: RatingReviewsScreen()
-                    // home: MainMenuScreen()
+                    // home: RoleSelectionScreen()
+                    home: MainMenuScreen()
                     );
               });
         });
