@@ -17,7 +17,6 @@ import '../../../Widgets/custom_textfield.dart';
 import '../../../Widgets/user_avatar_widget.dart';
 import '../../Utils/app_constants.dart';
 import '../../Widgets/cs_container_border.dart';
-import '../Splash/Controller/splash_controller.dart';
 
 class RatingReviewsScreen extends StatefulWidget {
   const RatingReviewsScreen({super.key});

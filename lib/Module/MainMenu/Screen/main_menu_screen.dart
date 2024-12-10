@@ -20,7 +20,9 @@ import '../../../Widgets/cs_filter_bt_sheet.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
-import '../../Event/Screen/host_profile.dart';
+import '../../Event/Screen/event_listing.dart';
+import '../../../Common/Profile/host_profile.dart';
+import '../../Event_History/Screen/event_history.dart';
 import '../../PaymentCard/Screen/payment_method_screen.dart';
 import '../../Shop/Screen/product_listing.dart';
 import '../../order_sucess_screen.dart';
@@ -38,8 +40,8 @@ class MainMenuScreen extends StatelessWidget {
       GlobalKey<ScaffoldState>(); //drawer
 
   final List<Widget> screensList = [
-    NoDataFoundWidget(),
-    ProductListScreen(),
+    EventListingScreen(),
+    EventHistoryScreen(),
     HostProfileScreen(isFromMainMenu: true),
     SettingScreen(),
   ];
@@ -68,9 +70,7 @@ class MainMenuScreen extends StatelessWidget {
         () => CustomScaffold(
           scffoldKey: _scaffoldKey,
           drawer: CustomDrawerWidget(scffoldKey: _scaffoldKey),
-          horizontalPadding: bottomNavigationController.selectedIndex.value == 0
-              ? 0.0
-              : 0.04.sw,
+          horizontalPadding: 0.0,
           bottomNavBarPadding: EdgeInsets.zero,
           appBar: customAppBar(
               context: context,

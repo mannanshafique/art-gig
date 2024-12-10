@@ -12,6 +12,7 @@ import '../../../Utils/asset_paths.dart';
 import '../../../Widgets/cs_switch_button.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../Splash/Controller/splash_controller.dart';
+import '../../TermsPrivacy/routing_argument/content_routing_argument.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({
@@ -30,7 +31,15 @@ class _SettingScreenState extends State<SettingScreen> {
   List<Widget> settingDataList = [
     SettingWidget(title: AppStrings.PRIVACY_POLICY, onTap: () {}),
     SettingWidget(title: AppStrings.ABOUT_US, onTap: () {}),
-    SettingWidget(title: AppStrings.TERMS_AND_CONDITION, onTap: () {}),
+    SettingWidget(
+        title: AppStrings.TERMS_AND_CONDITION,
+        onTap: () {
+          AppNavigation.navigateTo(Constants.navigatorKey.currentContext!,
+              AppRouteName.CONTENT_SCREEN_ROUTE,
+              arguments: ContentRoutingArgument(
+                  title: AppStrings.TERMS_AND_CONDITION,
+                  contentType: AppStrings.termsAndConditionType));
+        }),
     SettingWidget(title: AppStrings.paymentDetails, onTap: () {}),
     SettingWidget(
         title: AppStrings.DELETE_ACCOUNT,

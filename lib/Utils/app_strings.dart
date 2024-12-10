@@ -544,7 +544,7 @@ class AppStrings {
       "You have successfully accepted the \n request of user. Check the My \n Appointments.";
 
   ///////////////// My Appointments //////////////////////
-  static const String activeBookings = "Active Bookings";
+  static const String ACTIVE = "Active";
   static const String completedBookings = "Completed Bookings";
   static const String markAsComplete = "Mark as Complete";
   static const String successfullyMarkCompleted =

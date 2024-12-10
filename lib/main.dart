@@ -19,7 +19,7 @@ import 'Common/Splash/Screens/splash_screen.dart';
 import 'Module/Event/Model/event_model.dart';
 import 'Module/Event/Screen/event_details_screen.dart';
 import 'Module/Event/Screen/event_listing.dart';
-import 'Module/Event/Screen/host_profile.dart';
+import 'Common/Profile/host_profile.dart';
 import 'Module/MainMenu/Screen/main_menu_screen.dart';
 import 'Module/Shop/Screen/product_listing.dart';
 import 'Utils/app_colors.dart';

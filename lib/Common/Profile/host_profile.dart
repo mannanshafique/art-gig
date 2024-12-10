@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Profile/rating_reviews_screen.dart';
 import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -6,16 +7,18 @@ import 'package:artgig/Widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../../../Common/Splash/Controller/splash_controller.dart';
-import '../../../Utils/app_colors.dart';
-import '../../../Utils/app_constants.dart';
-import '../../../Utils/app_strings.dart';
-import '../../../Widgets/cs_appbar.dart';
-import '../../../Widgets/custom_text.dart';
-import '../../../Widgets/custom_textfield.dart';
-import '../../../Widgets/user_avatar_widget.dart';
+import '../../Widgets/cs_rating_builder_widget.dart';
+import '../Splash/Controller/splash_controller.dart';
+import '../../Utils/app_colors.dart';
+import '../../Utils/app_constants.dart';
+import '../../Utils/app_strings.dart';
+import '../../Widgets/cs_appbar.dart';
+import '../../Widgets/custom_text.dart';
+import '../../Widgets/custom_textfield.dart';
+import '../../Widgets/user_avatar_widget.dart';
 
 class HostProfileScreen extends StatefulWidget {
   const HostProfileScreen({
@@ -62,6 +65,32 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
               fontColor: Constants.primaryTitleTextThemeColor(context: context),
             ),
             10.ph,
+            GestureDetector(
+              onTap: () {
+                Get.to(() => RatingReviewsScreen());
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(
+                    text: '4.8',
+                    textAlign: TextAlign.start,
+                    fontColor:
+                        Constants.primaryTitleTextThemeColor(context: context),
+                    fontSize: 40.sp,
+                    fontFamily: AppFonts.JONES_BOLD,
+                  ),
+                  5.pw,
+                  CustomRatingBarWidget(
+                      rating: double.parse('4.2'),
+                      itemSize: 14.h,
+                      fillIconColor: AppColors.ORANGE_COLOR,
+                      isIgnoreGesture: true,
+                      onRatingUpdate: (value) {}),
+                ],
+              ),
+            ),
+            10.ph,
             Row(
               children: [
                 totalEventAndEarningWigdet(
@@ -98,7 +127,8 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
             ),
             10.ph,
             _customTextField(
-              textEditingController: TextEditingController(text: 'dvsdvs'),
+              textEditingController:
+                  TextEditingController(text: AppStrings.loremIpsum),
               isBio: true,
             ),
             10.ph,
@@ -112,12 +142,29 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
                 ),
               ],
             ),
-            //!----Grid View For Host
-            Switch(
-              value: SplashController.i.isDarkMode,
-              onChanged: (value) {
-                SplashController.i.toggleTheme(value);
-              },
+            10.ph,
+            SizedBox(
+              height: 120,
+              child: ListView.builder(
+                itemCount: 4,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 6.0),
+                    child: SizedBox(
+                      height: 120,
+                      width: 120,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.r),
+                        child: Image.asset(
+                          AssetPaths.TEMP_EVENT_IMAGES,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -168,7 +215,7 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
       oppacityValue: Constants.isDarkTheme(context: context) ? 0.0 : 0.4,
       child: isBio
           ? CustomTextField(
-              controller: TextEditingController(text: 'few'),
+              controller: textEditingController,
               hint: 'Bio',
               readOnly: true,
               label: true,
