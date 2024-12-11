@@ -1,10 +1,14 @@
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
+import 'package:artgig/Widgets/Bottom_Navigation/bottom_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../Common/Auth/Model/user_model.dart';
+import '../Common/Chat/Screen/chat_screen.dart';
+import '../Module/Shop/Screen/product_listing.dart';
 import '../Utils/app_backdrop_filter.dart';
 import '../Utils/app_colors.dart';
 import '../Utils/app_dialogs.dart';
@@ -166,14 +170,40 @@ class CustomDrawerWidget extends StatelessWidget {
               scffoldKey?.currentState!.closeDrawer();
             },
             title: AppStrings.HOME),
-        _createDrawerItem(
-            iconPath: AssetPaths.SETTING_ICON,
-            onTap: () {
-              // Get.to(() => ScheduleScreen(
-              //       isFromEdit: true,
-              //     ));
-            },
-            title: AppStrings.SETTINGS),
+        if (RoleController.i.selectedRole.value == AppStrings.ARTIST) ...[
+          _createDrawerItem(
+              iconPath: AssetPaths.CIRCULAR_ADD_ICON,
+              onTap: () {
+                scffoldKey?.currentState!.closeDrawer();
+              
+              },
+              title: AppStrings.CREATE_STUDIO),
+        ],
+        if (RoleController.i.selectedRole.value == AppStrings.USER) ...[
+          _createDrawerItem(
+              iconPath: AssetPaths.ORDER_HISTORY_ICON,
+              onTap: () {
+                scffoldKey?.currentState!.closeDrawer();
+                BottomNavigationController.i.selectedIndex.value = 1;
+              },
+              title: AppStrings.ORDER_HISTORY),
+          _createDrawerItem(
+              iconPath: AssetPaths.SHOP_ICON,
+              onTap: () {
+                scffoldKey?.currentState!.closeDrawer();
+
+                Get.to(() => ProductListScreen());
+              },
+              title: AppStrings.SHOP),
+          _createDrawerItem(
+              iconPath: AssetPaths.MESSAGE_ICON,
+              onTap: () {
+                scffoldKey?.currentState!.closeDrawer();
+
+                Get.to(() => ChatScreen());
+              },
+              title: AppStrings.CHAT),
+        ],
         30.ph,
         logoutButton(context: context, onTap: () {})
       ],

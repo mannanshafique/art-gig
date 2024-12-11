@@ -62,6 +62,8 @@ class PreLoginScreen extends StatelessWidget {
                 bgColor: AppColors.RED_COLOR,
                 context: context,
                 onTap: () {
+                  AppNavigation.navigateToRemovingAll(
+                      context, AppRouteName.MAIN_MENU_SCREEN);
                   // FirebaseAuthBloc().signInWithGoogle(
                   //   context: context,
                   // );

@@ -177,6 +177,7 @@ class MainMenuScreen extends StatelessWidget {
             height: 40.h,
             width: 100.h,
             child: CustomButton(
+              verticalPadding: 0.0,
               title: 'Create Event',
               onTap: () {
                 AppDialogs().showEventTypeDialog(context, onTap: () {

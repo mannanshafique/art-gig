@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:artgig/Module/PaymentCard/Screen/payment_method_screen.dart';
 import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../Common/Splash/Controller/splash_controller.dart';
 import '../../../Utils/app_colors.dart';
@@ -59,7 +61,9 @@ class _CartScreenState extends State<CartScreen> {
                   fontSize: 17.sp,
                   title: 'Checkout',
                   fontFamily: AppFonts.JONES_MEDIUM,
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => PaymentMethodsScreen(isFromOrderPage: true,));
+                  },
                   containerColor: AppColors.PINK_COLOR,
                   verticalPadding: 0.0,
                 ),

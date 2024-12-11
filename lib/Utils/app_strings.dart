@@ -27,6 +27,7 @@ class AppStrings {
   static const String SOCIAL_LOGIN = "Social Login";
   static const String ALL_YOUR_WISH = "All Your Wish";
   static const String IN_ONE_PLACE = "In One Place";
+  static const String SHOP = "Shop";
   static const String STORE_AND_SHARE_YOUR =
       "Store and share your wishlists\neffortlessly with Giftify.";
 
@@ -56,6 +57,7 @@ class AppStrings {
   static const String MY_EVENT = "My Event";
   static const String EVENTS = "Events";
   static const String CALENDER = "Calender";
+  static const String CREATE_STUDIO = "Create Studio";
 
   static const String CREATE_CHILDERN_PROFILE = "Create Childern Profile";
   static const String EDIT_CHILDERN_PROFILE = "Edit Childern Profile";
@@ -193,7 +195,7 @@ class AppStrings {
   static const String ARE_YOU_SURE = "Are you sure you want to";
   static const String DELETE_YOUR_ACCOUNT = "\ndelete your account?";
   static const String CANCEL = "Cancel";
-  static const String ORDER_CANCEL = "Order Cancel";
+  static const String ORDER_HISTORY = "Order History";
   static const String PLACE_ORDER = "Place Order";
   static const String MENU_NAME = "Menu Name";
   static const String CATEGORIES = "Categories";

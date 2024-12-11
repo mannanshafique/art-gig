@@ -7,6 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../Common/Splash/Controller/splash_controller.dart';
 import '../Utils/app_constants.dart';
 import '../Utils/app_fonts.dart';
+import '../Utils/app_navigation.dart';
+import '../Utils/app_route_name.dart';
 import '../Widgets/cs_bottom_navg_button.dart';
 import '../Widgets/custom_scaffold.dart';
 import '../Widgets/custom_text.dart';
@@ -20,18 +22,14 @@ class OrderSuccessScreen extends StatelessWidget {
         bottomNavigationBar: CustomBottomNavigationWidget(
           buttonTitle: AppStrings.BACK_TO_HOME,
           onTap: () {
-            Constants.unFocusKeyboardMethod(context: context);
+            AppNavigation.navigateToRemovingAll(
+                context, AppRouteName.MAIN_MENU_SCREEN);
           },
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Switch(
-              value: SplashController.i.isDarkMode,
-              onChanged: (value) {
-                SplashController.i.toggleTheme(value);
-              },
-            ),
             80.ph,
             Image.asset(
               AssetPaths.ORDER_SUCESS_ICON,
@@ -50,7 +48,7 @@ class OrderSuccessScreen extends StatelessWidget {
               text: AppStrings.loremIpsum,
               fontColor: Constants.primaryTextThemeColor(context: context),
               fontSize: 16.sp,
-              maxLines: 3,
+              maxLines: 2,
               lineSpacing: 1.2,
               fontFamily: AppFonts.JONES_REGULAR,
             ),

@@ -1,3 +1,5 @@
+import 'package:artgig/Module/order_sucess_screen.dart';
+import 'package:artgig/Utils/app_route_name.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,8 +23,9 @@ import '../../MainMenu/Controller/main_controller.dart';
 import '../Model/payment_card_model.dart';
 
 class PaymentMethodsScreen extends StatefulWidget {
-  const PaymentMethodsScreen({super.key});
+  const PaymentMethodsScreen({super.key, required this.isFromOrderPage});
 
+  final bool? isFromOrderPage;
   @override
   State<PaymentMethodsScreen> createState() => _PaymentMethodsScreenState();
 }
@@ -52,8 +55,12 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
       bottomNavigationBar: CustomBottomNavigationWidget(
         buttonTitle: AppStrings.CONTINUE,
         onTap: () {
-          // AppNavigation.navigatorPop(context);
-          Get.back(result: 'amount');
+          if (widget.isFromOrderPage ?? false) {
+            Get.to(() => OrderSuccessScreen());
+          } else {
+            AppNavigation.navigatorPop(context);
+          }
+          // Get.back(result: 'amount');
         },
       ),
       body: Column(children: [

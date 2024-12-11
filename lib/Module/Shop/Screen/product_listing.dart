@@ -145,7 +145,7 @@ class ProductCard extends StatelessWidget {
                         verticalPadding: 5.h,
                         horizontalPadding: 2.h,
                         onTap: () {
-                          Get.to(CartScreen());
+                          Get.to(() => CartScreen());
                         },
                         title: AppStrings.ADD_TO_CART))
               ],

@@ -1,7 +1,9 @@
+import 'package:artgig/Module/PaymentCard/Screen/payment_method_screen.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_dialogs.dart';
 import '../../../Utils/app_fonts.dart';
@@ -29,8 +31,24 @@ class _SettingScreenState extends State<SettingScreen> {
   var selectedItem = '';
 
   List<Widget> settingDataList = [
-    SettingWidget(title: AppStrings.PRIVACY_POLICY, onTap: () {}),
-    SettingWidget(title: AppStrings.ABOUT_US, onTap: () {}),
+    SettingWidget(
+        title: AppStrings.PRIVACY_POLICY,
+        onTap: () {
+          AppNavigation.navigateTo(Constants.navigatorKey.currentContext!,
+              AppRouteName.CONTENT_SCREEN_ROUTE,
+              arguments: ContentRoutingArgument(
+                  title: AppStrings.PRIVACY_POLICY,
+                  contentType: AppStrings.privacyPolicyType));
+        }),
+    SettingWidget(
+        title: AppStrings.ABOUT_US,
+        onTap: () {
+          AppNavigation.navigateTo(Constants.navigatorKey.currentContext!,
+              AppRouteName.CONTENT_SCREEN_ROUTE,
+              arguments: ContentRoutingArgument(
+                  title: AppStrings.ABOUT_US,
+                  contentType: AppStrings.privacyPolicyType));
+        }),
     SettingWidget(
         title: AppStrings.TERMS_AND_CONDITION,
         onTap: () {
@@ -40,7 +58,13 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: AppStrings.TERMS_AND_CONDITION,
                   contentType: AppStrings.termsAndConditionType));
         }),
-    SettingWidget(title: AppStrings.paymentDetails, onTap: () {}),
+    SettingWidget(
+        title: AppStrings.paymentDetails,
+        onTap: () {
+          Get.to(() => PaymentMethodsScreen(
+                isFromOrderPage: false,
+              ));
+        }),
     SettingWidget(
         title: AppStrings.DELETE_ACCOUNT,
         onTap: () {
