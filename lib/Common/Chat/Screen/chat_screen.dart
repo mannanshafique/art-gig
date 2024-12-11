@@ -79,15 +79,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       appBar: customAppBar(
-          actionWidget: Switch(
-            value: SplashController.i.isDarkMode,
-            onChanged: (value) {
-              SplashController.i.toggleTheme(value);
-            },
-          ),
-          context: context,
-          isLeadingBack: true,
-          title: AppStrings.MESSAGE),
+          context: context, isLeadingBack: true, title: AppStrings.MESSAGE),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

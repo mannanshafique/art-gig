@@ -69,7 +69,7 @@ class _OtpState extends State<Otp> {
                 maxLines: 3,
                 lineSpacing: 1.3,
                 letterSpacing: 1.0,
-                fontColor: Theme.of(context).textTheme.bodySmall?.color,
+                fontColor: Constants.primaryTextThemeColor(context: context),
                 fontFamily: AppFonts.JONES_REGULAR,
               ),
             ),
@@ -171,7 +171,7 @@ class _OtpState extends State<Otp> {
         children: [
           CustomText(
             text: AppStrings.DONT_RECEIVED_CODE,
-            fontColor: Theme.of(context).textTheme.bodySmall?.color,
+            fontColor: Constants.primaryTextThemeColor(context: context),
             fontSize: 14.sp,
             fontFamily: AppFonts.JONES_REGULAR,
           ),
@@ -190,7 +190,7 @@ class _OtpState extends State<Otp> {
             child: CustomText(
               text: AppStrings.RESEND,
               fontColor: isTimerCompleted
-                  ? Theme.of(context).textTheme.bodySmall?.color
+                  ? Constants.primaryTextThemeColor(context: context)
                   : AppColors.GREY_COLOR,
               fontSize: 14.sp,
               underlined: true,

@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../Widgets/custom_image_preview.dart';
 import '../Model/whishlist_product_model.dart';
 // import 'package:google_maps_webservice/places.dart';
 
@@ -28,7 +29,7 @@ class AuthController extends GetxController {
       TextEditingController();
   final TextEditingController genderEditingController = TextEditingController();
 
-  final TextEditingController designationEditingController =
+  final TextEditingController descriptionEditingController =
       TextEditingController();
 
   RxList<String> selectedCareerInterest = <String>[].obs;
@@ -51,12 +52,16 @@ class AuthController extends GetxController {
     pickedProfileImagePath.value = imagePath;
   }
 
-  // RxList<ImageModel> selectedMediaPath = <ImageModel>[].obs;
+  RxList<ImageModel> selectedMediaPath = <ImageModel>[].obs;
 
-  // void setSelectedImage(String imagePath) {
-  //   selectedMediaPath.add(ImageModel(path: imagePath, type: 'File'));
-  //   update();
-  // }
+  void setSelectedImage(String imagePath) {
+     if (selectedMediaPath.isNotEmpty) {
+      selectedMediaPath[0] = ImageModel(path: imagePath, type: 'File');
+    } else {
+      selectedMediaPath.add(ImageModel(path: imagePath, type: 'File'));
+    }
+    update();
+  }
 
   // var city;
   // var state;

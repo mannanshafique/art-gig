@@ -36,6 +36,9 @@ class _CustomFilterBottomSheetState extends State<CustomFilterBottomSheet> {
     return StatefulBuilder(builder: (context, setState) {
       return Container(
         height: 500,
+        color: Constants.isDarkTheme(context: context)
+            ? AppColors.BLACK_COLOR
+            : AppColors.WHITE_COLOR,
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(

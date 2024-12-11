@@ -58,12 +58,6 @@ class EventListingScreen extends StatelessWidget {
             print('Event Rejected');
           },
         ),
-        Switch(
-          value: SplashController.i.isDarkMode,
-          onChanged: (value) {
-            SplashController.i.toggleTheme(value);
-          },
-        ),
       ],
     );
   }
@@ -91,8 +85,8 @@ class EventCard extends StatelessWidget {
             ));
       },
       child: Container(
-        margin: EdgeInsets.all(16.w),
         padding: EdgeInsets.all(12.w),
+        margin: EdgeInsets.symmetric(horizontal: 1.h, vertical: 5.h),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(12.r),

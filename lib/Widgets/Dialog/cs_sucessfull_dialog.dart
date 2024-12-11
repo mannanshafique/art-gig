@@ -1,3 +1,4 @@
+import 'package:artgig/Utils/app_route_name.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +32,11 @@ class CustomSucessfullDialog extends StatelessWidget {
           child: Column(
             children: [
               20.ph,
-              Image.asset(AssetPaths.THUMB_ICON, scale: 3),
+              Image.asset(
+                AssetPaths.CIRCULAR_TICK_ICON,
+                scale: 3,
+                color: AppColors.ORANGE_COLOR,
+              ),
               20.ph,
               CustomText(
                 text: title.capitalizeFirst,
@@ -44,9 +49,11 @@ class CustomSucessfullDialog extends StatelessWidget {
               20.ph,
               CustomButton(
                 title: AppStrings.CONTINUE,
-                containerColor: AppColors.BLACK_COLOR,
+                containerColor: AppColors.PINK_COLOR,
                 onTap: () {
                   AppNavigation.navigatorPop(context);
+                  AppNavigation.navigateToRemovingAll(
+                      context, AppRouteName.MAIN_MENU_SCREEN);
                 },
               ),
               20.ph,

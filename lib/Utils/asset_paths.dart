@@ -47,6 +47,7 @@ class AssetPaths {
   static const String USA_FLAG_ICON = "$icons/ic_usa.png";
   static const String BACK_ARROW_ICON = "$icons/ic_back.png";
   static const String ALARM_ICON = "$icons/ic_alram.png";
+  static const String QUESTION_MARK_ICON = "$icons/ic_question_mark.png";
   static const String BLOCK_ICON = "$icons/ic_block.png";
   static const String CIRCULAR_DELETE_ICON = "$icons/ic_circular_delete.png";
   static const String CIRCULAR_PROFILE_ICON = "$icons/ic_circular_profile.png";
@@ -75,6 +76,10 @@ class AssetPaths {
   static const String CAMERA_ICON = "$icons/ic_camera.png";
   static const String UPLOAD_ICON = "$icons/ic_upload.png";
   static const String THUMB_ICON = "$icons/ic_thumb.png";
+  static const String CIRCULAR_TICK_ICON = "$icons/ic_circular_tick.png";
+  static const String ORDER_HISTORY_ICON = "$icons/ic_order_history.png";
+  static const String QUESTION_ICON = "$icons/ic_question_mark.png";
+  static const String SHOP_ICON = "$icons/ic_shop.png";
 
   //----------------------- TEMP IMAGES -------------------------//
   // static const String temp1 = "$images/im_temp1.png";

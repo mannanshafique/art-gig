@@ -28,7 +28,7 @@ class SplashController extends GetxController {
         // loadCurrentUserFromSharedPreference(context: Get.context!);
         // _validateUser();
         AppNavigation.navigateTo(
-            Get.context!, AppRouteName.PRE_LOGIN_SCREEN_ROUTE);
+            Get.context!, AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
       },
     );
   }

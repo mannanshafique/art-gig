@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../Module/PaymentCard/Screen/add_new_card_screen.dart';
+import '../Widgets/Dialog/cs_event_type_choose_dialog.dart';
 import '../Widgets/Dialog/cs_options_dialog.dart';
 import '../Widgets/Dialog/cs_report_dialog.dart';
 import '../Widgets/Dialog/cs_sucessfull_dialog.dart';
@@ -34,8 +35,6 @@ class AppDialogs {
   //       });
   // }
 
-
-
   Future showSucessDialog(
     context,
     String title,
@@ -45,14 +44,14 @@ class AppDialogs {
         context: context,
         barrierColor: AppColors.BLACK_COLOR.withOpacity(0.7),
         builder: (context) {
-          return  CustomSucessfullDialog(
+          return CustomSucessfullDialog(
             headerTitle: 'Successfully',
             title: title,
           );
         });
   }
 
-    Future showAddNewCardDialog(context, {required Function() onTap}) {
+  Future showAddNewCardDialog(context, {required Function() onTap}) {
     return showDialog(
         barrierDismissible: false,
         context: context,
@@ -62,7 +61,23 @@ class AppDialogs {
                 sigmaX: 5.0,
                 sigmaY: 5.0,
               ),
-              child: AddNewCardScreen(
+              child: AddNewCardScreen());
+        });
+  }
+
+  Future showEventTypeDialog(context, {required Function() onTap}) {
+    return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 5.0,
+                sigmaY: 5.0,
+              ),
+              child: CustomEventTypeDialog(
+                headerTitle: 'What Type Of Event',
+                onTap: onTap,
               ));
         });
   }
@@ -135,7 +150,6 @@ class AppDialogs {
           );
         });
   }
-
 
   static void progressAlertDialog({required BuildContext context}) {
     showDialog(

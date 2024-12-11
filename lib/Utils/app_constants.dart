@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:place_picker/place_picker.dart';
 
 import '../Widgets/cs_timepicker_widget.dart';
 import '../Widgets/custom_text.dart';
@@ -96,9 +97,12 @@ class Constants {
     return Theme.of(context).textTheme.bodyLarge?.color ??
         AppColors.BLACK_COLOR;
   }
+
   static Color primaryTextThemeColor({required BuildContext context}) {
-    return Theme.of(context).textTheme.bodyMedium?.color ?? AppColors.BLACK_COLOR;
+    return Theme.of(context).textTheme.bodyMedium?.color ??
+        AppColors.BLACK_COLOR;
   }
+
   static Color secondaryTextThemeColor({required BuildContext context}) {
     return Theme.of(context).textTheme.bodySmall?.color ?? AppColors.GREY_COLOR;
   }
@@ -158,13 +162,13 @@ class Constants {
     return addressDetail;
   }
 
-  // Future<LocationResult> showPlacePicker(context) async {
-  //   LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
-  //       builder: (context) => PlacePicker(
-  //             googleApiKey,
-  //           )));
-  //   return result;
-  // }
+  Future<LocationResult> showPlacePicker(context) async {
+    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => PlacePicker(
+              googleApiKey,
+            )));
+    return result;
+  }
 
   // Future<void> findLatLongFromAddress(String address,
   //     {required Function(double?, double?) onResult}) async {
@@ -317,8 +321,8 @@ class Constants {
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light(
-              primary: AppColors.YELLOW_COLOR, // Header background color
+            colorScheme: ColorScheme.light(
+              primary: AppColors.PINK_COLOR, // Header background color
               onPrimary: AppColors.WHITE_COLOR, // Header text color
               surface:
                   AppColors.WHITE_COLOR, // Background color of the calendar
@@ -338,6 +342,14 @@ class Constants {
     }
   }
 
+static String formatTimeOfDay(TimeOfDay time) {
+    final hour = time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
+    final minute = time.minute.toString().padLeft(2, '0'); // Add leading zero
+    final period = time.hour >= 12 ? "PM" : "AM";
+
+    return "$hour:$minute $period";
+  }
+
   static Future<void> showSelectTimePicker(
       {required BuildContext context,
       final ValueChanged<TimeOfDay?>? getSelectedTime}) async {
@@ -348,7 +360,7 @@ class Constants {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
-                primary: AppColors.AMBER_COLOR, // header background color
+                primary: AppColors.PINK_COLOR, // header background color
                 //onPrimary: Colors.black, // header text color
                 //onSurface: Colors.green, // body text color
               ),

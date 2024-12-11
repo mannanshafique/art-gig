@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:artgig/Common/Splash/Controller/splash_controller.dart';
+import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +115,7 @@ class PreLoginScreen extends StatelessWidget {
 
   Widget _termsAndPrivacyNavigationWidget(BuildContext context) {
     TextStyle linkStyle = TextStyle(
-      color: Theme.of(context).textTheme.bodySmall?.color,
+      color: Constants.primaryTextThemeColor(context: context),
       decoration: TextDecoration.underline,
       fontSize: 15.sp,
       fontFamily: AppFonts.JONES_BOLD,
@@ -125,7 +126,7 @@ class PreLoginScreen extends StatelessWidget {
         text: TextSpan(
           style: TextStyle(
             height: 2,
-            color: Theme.of(context).textTheme.bodySmall?.color,
+            color: Constants.primaryTextThemeColor(context: context),
           ),
           children: <TextSpan>[
             TextSpan(

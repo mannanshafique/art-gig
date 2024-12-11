@@ -1,5 +1,9 @@
 import 'dart:io';
+import 'package:artgig/Common/Chat/Screen/chat_screen.dart';
+import 'package:artgig/Common/Notifications/Screens/notification_screen.dart';
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Common/Settings/Screen/settings_screen.dart';
+import 'package:artgig/Module/Event/Screen/create_event_screen.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -70,7 +74,6 @@ class MainMenuScreen extends StatelessWidget {
         () => CustomScaffold(
           scffoldKey: _scaffoldKey,
           drawer: CustomDrawerWidget(scffoldKey: _scaffoldKey),
-          horizontalPadding: 0.0,
           bottomNavBarPadding: EdgeInsets.zero,
           appBar: customAppBar(
               context: context,
@@ -82,6 +85,7 @@ class MainMenuScreen extends StatelessWidget {
               onTap: () {
                 _scaffoldKey.currentState!.openDrawer();
               }),
+          floatingActionButton: floatingActionWidget(context: context),
           extendedBoy: true,
           body: screensList
               .elementAt(bottomNavigationController.selectedIndex.value),
@@ -100,13 +104,13 @@ class MainMenuScreen extends StatelessWidget {
         data = AppStrings.HOME;
         break;
       case 1:
-        data = AppStrings.WHISHLIST;
+        data = AppStrings.MY_EVENT;
         break;
       case 2:
-        data = AppStrings.CALENDER;
+        data = AppStrings.PROFILE;
         break;
       case 3:
-        data = AppStrings.PROFILE;
+        data = AppStrings.SETTINGS;
         break;
     }
     return data;
@@ -117,32 +121,44 @@ class MainMenuScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0, 10, 14, 10),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              AssetPaths.MESSAGE_ICON,
-              height: 21.h,
-            ),
-          ),
+          bottomNavigationController.selectedIndex.value == 0
+              ? GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      // barrierLabel: 'sad',
+                      enableDrag: true,
+                      isDismissible: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(0.08.sw),
+                        ),
+                      ),
+                      backgroundColor: AppColors.WHITE_COLOR,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CustomFilterBottomSheet();
+                      },
+                    );
+                  },
+                  child: Image.asset(
+                    AssetPaths.FILTER_ICON,
+                    height: 21.h,
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () {
+                    Get.to(() => ChatScreen());
+                  },
+                  child: Image.asset(
+                    AssetPaths.MESSAGE_ICON,
+                    height: 21.h,
+                  ),
+                ),
           10.pw,
           GestureDetector(
             onTap: () {
-              showModalBottomSheet(
-                isScrollControlled: true,
-                // barrierLabel: 'sad',
-                enableDrag: true,
-                isDismissible: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(0.08.sw),
-                  ),
-                ),
-                backgroundColor: AppColors.WHITE_COLOR,
-                context: context,
-                builder: (BuildContext context) {
-                  return CustomFilterBottomSheet();
-                },
-              );
+              Get.to(() => NotificationScreen());
             },
             child: Image.asset(
               AssetPaths.NOTIFICATION_ICON,
@@ -154,12 +170,33 @@ class MainMenuScreen extends StatelessWidget {
     );
   }
 
+  Widget floatingActionWidget({required BuildContext context}) {
+    return (RoleController.i.selectedRole.value == AppStrings.USER &&
+            bottomNavigationController.selectedIndex.value == 0)
+        ? SizedBox(
+            height: 40.h,
+            width: 100.h,
+            child: CustomButton(
+              title: 'Create Event',
+              onTap: () {
+                AppDialogs().showEventTypeDialog(context, onTap: () {
+                  AppNavigation.navigatorPop(context);
+                  Get.to(() => CreateEventScreen());
+                });
+              },
+              fontSize: 14.sp,
+            ),
+          )
+        : const SizedBox.shrink();
+  }
+
   Widget leadingWidget({required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 14, 10),
       child: Image.asset(
-        AssetPaths.NOTIFICATION_ICON,
+        AssetPaths.DRAWER_ICON,
         height: 22.h,
+        color: AppColors.ORANGE_COLOR,
       ),
     );
   }

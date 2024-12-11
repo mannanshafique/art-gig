@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:artgig/Utils/app_constants.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -85,8 +86,9 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
                         child: Container(
                             height: 15.h,
                             width: 15.h,
-                            decoration: const BoxDecoration(
-                                color: AppColors.BLACK_COLOR,
+                            decoration: BoxDecoration(
+                                color: Constants.primaryTitleTextThemeColor(
+                                    context: context),
                                 shape: BoxShape.circle),
                             child: Center(
                                 child: Icon(
@@ -233,7 +235,10 @@ class _ImagePreview extends StatelessWidget {
                     width: 90.h,
                     height: 90.h,
                     decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.BLACK_COLOR),
+                        border: Border.all(
+                          color: Constants.primaryTitleTextThemeColor(
+                              context: context),
+                        ),
                         borderRadius: BorderRadius.circular(15.r),
                         color: AppColors.WHITE_COLOR,
                         image: DecorationImage(
@@ -249,7 +254,10 @@ class _ImagePreview extends StatelessWidget {
                         height: 90.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
-                            border: Border.all(color: AppColors.BLACK_COLOR),
+                            border: Border.all(
+                              color: Constants.primaryTitleTextThemeColor(
+                                  context: context),
+                            ),
                             image: DecorationImage(
                               image: FileImage(
                                 File(imagePath),
@@ -262,7 +270,10 @@ class _ImagePreview extends StatelessWidget {
                         height: 90.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
-                            border: Border.all(color: AppColors.BLACK_COLOR),
+                            border: Border.all(
+                              color: Constants.primaryTitleTextThemeColor(
+                                  context: context),
+                            ),
                             image: DecorationImage(
                               image: NetworkImage(
                                 NetworkStrings.NETWORK_IMAGE_BASE_URL +
@@ -288,12 +299,14 @@ class _ImagePreview extends StatelessWidget {
                       height: 20.h,
                       width: 20.h,
                       decoration: BoxDecoration(
-                          color: AppColors.BLACK_COLOR, shape: BoxShape.circle),
+                          color: Constants.primaryTitleTextThemeColor(
+                              context: context),
+                          shape: BoxShape.circle),
                       child: Center(
                           child: Icon(
                         Icons.delete,
                         size: 16,
-                        color: AppColors.WHITE_COLOR,
+                        color: AppColors.BLACK_COLOR,
                       ))),
                 ),
               ),

@@ -53,7 +53,7 @@ class AppStrings {
   static const String UPLOAD_PHOTO_VIDEO = "Upload Photo/Video";
   static const String ADD_URL = "Add URL";
   static const String PRODUCT_NAME = "Product Name";
-  static const String WHISHLIST = "Whishlist";
+  static const String MY_EVENT = "My Event";
   static const String EVENTS = "Events";
   static const String CALENDER = "Calender";
 
@@ -354,6 +354,7 @@ class AppStrings {
   static const String PAYMENT_SETTINGS = "Payment Settings";
   static const String SETTINGS = "Settings";
   static const String CREATE_MENU = "Create Menu";
+  static const String CREATE_EVENT = "Create Event";
   static const String CREATED_MENU = "Created Menu";
   static const String EDIT_MENU = "Edit Menu";
 

@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Common/Splash/Controller/splash_controller.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
@@ -5,13 +6,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:place_picker/place_picker.dart';
 import '../../../../Utils/app_colors.dart';
 import '../../../../Utils/app_constants.dart';
+import '../../../../Utils/app_dialogs.dart';
 import '../../../../Utils/app_padding.dart';
 import '../../../../Utils/app_strings.dart';
 import '../../../../Widgets/cs_bottom_navg_button.dart';
+import '../../../../Widgets/cs_container_border.dart';
 import '../../../../Widgets/custom_auth_scaffold.dart';
 import '../../../../Widgets/custom_drop_down_widget.dart';
+import '../../../../Widgets/custom_image_preview.dart';
+import '../../../../Widgets/custom_text.dart';
 import '../../../../Widgets/custom_textfield.dart';
 import '../../../../Widgets/user_avatar_widget.dart';
 import '../../Controller/auth_controller.dart';
@@ -107,17 +113,22 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
               widget.isFromEdit ? AppStrings.UPDATE : AppStrings.CONTINUE,
           onTap: () {
             Constants.unFocusKeyboardMethod(context: context);
+            if (widget.isFromEdit) {
+            } else {
+              AppDialogs().showSucessDialog(context,
+                  'You have completed your profile set up successfully.');
+            }
           },
         ),
       ),
       // bottomNavigationBar: GetBuilder<SplashController>(builder: (spl) {
-        // return CustomBottomNavigationWidget(
-        //   buttonTitle: widget.isFromEdit ? AppStrings.UPDATE : AppStrings.NEXT,
-        //   onTap: () {
-        //     Constants.unFocusKeyboardMethod(context: context);
+      // return CustomBottomNavigationWidget(
+      //   buttonTitle: widget.isFromEdit ? AppStrings.UPDATE : AppStrings.NEXT,
+      //   onTap: () {
+      //     Constants.unFocusKeyboardMethod(context: context);
 
-        //   },
-        // );
+      //   },
+      // );
       // }),
       child: SingleChildScrollView(
         child: Padding(
@@ -126,12 +137,6 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
             children: [
               10.ph,
               userProfileDetailForm(context: context),
-              Switch(
-                value: SplashController.i.isDarkMode,
-                onChanged: (value) {
-                  SplashController.i.toggleTheme(value);
-                },
-              ),
             ],
           ),
         ),
@@ -205,6 +210,9 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           onTap: () async {
             Constants.unFocusKeyboardMethod(context: context);
             // await authController.getAddress(context);
+            LocationResult t = await Constants().showPlacePicker(context);
+            AuthController.i.locationEditingController.text =
+                t.formattedAddress ?? "";
           },
         ),
         10.ph,
@@ -215,50 +223,152 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           keyboardType: TextInputType.text,
           onTap: () async {
             Constants.unFocusKeyboardMethod(context: context);
-            // await authController.getAddress(context);
+            AuthController.i.dateOfBirthEditingController.text =
+                await Constants().datePicker(
+              context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime.now(),
+              lastDate: DateTime(2026),
+            );
           },
         ),
         10.ph,
         _customTextField(
           hint: AppStrings.GENDER,
-          readOnly: true,
+          readOnly: false,
           textEditingController: AuthController.i.genderEditingController,
           keyboardType: TextInputType.text,
-          onTap: () async {
-            Constants.unFocusKeyboardMethod(context: context);
-            // await authController.getAddress(context);
-          },
         ),
         10.ph,
+        if (RoleController.i.selectedRole.value == AppStrings.ARTIST) ...[
+          _customTextField(
+            textEditingController:
+                AuthController.i.descriptionEditingController,
+            hint: 'Bio',
+            keyboardType: TextInputType.text,
+            maxLine: 4,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(Constants.DESCRIPTION_MAX_LENGTH)
+            ],
+          ),
+          10.ph,
+          pictureUploadWidget(),
+          10.ph,
+        ],
       ],
+    );
+  }
+
+  Widget pictureUploadWidget() {
+    return GestureDetector(
+      onTap: () {
+        AppDialogs().showImagePickerDialog(
+            isMultiPicked: false,
+            context: context,
+            pickedImagePathCallback: AuthController.i.setSelectedImage);
+      },
+      child: Column(
+        children: [
+          CustomContainerBorderWidget(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            bgColor: AppColors.TRANSPARENT_COLOR,
+            borderRadius: 12.r,
+            oppacityValue: 0.0,
+            borderColor: Constants.isDarkTheme(context: context)
+                ? AppColors.WHITE_COLOR
+                : AppColors.ORANGE_COLOR,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.add,
+                  size: 20.h,
+                  color: Constants.primaryTitleTextThemeColor(context: context),
+                ),
+                5.pw,
+                CustomText(
+                  text: 'Upload Picture',
+                  fontSize: 16.sp,
+                  fontColor:
+                      Constants.primaryTitleTextThemeColor(context: context),
+                ),
+              ],
+            ),
+          ),
+          10.ph,
+          ImagePreviewWidget(
+            imagePaths: AuthController.i.selectedMediaPath,
+            isGalleryIconVisible: false,
+            isCameraIconVisible: false,
+            showRowSlider: false,
+            isFromEdit: false,
+          ),
+        ],
+      ),
     );
   }
 
   Widget _customTextField(
       {required TextEditingController textEditingController,
-      required TextInputType keyboardType,
-      required String hint,
       List<TextInputFormatter>? inputFormatters,
-      bool? readOnly,
-      Function()? onTap}) {
-    return CustomTextField(
-        controller: textEditingController,
-        keyboardType: keyboardType,
-        hint: hint,
-        readOnly: readOnly ?? false,
-        label: false,
-        isDense: true,
-        onTap: onTap,
-        verticalPadding: 2.0,
-        bgColor: Constants.isDarkTheme(context: context)
-            ? AppColors.TRANSPARENT_COLOR
-            : AppColors.WHITE_COLOR,
-        borderColor: Constants.isDarkTheme(context: context)
-            ? AppColors.WHITE_COLOR
-            : AppColors.TRANSPARENT_COLOR,
-        textCapitalization: TextCapitalization.none,
-        inputFormatters: inputFormatters);
+      String? hint,
+      TextInputType? keyboardType,
+      int? maxLine,
+      Function()? onTap,
+      bool? readOnly}) {
+    return CustomContainerBorderWidget(
+      padding: EdgeInsets.zero,
+      bgColor: AppColors.TRANSPARENT_COLOR,
+      borderRadius: (maxLine ?? 0) > 1 ? 12.r : 50.r,
+      oppacityValue: Constants.isDarkTheme(context: context) ? 0.0 : 0.4,
+      child: CustomTextField(
+          controller: textEditingController,
+          hint: hint ?? '',
+          readOnly: readOnly ?? false,
+          label: false,
+          isDense: true,
+          divider: false,
+          onTap: onTap,
+          maxlines: maxLine,
+          borderRadius: (maxLine ?? 0) > 1 ? 12.r : 50.r,
+          keyboardType: keyboardType,
+          verticalPadding: 2.0,
+          bgColor: Constants.isDarkTheme(context: context)
+              ? AppColors.TRANSPARENT_COLOR
+              : AppColors.WHITE_COLOR,
+          borderColor: Constants.isDarkTheme(context: context)
+              ? AppColors.WHITE_COLOR
+              : AppColors.ORANGE_COLOR,
+          textCapitalization: TextCapitalization.none,
+          inputFormatters: inputFormatters),
+    );
   }
+
+  // Widget _customTextField(
+  //     {required TextEditingController textEditingController,
+  //     required TextInputType keyboardType,
+  //     required String hint,
+  //     List<TextInputFormatter>? inputFormatters,
+  //     bool? readOnly,
+  //     Function()? onTap}) {
+  //   return CustomTextField(
+  //       controller: textEditingController,
+  //       keyboardType: keyboardType,
+  //       hint: hint,
+  //       readOnly: readOnly ?? false,
+  //       label: false,
+  //       isDense: true,
+  //       onTap: onTap,
+  //       verticalPadding: 2.0,
+  //       bgColor: Constants.isDarkTheme(context: context)
+  //           ? AppColors.TRANSPARENT_COLOR
+  //           : AppColors.WHITE_COLOR,
+  //       borderColor: Constants.isDarkTheme(context: context)
+  //           ? AppColors.WHITE_COLOR
+  //           : AppColors.TRANSPARENT_COLOR,
+  //       textCapitalization: TextCapitalization.none,
+  //       inputFormatters: inputFormatters);
+  // }
 
   // Widget customizedDropDown(
   //     {required List<String> dropDownDataList,

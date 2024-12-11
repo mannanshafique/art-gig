@@ -1,4 +1,3 @@
-import 'package:artgig/Common/Auth/Screens/Setup_Profile/create_edit_profile_screen.dart';
 import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -7,22 +6,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'Common/Auth/Screens/Setup_Profile/pre_login_test.dart';
-import 'Common/Chat/Screen/chat_screen.dart';
-import 'Common/Notifications/Screens/notification_screen.dart';
-import 'Common/Pre_Login/Screens/pre_login_screen.dart';
-import 'Common/Profile/rating_reviews_screen.dart';
-import 'Common/Role_Selection/Screens/role_selection_screen.dart';
-import 'Common/Settings/Screen/support_help.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
-import 'Common/Splash/Screens/splash_screen.dart';
-import 'Module/Event/Model/event_model.dart';
-import 'Module/Event/Screen/event_details_screen.dart';
-import 'Module/Event/Screen/event_listing.dart';
-import 'Common/Profile/host_profile.dart';
-import 'Module/MainMenu/Screen/main_menu_screen.dart';
-import 'Module/Shop/Screen/product_listing.dart';
-import 'Utils/app_colors.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
 import 'Utils/app_size.dart';
@@ -64,9 +48,9 @@ class MyApp extends StatelessWidget {
                     themeMode: splashController.themeMode,
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
-                    // onGenerateRoute: AppRouter.onGenerateRoute,
+                    onGenerateRoute: AppRouter.onGenerateRoute,
                     // home: RoleSelectionScreen()
-                    home: MainMenuScreen()
+                    // home: MainMenuScreen()
                     );
               });
         });

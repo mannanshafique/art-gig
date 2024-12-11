@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Utils/app_colors.dart';
+import '../Utils/app_constants.dart';
 import '../Utils/app_fonts.dart';
 import '../Utils/app_navigation.dart';
 import '../Utils/asset_paths.dart';
@@ -61,7 +62,7 @@ class CustomAuthScaffold extends StatelessWidget {
                 title: CustomText(
                   text: appBarTitle,
                   fontSize: 16.sp,
-                  fontColor: Theme.of(context).textTheme.bodyLarge?.color,
+                  fontColor: Constants.primaryTextThemeColor(context: context),
                   fontFamily: AppFonts.JONES_BOLD,
                 ),
                 backgroundColor: AppColors.TRANSPARENT_COLOR,

@@ -63,7 +63,27 @@ class _SettingScreenState extends State<SettingScreen> {
               },
               context: Constants.navigatorKey.currentContext);
         }),
-    SettingWidget(title: AppStrings.LOGOUT, onTap: () {}),
+    SettingWidget(
+        title: AppStrings.LOGOUT,
+        onTap: () {
+          AppDialogs().showOptionsDialog(
+              headertitle: AppStrings.LOGOUT,
+              title: '${AppStrings.ARE_YOU_SURE} \n logout?',
+              haveTwoButton: true,
+              b1Text: AppStrings.CANCEL,
+              b2Text: AppStrings.LOGOUT,
+              imagePath: AssetPaths.LOGOUT_ICON,
+              b1onTap: () {
+                AppNavigation.navigatorPop(
+                    Constants.navigatorKey.currentContext!);
+              },
+              b2onTap: () {
+                AppNavigation.navigateToRemovingAll(
+                    Constants.navigatorKey.currentContext!,
+                    AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
+              },
+              context: Constants.navigatorKey.currentContext);
+        }),
   ];
 
   @override
@@ -104,7 +124,30 @@ class _SettingScreenState extends State<SettingScreen> {
             fontFamily: AppFonts.JONES_BOLD,
           ),
         ),
-        10.ph,
+        8.ph,
+        //!----Dark Theme
+        Container(
+          padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0.0, 8.0),
+          decoration: BoxDecoration(
+              color: AppColors.LIGHT_GREY_COLOR,
+              borderRadius: BorderRadius.circular(50.r)),
+          child: CustomSwitchButtonWidget(
+            isSwitch: Constants.isDarkTheme(context: context),
+            // (SplashController.i.currentUser.value?.notification ==
+            //         0)
+            //     ? false
+            //     : true,
+            onToggle: (value) {
+              SplashController.i.toggleTheme(value);
+            },
+            title: 'Dark Theme',
+            activeColor: AppColors.BLACK_COLOR,
+            fontColor: AppColors.BLACK_COLOR,
+            fontSize: 15.sp,
+            fontFamily: AppFonts.JONES_BOLD,
+          ),
+        ),
+        8.ph,
         Expanded(
             child: ListView.builder(
           itemCount: settingDataList.length,
