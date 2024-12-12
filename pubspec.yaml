@@ -50,6 +50,8 @@ dependencies:
   flutter_slidable: ^3.0.0
   # flutter_stripe: ^6.0.0
   dotted_border: ^2.1.0
+  video_player: ^2.8.2
+  chewie: ^1.7.5
 
   place_picker:
     path: locationpicker

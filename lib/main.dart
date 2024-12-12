@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'Common/Auth/Screens/Setup_Profile/tutorial_guide_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
@@ -48,8 +49,8 @@ class MyApp extends StatelessWidget {
                     themeMode: splashController.themeMode,
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
-                    onGenerateRoute: AppRouter.onGenerateRoute,
-                    // home: RoleSelectionScreen()
+                    // onGenerateRoute: AppRouter.onGenerateRoute,
+                    home: TestOptionSelection()
                     // home: MainMenuScreen()
                     );
               });
