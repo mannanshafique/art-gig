@@ -12,6 +12,7 @@ import '../../../../Utils/app_constants.dart';
 import '../../../../Utils/app_dialogs.dart';
 import '../../../../Utils/app_padding.dart';
 import '../../../../Utils/app_strings.dart';
+import '../../../../Utils/app_validator.dart';
 import '../../../../Widgets/cs_bottom_navg_button.dart';
 import '../../../../Widgets/cs_container_border.dart';
 import '../../../../Widgets/custom_auth_scaffold.dart';
@@ -44,7 +45,7 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
     super.initState();
   }
 
-  List<ImageModel> selectedMediaPath = <ImageModel>[].obs;
+  List<ImageModel> selectedMediaPath = <ImageModel>[];
 
   void setSelectedImage(String imagePath) {
     if (selectedMediaPath.isNotEmpty) {
@@ -125,13 +126,25 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
               widget.isFromEdit ? AppStrings.UPDATE : AppStrings.CONTINUE,
           onTap: () {
             Constants.unFocusKeyboardMethod(context: context);
-            if (widget.isFromEdit) {
-            } else {
-              if (RoleController.i.selectedRole.value == AppStrings.ARTIST) {
-                Get.to(() => const TestOptionSelection());
+            // validateCreateProfile
+            bool isValidate = FieldValidator().validateCreateProfile(
+                AuthController.i.fullNameEditingController.text,
+                AuthController.i.emailEditingController.text,
+                AuthController.i.locationEditingController.text,
+                AuthController.i.phNoEditingController.text,
+                AuthController.i.dateOfBirthEditingController.text,
+                AuthController.i.genderEditingController.text,
+                AuthController.i.descriptionEditingController.text,
+                context);
+            if (isValidate) {
+              if (widget.isFromEdit) {
               } else {
-                AppDialogs().showSucessDialog(context,
-                    'You have completed your profile set up successfully.');
+                if (RoleController.i.selectedRole.value == AppStrings.ARTIST) {
+                  Get.to(() => const TestOptionSelection());
+                } else {
+                  AppDialogs().showSucessDialog(context,
+                      'You have completed your profile set up successfully.');
+                }
               }
             }
           },

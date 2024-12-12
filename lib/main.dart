@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Common/Auth/Screens/Setup_Profile/tutorial_guide_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
+import 'Module/Studio/Screen/add_edit_studio.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
 import 'Utils/app_size.dart';
@@ -42,17 +43,17 @@ class MyApp extends StatelessWidget {
               init: SplashController(),
               builder: (splashController) {
                 return GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Art-Gig',
-                  navigatorKey: Constants.navigatorKey,
-                  scrollBehavior: CustomScrollBehavior(),
-                  themeMode: splashController.themeMode,
-                  theme: AppThemes.lightTheme,
-                  darkTheme: AppThemes.darkTheme,
-                  onGenerateRoute: AppRouter.onGenerateRoute,
-                  // home: TestOptionSelection()
-                  // home: MainMenuScreen()
-                );
+                    debugShowCheckedModeBanner: false,
+                    title: 'Art-Gig',
+                    navigatorKey: Constants.navigatorKey,
+                    scrollBehavior: CustomScrollBehavior(),
+                    themeMode: splashController.themeMode,
+                    theme: AppThemes.lightTheme,
+                    darkTheme: AppThemes.darkTheme,
+                    // onGenerateRoute: AppRouter.onGenerateRoute,
+                    home: AddEditStudio()
+                    // home: MainMenuScreen()
+                    );
               });
         });
   }

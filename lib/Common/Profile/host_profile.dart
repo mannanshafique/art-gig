@@ -41,7 +41,7 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
             appBar: customAppBar(
                 context: context,
                 isLeadingBack: true,
-                title: AppStrings.EVENT_DETAIL),
+                title: AppStrings.PROFILE),
             body: profileBody());
   }
 
@@ -54,7 +54,7 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
           children: [
             CustomCicrleAvatarWidget(
               circularColor: Constants.themeButton(context: context),
-              imgPath: AssetPaths.BACKGROUNG_LIGHT_MODE_IMAGES,
+              imgPath: AssetPaths.TEMP_PROFILE_IMAGES,
               radius: 100.h,
               isExtendedImage: false,
             ),
@@ -166,6 +166,7 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
                 },
               ),
             ),
+            30.ph,
           ],
         ),
       ),

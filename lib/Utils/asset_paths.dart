@@ -16,6 +16,7 @@ class AssetPaths {
       "$images/im_light_mode.png";
 
   static const String TEMP_EVENT_IMAGES = "$images/temp_event.png";
+  static const String TEMP_PROFILE_IMAGES = "$images/temp_profile.png";
 
   //----------------------- ICONS -------------------------//
   static const String LOGO_ICON = "$icons/ic_logo.png";

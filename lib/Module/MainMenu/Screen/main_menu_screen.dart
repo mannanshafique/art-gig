@@ -101,10 +101,11 @@ class MainMenuScreen extends StatelessWidget {
     String data = AppStrings.HOME;
     switch (index) {
       case 0:
-        data = AppStrings.HOME;
+        data =
+            RoleController.isArtist() ? AppStrings.HOME : AppStrings.MY_EVENT;
         break;
       case 1:
-        data = AppStrings.MY_EVENT;
+        data = AppStrings.HISTORY;
         break;
       case 2:
         data = AppStrings.PROFILE;

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/utils.dart';
 
@@ -47,20 +48,16 @@ class FieldValidator {
 
   //---------------- CREATE PROFILE SCREEN VALIDATION -----------------//
   bool validateCreateProfile(
-      String firstName,
-      String lastName,
+      String fullName,
       String emailAddress,
       String location,
       String phoneNumber,
       String dateOfBirth,
       String gender,
-      String designation,
+      String bio,
       context) {
-    if (firstName.isEmpty) {
-      FlushBar().showFlushBar(context, "First name field can't be empty.");
-      return false;
-    } else if (lastName.isEmpty) {
-      FlushBar().showFlushBar(context, "Last name field can't be empty.");
+    if (fullName.isEmpty) {
+      FlushBar().showFlushBar(context, "Full name field can't be empty.");
       return false;
     } else if (validateEmail(emailAddress, context) == false) {
       return false;
@@ -75,8 +72,9 @@ class FieldValidator {
     } else if (gender.isEmpty) {
       FlushBar().showFlushBar(context, "Gender field can't be empty.");
       return false;
-    } else if (designation.isEmpty) {
-      FlushBar().showFlushBar(context, "Designation field can't be empty.");
+    } else if (RoleController.i.selectedRole.value == AppStrings.ARTIST &&
+        bio.isEmpty) {
+      FlushBar().showFlushBar(context, "Gender field can't be empty.");
       return false;
     } else {
       return true;
@@ -93,7 +91,7 @@ class FieldValidator {
     }
   }
 
- bool creditCardValidate(
+  bool creditCardValidate(
       {required String cardNumber,
       // required String expMonth,
       required String expYear,
@@ -109,7 +107,7 @@ class FieldValidator {
     //  else if (expMonth.isEmpty) {
     //   FlushBar().showFlushBar(context, "Expiry month field can't be empty.");
     //   return false;
-    // } 
+    // }
     else if (expYear.isEmpty) {
       FlushBar().showFlushBar(context, "Expiry year field can't be empty.");
       return false;

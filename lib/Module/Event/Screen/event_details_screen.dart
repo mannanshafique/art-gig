@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:artgig/Common/Profile/host_profile.dart';
 import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/app_navigation.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../Common/Role_Selection/Controller/role_controller.dart';
 import '../../../Common/Splash/Controller/splash_controller.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_constants.dart';
@@ -19,9 +22,10 @@ import '../../../Widgets/user_avatar_widget.dart';
 import '../Model/event_model.dart';
 
 class EventDetailScreen extends StatelessWidget {
-  const EventDetailScreen({super.key, this.eventData});
+  const EventDetailScreen({super.key, this.eventData, required this.havingButton});
 
   final EventData? eventData;
+  final bool havingButton;
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +35,31 @@ class EventDetailScreen extends StatelessWidget {
           context: context,
           isLeadingBack: true,
           title: AppStrings.EVENT_DETAIL),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          10.ph,
-          CustomButton(
-              verticalPadding: 12.h,
-              onTap: () {
-                AppNavigation.navigatorPop(context);
-              },
-              title: 'Accept Request'),
-          8.ph,
-          CustomButton(
-              verticalPadding: 12.h,
-              containerColor: Theme.of(context).cardColor,
-              borderColor: Constants.themeButton(context: context),
-              fontColor: Constants.themeButton(context: context),
-              onTap: () {
-                AppNavigation.navigatorPop(context);
-              },
-              title: 'Reject Request'),
-          10.ph,
-        ],
-      ),
+      bottomNavigationBar: (RoleController.isArtist() && havingButton)
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                10.ph,
+                CustomButton(
+                    verticalPadding: 12.h,
+                    onTap: () {
+                      AppNavigation.navigatorPop(context);
+                    },
+                    title: 'Accept Request'),
+                8.ph,
+                CustomButton(
+                    verticalPadding: 12.h,
+                    containerColor: Theme.of(context).cardColor,
+                    borderColor: Constants.themeButton(context: context),
+                    fontColor: Constants.themeButton(context: context),
+                    onTap: () {
+                      AppNavigation.navigatorPop(context);
+                    },
+                    title: 'Reject Request'),
+                10.ph,
+              ],
+            )
+          : const SizedBox.shrink(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

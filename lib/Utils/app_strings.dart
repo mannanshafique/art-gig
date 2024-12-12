@@ -9,6 +9,7 @@ class AppStrings {
   static const String ARTIST = "Artist";
   static const String USER = "User";
   static const String CONSELOR = "consultant";
+  static const String ADD_PORTFOLIO = "Add Portfolio";
 
   static const String StartEndTimeZero = "Start and end hour cannot be 00";
   static const String StartEndTimeSame =
@@ -236,6 +237,10 @@ class AppStrings {
   static const String MONTH = "Month";
   static const String YEAR = "Year";
   static const String CVV = "CVV";
+
+  static const String PORTFOLIO_TITLE = "Portfolio Title";
+  static const String PER_HOUR = "Per Hour";
+  static const String HOW_LONG = "How Long";
 
   static const String CARD_HOLDER_NAME = "Account Holder Name";
   static const String EX_DATE = "Exp Date";
@@ -690,6 +695,7 @@ class AppStrings {
 
   static const String GO_BACK = "Go Back";
   static const String BACK_TO_HOME = "Back To Home";
+  static const String UPLOAD_PORTFOLIO = "Upload Portfolio";
 
   /////////////////////////// LIST ///////////////////
 

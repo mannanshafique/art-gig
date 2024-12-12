@@ -1,15 +1,14 @@
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Module/Event/Screen/event_details_screen.dart';
+import 'package:artgig/Module/MainMenu/Controller/main_controller.dart';
 import 'package:artgig/Utils/app_colors.dart';
-import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../Common/Splash/Controller/splash_controller.dart';
 import '../../../Utils/app_constants.dart';
 import '../../../Widgets/custom_button.dart';
-import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
 import '../Model/event_model.dart';
 
@@ -18,47 +17,20 @@ class EventListingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        EventCard(
-          eventData: EventData(
-            imagePath: 'assets/images/im_splash_background_dark.jpg',
-            title: 'World Art Events',
-            organizerName: 'Robert Smith',
-            startTime: '10:00 AM',
-            endTime: '09:00 PM',
-            description:
-                'By providing event organizers with intuitive tools for event creation...',
-            eventFee: '\$99.00',
-            location: '36 Guild Street London, USA',
-          ),
+    return ListView.builder(
+      itemCount: MainController.i.eventDataList.length,
+      itemBuilder: (context, index) {
+        return EventCard(
+          havingButtons: true,
+          eventData: MainController.i.eventDataList[index],
           onAccept: () {
             print('Event Accepted');
           },
           onReject: () {
             print('Event Rejected');
           },
-        ),
-        EventCard(
-          eventData: EventData(
-            imagePath: 'assets/images/im_splash_background_dark.jpg',
-            title: 'World Art Events',
-            organizerName: 'Robert Smith',
-            startTime: '10:00 AM',
-            endTime: '09:00 PM',
-            description:
-                'By providing event organizers with intuitive tools for event creation...',
-            eventFee: '\$99.00',
-            location: '36 Guild Street London, USA',
-          ),
-          onAccept: () {
-            print('Event Accepted');
-          },
-          onReject: () {
-            print('Event Rejected');
-          },
-        ),
-      ],
+        );
+      },
     );
   }
 }
@@ -81,6 +53,7 @@ class EventCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(() => EventDetailScreen(
+              havingButton: havingButtons ?? false,
               eventData: eventData,
             ));
       },
@@ -184,7 +157,7 @@ class EventCard extends StatelessWidget {
                     ],
                   ),
                   5.ph,
-                  (havingButtons ?? true)
+                  (RoleController.isArtist() && (havingButtons ?? true))
                       ? Row(
                           children: [
                             // Accept Button
@@ -204,13 +177,9 @@ class EventCard extends StatelessWidget {
                                             ? AppColors.BLACK_COLOR
                                             : AppColors.WHITE_COLOR,
                                     borderColor:
-                                        Constants.isDarkTheme(context: context)
-                                            ? AppColors.WHITE_COLOR
-                                            : AppColors.PINK_COLOR,
+                                        Constants.themeButton(context: context),
                                     fontColor:
-                                        Constants.isDarkTheme(context: context)
-                                            ? AppColors.WHITE_COLOR
-                                            : AppColors.PINK_COLOR,
+                                        Constants.themeButton(context: context),
                                     onTap: () {},
                                     title: 'Reject')),
                           ],

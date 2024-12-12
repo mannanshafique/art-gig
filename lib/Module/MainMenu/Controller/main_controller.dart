@@ -1,3 +1,4 @@
+import 'package:artgig/Module/Event/Model/event_model.dart';
 import 'package:get/get.dart';
 
 import '../../PaymentCard/Model/payment_card_model.dart';
@@ -5,9 +6,36 @@ import '../../PaymentCard/Model/payment_card_model.dart';
 class MainController extends GetxController {
   static MainController get i => Get.find();
 
+//!--- Event Data
+
+  RxList<EventData> eventDataList = [
+    EventData(
+      imagePath: 'assets/images/im_splash_background_dark.jpg',
+      title: 'World Art Events',
+      organizerName: 'Robert Smith',
+      startTime: '10:00 AM',
+      endTime: '09:00 PM',
+      description:
+          'By providing event organizers with intuitive tools for event creation...',
+      eventFee: '\$99.00',
+      location: '36 Guild Street London, USA',
+    ),
+    EventData(
+      imagePath: 'assets/images/im_splash_background_dark.jpg',
+      title: 'World Art Events',
+      organizerName: 'Robert Smith',
+      startTime: '10:00 AM',
+      endTime: '09:00 PM',
+      description:
+          'By providing event organizers with intuitive tools for event creation...',
+      eventFee: '\$99.00',
+      location: '36 Guild Street London, USA',
+    ),
+  ].obs;
+
 //!---
 
-RxInt cardSelectedValue = 0.obs;
+  RxInt cardSelectedValue = 0.obs;
 
   RxList<PaymentCardData> paymentCards = [
     PaymentCardData(
@@ -61,5 +89,4 @@ RxInt cardSelectedValue = 0.obs;
       wallet: "Apple Pay",
     ),
   ].obs;
-
 }

@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Settings/Screen/support_help.dart';
 import 'package:artgig/Module/PaymentCard/Screen/payment_method_screen.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -64,6 +65,11 @@ class _SettingScreenState extends State<SettingScreen> {
           Get.to(() => PaymentMethodsScreen(
                 isFromOrderPage: false,
               ));
+        }),
+    SettingWidget(
+        title: AppStrings.SUPPORT_HELP,
+        onTap: () {
+          Get.to(() => SupportHelpScreen());
         }),
     SettingWidget(
         title: AppStrings.DELETE_ACCOUNT,
