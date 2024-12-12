@@ -14,6 +14,7 @@ import '../Utils/app_colors.dart';
 import '../Utils/app_dialogs.dart';
 import '../Utils/app_fonts.dart';
 import '../Utils/app_navigation.dart';
+import '../Utils/app_route_name.dart';
 import '../Utils/app_strings.dart';
 import '../Utils/asset_paths.dart';
 import 'custom_text.dart';
@@ -175,7 +176,6 @@ class CustomDrawerWidget extends StatelessWidget {
               iconPath: AssetPaths.CIRCULAR_ADD_ICON,
               onTap: () {
                 scffoldKey?.currentState!.closeDrawer();
-              
               },
               title: AppStrings.CREATE_STUDIO),
         ],
@@ -205,7 +205,13 @@ class CustomDrawerWidget extends StatelessWidget {
               title: AppStrings.CHAT),
         ],
         30.ph,
-        logoutButton(context: context, onTap: () {})
+        logoutButton(
+            context: context,
+            onTap: () {
+              AppNavigation.navigateToRemovingAll(
+                  Constants.navigatorKey.currentContext,
+                  AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
+            })
       ],
     );
   }

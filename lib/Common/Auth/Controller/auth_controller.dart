@@ -55,12 +55,11 @@ class AuthController extends GetxController {
   RxList<ImageModel> selectedMediaPath = <ImageModel>[].obs;
 
   void setSelectedImage(String imagePath) {
-     if (selectedMediaPath.isNotEmpty) {
+    if (selectedMediaPath.isNotEmpty) {
       selectedMediaPath[0] = ImageModel(path: imagePath, type: 'File');
     } else {
       selectedMediaPath.add(ImageModel(path: imagePath, type: 'File'));
     }
-    update();
   }
 
   // var city;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Utils/app_constants.dart';
+import '../../../../Utils/app_dialogs.dart';
 import '../../../../Utils/app_fonts.dart';
 import '../../../../Widgets/cs_bottom_navg_button.dart';
 import '../../../../Widgets/custom_auth_scaffold.dart';
@@ -40,6 +41,8 @@ class _PreLoginTestScreenState extends State<PreLoginTestScreen> {
           buttonTitle: 'Complete',
           onTap: () {
             Constants.unFocusKeyboardMethod(context: context);
+            AppDialogs().showSucessDialog(context,
+                'You have completed your profile set up successfully.');
           },
         ),
       ),

@@ -21,6 +21,7 @@ import '../../../../Widgets/custom_text.dart';
 import '../../../../Widgets/custom_textfield.dart';
 import '../../../../Widgets/user_avatar_widget.dart';
 import '../../Controller/auth_controller.dart';
+import 'tutorial_guide_screen.dart';
 
 class CreateEditProfileScreen extends StatefulWidget {
   CreateEditProfileScreen({super.key, required this.isFromEdit});
@@ -41,6 +42,17 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
   void initState() {
     settingValues();
     super.initState();
+  }
+
+  List<ImageModel> selectedMediaPath = <ImageModel>[].obs;
+
+  void setSelectedImage(String imagePath) {
+    if (selectedMediaPath.isNotEmpty) {
+      selectedMediaPath[0] = ImageModel(path: imagePath, type: 'File');
+    } else {
+      selectedMediaPath.add(ImageModel(path: imagePath, type: 'File'));
+    }
+    setState(() {});
   }
 
   void settingValues() {
@@ -115,8 +127,12 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
             Constants.unFocusKeyboardMethod(context: context);
             if (widget.isFromEdit) {
             } else {
-              AppDialogs().showSucessDialog(context,
-                  'You have completed your profile set up successfully.');
+              if (RoleController.i.selectedRole.value == AppStrings.ARTIST) {
+                Get.to(() => const TestOptionSelection());
+              } else {
+                AppDialogs().showSucessDialog(context,
+                    'You have completed your profile set up successfully.');
+              }
             }
           },
         ),
@@ -226,9 +242,9 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
             AuthController.i.dateOfBirthEditingController.text =
                 await Constants().datePicker(
               context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime.now(),
-              lastDate: DateTime(2026),
+              initialDate: DateTime(1970),
+              firstDate: DateTime(1970),
+              lastDate: DateTime.now(),
             );
           },
         ),
@@ -265,7 +281,7 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
         AppDialogs().showImagePickerDialog(
             isMultiPicked: false,
             context: context,
-            pickedImagePathCallback: AuthController.i.setSelectedImage);
+            pickedImagePathCallback: setSelectedImage);
       },
       child: Column(
         children: [
@@ -297,7 +313,7 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           ),
           10.ph,
           ImagePreviewWidget(
-            imagePaths: AuthController.i.selectedMediaPath,
+            imagePaths: selectedMediaPath,
             isGalleryIconVisible: false,
             isCameraIconVisible: false,
             showRowSlider: false,

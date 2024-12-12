@@ -132,7 +132,9 @@ class _OtpState extends State<Otp> {
             30.ph,
             //!-----Counter
             CircleAvatar(
-              backgroundColor: AppColors.LIGHT_GREY_COLOR,
+              backgroundColor: Constants.isDarkTheme(context: context)
+                  ? AppColors.PINK_COLOR.withOpacity(0.4)
+                  : AppColors.PINK_COLOR,
               radius: 0.16.sw,
               child: CircularCountDownTimer(
                 controller: _countDownController,
@@ -143,11 +145,13 @@ class _OtpState extends State<Otp> {
                 textFormat: CountdownTextFormat.MM_SS,
                 width: 0.46.sw,
                 height: 0.46.sw,
-                fillColor: AppColors.BLACK_COLOR,
+                fillColor: Constants.isDarkTheme(context: context)
+                    ? AppColors.BLACK_COLOR
+                    : AppColors.PINK_COLOR,
                 ringColor: AppColors.WHITE_COLOR,
                 strokeWidth: 3,
                 textStyle: TextStyle(
-                  color: AppColors.BLACK_COLOR,
+                  color: AppColors.WHITE_COLOR,
                   fontSize: 15.sp,
                   fontFamily: AppFonts.JONES_MEDIUM,
                 ),

@@ -42,17 +42,17 @@ class MyApp extends StatelessWidget {
               init: SplashController(),
               builder: (splashController) {
                 return GetMaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    title: 'Art-Gig',
-                    navigatorKey: Constants.navigatorKey,
-                    scrollBehavior: CustomScrollBehavior(),
-                    themeMode: splashController.themeMode,
-                    theme: AppThemes.lightTheme,
-                    darkTheme: AppThemes.darkTheme,
-                    // onGenerateRoute: AppRouter.onGenerateRoute,
-                    home: TestOptionSelection()
-                    // home: MainMenuScreen()
-                    );
+                  debugShowCheckedModeBanner: false,
+                  title: 'Art-Gig',
+                  navigatorKey: Constants.navigatorKey,
+                  scrollBehavior: CustomScrollBehavior(),
+                  themeMode: splashController.themeMode,
+                  theme: AppThemes.lightTheme,
+                  darkTheme: AppThemes.darkTheme,
+                  onGenerateRoute: AppRouter.onGenerateRoute,
+                  // home: TestOptionSelection()
+                  // home: MainMenuScreen()
+                );
               });
         });
   }

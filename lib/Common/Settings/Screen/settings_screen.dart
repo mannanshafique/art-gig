@@ -79,7 +79,7 @@ class _SettingScreenState extends State<SettingScreen> {
               b1onTap: () {
                 AppNavigation.navigateToRemovingAll(
                     Constants.navigatorKey.currentContext,
-                    AppRouteName.PRE_LOGIN_SCREEN_ROUTE);
+                    AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
               },
               b2onTap: () {
                 AppNavigation.navigatorPop(
