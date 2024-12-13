@@ -196,6 +196,7 @@ class AppStrings {
   static const String ARE_YOU_SURE = "Are you sure you want to";
   static const String DELETE_YOUR_ACCOUNT = "\ndelete your account?";
   static const String CANCEL = "Cancel";
+  static const String NOT_NOW = "Not Now!";
   static const String ORDER_HISTORY = "Order History";
   static const String PLACE_ORDER = "Place Order";
   static const String MENU_NAME = "Menu Name";

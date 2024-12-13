@@ -45,6 +45,7 @@ class AssetPaths {
   static const String TICK_ICON = "$icons/ic_tick.png";
   static const String ORDER_SUCESS_ICON = "$icons/ic_order_sucess.png";
   static const String EDIT_ICON = "$icons/ic_edit.png";
+  static const String SUPPORT_PERSON_ICON = "$icons/ic_support_person.png";
 
 //!--Old
   static const String GUEST_ICON = "$icons/ic_guest.png";

@@ -135,25 +135,10 @@ class MainMenuScreen extends StatelessWidget {
             )
           : Row(
               children: [
-                bottomNavigationController.selectedIndex.value == 0
+                (!RoleController.isArtist() &&
+                        bottomNavigationController.selectedIndex.value == 0)
                     ? GestureDetector(
                         onTap: () {
-                          // showModalBottomSheet(
-                          //   isScrollControlled: true,
-                          //   enableDrag: true,
-                          //   isDismissible: true,
-                          //   shape: RoundedRectangleBorder(
-                          //     borderRadius: BorderRadius.vertical(
-                          //       top: Radius.circular(0.08.sw),
-                          //     ),
-                          //   ),
-                          //   backgroundColor: AppColors.WHITE_COLOR,
-                          //   context: context,
-                          //   builder: (BuildContext context) {
-                          //     return CustomFilterBottomSheet();
-                          //   },
-                          // );
-
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled:

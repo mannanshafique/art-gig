@@ -1,5 +1,6 @@
 import 'package:artgig/Common/Auth/Screens/Setup_Profile/pre_login_test.dart';
 import 'package:artgig/Utils/app_constants.dart';
+import 'package:artgig/Utils/app_dialogs.dart';
 import 'package:artgig/Utils/app_strings.dart';
 import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -34,6 +35,7 @@ class TestOptionSelection extends StatelessWidget {
             20.ph,
             CustomButton(
                 onTap: () {
+                  AppDialogs.showToast(message: 'Downloaded');
                   Get.to(() => PreLoginTestScreen());
                 },
                 title: 'Download Hand Book'),

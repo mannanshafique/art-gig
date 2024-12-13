@@ -31,6 +31,8 @@ class AuthController extends GetxController {
 
   final TextEditingController descriptionEditingController =
       TextEditingController();
+  final TextEditingController hourlyRateEditingController =
+      TextEditingController();
 
   RxList<String> selectedCareerInterest = <String>[].obs;
 

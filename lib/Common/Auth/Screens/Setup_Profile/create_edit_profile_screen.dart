@@ -78,8 +78,10 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
       authController.locationEditingController.text =
           '123 Main St'; // Prefill location  MM-DD-YYYY
       authController.dateOfBirthEditingController.text = '06-24-1999';
-      authController.genderEditingController.text = 'Male';
-      authController.descriptionEditingController.text = 'having expertise in painting';
+      authController.genderEditingController.text = AppStrings.MALE;
+      authController.descriptionEditingController.text =
+          'having expertise in painting';
+      AuthController.i.hourlyRateEditingController.text = '12';
     }
   }
 
@@ -262,28 +264,39 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           },
         ),
         10.ph,
-        _customTextField(
-          hint: AppStrings.GENDER,
-          readOnly: false,
-          textEditingController: AuthController.i.genderEditingController,
-          keyboardType: TextInputType.text,
-        ),
+        customizedDropDown(
+            dropDownDataList: [AppStrings.MALE, AppStrings.FEMALE],
+            dropDownValue: widget.isFromEdit
+                ? authController.genderEditingController.text
+                : null,
+            hintValue: AppStrings.CHOOSE_GENDER,
+            fontSize: 14.sp,
+            onChangeFunction: (selectedValue) {
+              authController.genderEditingController.text =
+                  selectedValue ?? AppStrings.MALE;
+            }),
         10.ph,
         if (RoleController.i.selectedRole.value == AppStrings.ARTIST) ...[
           _customTextField(
-            textEditingController:
-                AuthController.i.descriptionEditingController,
-            hint: 'Bio',
-            keyboardType: TextInputType.text,
-            maxLine: 4,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(Constants.DESCRIPTION_MAX_LENGTH)
-            ],
+            textEditingController: AuthController.i.hourlyRateEditingController,
+            hint: 'Hourly Rate',
+            keyboardType: TextInputType.number,
+            inputFormatters: [LengthLimitingTextInputFormatter(4)],
           ),
           10.ph,
-          pictureUploadWidget(),
-          10.ph,
         ],
+        _customTextField(
+          textEditingController: AuthController.i.descriptionEditingController,
+          hint: 'Bio',
+          keyboardType: TextInputType.text,
+          maxLine: 4,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(Constants.DESCRIPTION_MAX_LENGTH)
+          ],
+        ),
+        10.ph,
+        pictureUploadWidget(),
+        10.ph,
       ],
     );
   }
@@ -399,34 +412,34 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
   //       inputFormatters: inputFormatters);
   // }
 
-  // Widget customizedDropDown(
-  //     {required List<String> dropDownDataList,
-  //     required String hintValue,
-  //     required String? dropDownValue,
-  //     String? iconPath,
-  //     double? fontSize,
-  //     required Function(String?)? onChangeFunction}) {
-  //   return CustomDropDown2(
-  //       dropIconSize: 16.h,
-  //       errorBorder: AppColors.RED_COLOR,
-  //       hintColor: AppColors.GREY_COLOR,
-  //       isBorder: true,
-  //       dropDownData: dropDownDataList,
-  //       hintText: hintValue,
-  //       dropdownValue: dropDownValue,
-  //       borderRadius: AppPadding.textFieldBorder,
-  //       contentPadding: EdgeInsets.symmetric(
-  //         vertical: AppPadding.textFieldVerticalPadding.h,
-  //       ),
-  //       dropDownWidth: 0.914.sw,
-  //       offset: const Offset(-5, -25),
-  //       horizontalPadding: 0.w,
-  //       buttonPadding: 7.w,
-  //       dropDownFontSize: fontSize,
-  //       fontSize: fontSize,
-  //       borderColor: AppColors.PURPLE_COLOR,
-  //       validator: (value) =>
-  //           (value == null || value.isEmpty) ? hintValue + 'App' : null,
-  //       onChanged: onChangeFunction);
-  // }
+  Widget customizedDropDown(
+      {required List<String> dropDownDataList,
+      required String hintValue,
+      required String? dropDownValue,
+      String? iconPath,
+      double? fontSize,
+      required Function(String?)? onChangeFunction}) {
+    return CustomDropDown2(
+        dropIconSize: 16.h,
+        errorBorder: AppColors.RED_COLOR,
+        hintColor: AppColors.GREY_COLOR.withOpacity(0.8),
+        isBorder: true,
+        dropDownData: dropDownDataList,
+        hintText: hintValue,
+        dropdownValue: dropDownValue,
+        borderRadius: 50.r,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: AppPadding.textFieldVerticalPadding.h,
+        ),
+        dropDownWidth: 0.914.sw,
+        offset: const Offset(-5, -25),
+        horizontalPadding: 0.w,
+        buttonPadding: 7.w,
+        dropDownFontSize: fontSize,
+        fontSize: fontSize,
+        borderColor: AppColors.RED_COLOR,
+        validator: (value) =>
+            (value == null || value.isEmpty) ? hintValue + 'App' : null,
+        onChanged: onChangeFunction);
+  }
 }

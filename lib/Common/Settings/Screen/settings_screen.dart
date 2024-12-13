@@ -1,3 +1,4 @@
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Common/Settings/Screen/support_help.dart';
 import 'package:artgig/Module/PaymentCard/Screen/payment_method_screen.dart';
 import 'package:artgig/Utils/app_constants.dart';
@@ -59,13 +60,15 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: AppStrings.TERMS_AND_CONDITION,
                   contentType: AppStrings.termsAndConditionType));
         }),
-    SettingWidget(
-        title: AppStrings.paymentDetails,
-        onTap: () {
-          Get.to(() => PaymentMethodsScreen(
-                isFromOrderPage: false,
-              ));
-        }),
+    if (!RoleController.isArtist()) ...[
+      SettingWidget(
+          title: AppStrings.paymentDetails,
+          onTap: () {
+            Get.to(() => const PaymentMethodsScreen(
+                  isFromOrderPage: false,
+                ));
+          }),
+    ],
     SettingWidget(
         title: AppStrings.SUPPORT_HELP,
         onTap: () {
@@ -74,24 +77,30 @@ class _SettingScreenState extends State<SettingScreen> {
     SettingWidget(
         title: AppStrings.DELETE_ACCOUNT,
         onTap: () {
-          AppDialogs().showOptionsDialog(
-              headertitle: AppStrings.DELETE,
-              title:
-                  '${AppStrings.ARE_YOU_SURE} \n${AppStrings.DELETE_ACCOUNT.toLowerCase()}?',
-              haveTwoButton: true,
-              b1Text: AppStrings.YES,
-              b2Text: AppStrings.NO,
-              imagePath: AssetPaths.DELETE_ICON,
-              b1onTap: () {
-                AppNavigation.navigateToRemovingAll(
-                    Constants.navigatorKey.currentContext,
-                    AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
-              },
-              b2onTap: () {
-                AppNavigation.navigatorPop(
-                    Constants.navigatorKey.currentContext!);
-              },
-              context: Constants.navigatorKey.currentContext);
+          // AppDialogs().showOptionsDialog(
+          //     headertitle: AppStrings.DELETE,
+          //     title:
+          //         '${AppStrings.ARE_YOU_SURE} \n${AppStrings.DELETE_ACCOUNT.toLowerCase()}?',
+          //     haveTwoButton: true,
+          //     b1Text: AppStrings.YES,
+          //     b2Text: AppStrings.NO,
+          //     imagePath: AssetPaths.DELETE_ICON,
+          //     b1onTap: () {
+          // AppNavigation.navigateToRemovingAll(
+          //     Constants.navigatorKey.currentContext,
+          //     AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
+          //     },
+          //     b2onTap: () {
+          //       AppNavigation.navigatorPop(
+          //           Constants.navigatorKey.currentContext!);
+          //     },
+          //     context: Constants.navigatorKey.currentContext);
+          AppDialogs().showDeleteAccountDialog(
+              Constants.navigatorKey.currentContext!, onTap: () {
+            AppNavigation.navigateToRemovingAll(
+                Constants.navigatorKey.currentContext,
+                AppRouteName.ROLE_SELECTION_SCREEN_ROUTE);
+          });
         }),
     SettingWidget(
         title: AppStrings.LOGOUT,
@@ -100,7 +109,7 @@ class _SettingScreenState extends State<SettingScreen> {
               headertitle: AppStrings.LOGOUT,
               title: '${AppStrings.ARE_YOU_SURE} \n logout?',
               haveTwoButton: true,
-              b1Text: AppStrings.CANCEL,
+              b1Text: AppStrings.NOT_NOW,
               b2Text: AppStrings.LOGOUT,
               imagePath: AssetPaths.LOGOUT_ICON,
               b1onTap: () {

@@ -72,7 +72,7 @@ class _AddEditStudioState extends State<AddEditStudio> {
                       imagePath: AssetPaths.TEMP_STUDIO_IMAGES,
                       perHour: howLongEditingController.text));
               AppNavigation.navigatorPop(context);
-              AppDialogs.showToast(message: 'Portfoilio Added Sucessfully');
+              AppDialogs.showToast(message: 'Portfolio Added Sucessfully');
             }
           },
         ),
@@ -97,13 +97,13 @@ class _AddEditStudioState extends State<AddEditStudio> {
                 ],
               ),
               _customTextField(
-                hint: AppStrings.PER_HOUR,
+                hint: '${AppStrings.PER_HOUR} (Charges)',
                 textEditingController: perHourEditingController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [LengthLimitingTextInputFormatter(4)],
               ),
               _customTextField(
-                hint: AppStrings.HOW_LONG,
+                hint: '${AppStrings.HOW_LONG} (Hours)',
                 textEditingController: howLongEditingController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [LengthLimitingTextInputFormatter(2)],

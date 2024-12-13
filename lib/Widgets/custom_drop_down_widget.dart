@@ -1,3 +1,4 @@
+import 'package:artgig/Utils/app_constants.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,7 +63,7 @@ class CustomDropDown2 extends StatelessWidget {
       child: DropdownButtonFormField2<String?>(
         style: TextStyle(
             fontSize: fontSize,
-            color: AppColors.WHITE_COLOR,
+            color: Constants.primaryTextThemeColor(context: context),
             fontFamily: AppFonts.JONES_MEDIUM),
         validator: validator,
 
@@ -71,7 +72,9 @@ class CustomDropDown2 extends StatelessWidget {
           contentPadding: const EdgeInsets.fromLTRB(0.0, 16.0, 5.0, 16.0),
           isDense: true,
           prefixIcon: prefix,
-          fillColor: AppColors.WHITE_COLOR,
+          fillColor: Constants.isDarkTheme(context: context)
+              ? AppColors.TRANSPARENT_COLOR
+              : AppColors.WHITE_COLOR,
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
             borderSide: BorderSide(
@@ -100,7 +103,9 @@ class CustomDropDown2 extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
             borderSide: BorderSide(
               // width: 1,
-              color: borderColor ?? AppColors.WHITE_COLOR,
+              color: Constants.isDarkTheme(context: context)
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.ORANGE_COLOR,
               style: isBorder == true ? BorderStyle.solid : BorderStyle.none,
             ),
           ),
@@ -108,7 +113,9 @@ class CustomDropDown2 extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
             borderSide: BorderSide(
               // width: 1,
-              color: borderColor ?? AppColors.WHITE_COLOR,
+              color: Constants.isDarkTheme(context: context)
+                  ? AppColors.WHITE_COLOR
+                  : AppColors.ORANGE_COLOR,
               style: isBorder == true ? BorderStyle.solid : BorderStyle.none,
             ),
           ),
@@ -121,8 +128,8 @@ class CustomDropDown2 extends StatelessWidget {
             value: value,
             child: _text(
                 text: value,
-                color: AppColors.BLACK_COLOR,
-                fontSize: dropDownFontSize ?? 16.sp,
+                color: Constants.primaryTextThemeColor(context: context),
+                fontSize: dropDownFontSize ?? 14.sp,
                 maxLines: 1),
           );
         }).toList(),
@@ -163,7 +170,7 @@ class CustomDropDown2 extends StatelessWidget {
     return CustomText(
       lineThrough: false,
       text: text ?? "",
-      fontSize: fontSize ?? 16.0,
+      fontSize: fontSize ?? 14.0,
       fontFamily: AppFonts.JONES_MEDIUM,
       textAlign: TextAlign.start,
       fontColor: color ?? AppColors.BLACK_COLOR,

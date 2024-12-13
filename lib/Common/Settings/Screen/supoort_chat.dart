@@ -15,19 +15,19 @@ import '../../../Widgets/cs_container_border.dart';
 import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
 import '../../../Widgets/user_avatar_widget.dart';
-import '../../Splash/Controller/splash_controller.dart';
-import '../Model/chat_messages_model.dart';
+import '../../Chat/Model/chat_messages_model.dart';
 
-class ChatDetailScreen extends StatefulWidget {
-  const ChatDetailScreen({
+class SupportChatDetailScreen extends StatefulWidget {
+  const SupportChatDetailScreen({
     super.key,
   });
 
   @override
-  State<ChatDetailScreen> createState() => _ChatDetailScreenState();
+  State<SupportChatDetailScreen> createState() =>
+      _SupportChatDetailScreenState();
 }
 
-class _ChatDetailScreenState extends State<ChatDetailScreen> {
+class _SupportChatDetailScreenState extends State<SupportChatDetailScreen> {
   TextEditingController message_controlller = TextEditingController();
 
   bool isShowSticker = false;
@@ -48,39 +48,9 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
   final List<ChatThreadData> chatDataList = [
     ChatThreadData(
-      firstName: "Alice",
-      lastName: "Smith",
-      profileImage: "profile_image/user1.jpg",
-      id: 3,
-      conversationId: 2,
-      senderId: 1,
-      receiverId: 16,
-      type: "text",
-      message: "I'm good, thanks for asking!",
-      readAt: "2024-07-10T09:00:00.000Z",
-      status: "read",
-      createdAt: '2024-07-10T09:15:00.000Z',
-      updatedAt: null,
-    ),
-    ChatThreadData(
-      firstName: "Bob",
-      lastName: "Miller",
-      profileImage: "profile_image/user2.jpg",
-      id: 4,
-      conversationId: 3,
-      senderId: 16,
-      receiverId: 1,
-      type: "image",
-      message: "Check out this photo!",
-      readAt: null,
-      status: null,
-      createdAt: '2024-07-10T09:15:00.000Z',
-      updatedAt: null,
-    ),
-    ChatThreadData(
-      firstName: "Alice",
-      lastName: "Doe",
-      profileImage: "profile_image/user3.jpg",
+      firstName: "Support",
+      lastName: "",
+      profileImage: AssetPaths.SUPPORT_PERSON_ICON,
       id: 5,
       conversationId: 4,
       senderId: 1,
@@ -89,6 +59,21 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
       message: "Good morning!",
       readAt: "2024-07-10T09:20:00.000Z",
       status: "read",
+      createdAt: '2024-07-10T09:15:00.000Z',
+      updatedAt: null,
+    ),
+    ChatThreadData(
+      firstName: "Bob",
+      lastName: "Miller",
+      profileImage: AssetPaths.TEMP_PROFILE_IMAGES,
+      id: 4,
+      conversationId: 3,
+      senderId: 16,
+      receiverId: 1,
+      type: "text",
+      message: "Hi!",
+      readAt: null,
+      status: null,
       createdAt: '2024-07-10T09:15:00.000Z',
       updatedAt: null,
     ),
@@ -103,8 +88,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
       },
       child: CustomScaffold(
         horizontalPadding: 0.0,
-        appBar:
-            customAppBar(context: context, isLeadingBack: true, title: 'Bob'),
+        appBar: customAppBar(
+            context: context, isLeadingBack: true, title: 'Support'),
         floatingActionButtonLocation:
             FloatingActionButtonLocation.miniCenterDocked,
         floatingActionButton: Padding(
@@ -175,9 +160,9 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                     // imagePlaceHolder: AssetsPath.userPlaceHolder,
                     // imageType: MediaPathType.NETWORK.name,
                     radius: 43.0,
-                    circularColor: Constants.themeButton(context: context),
+                    circularColor: AppColors.TRANSPARENT_COLOR,
                     imgPath: chatThreadData?.profileImage ?? '',
-                    isExtendedImage: true,
+                    isExtendedImage: false,
                   )
                 : const SizedBox.shrink(),
             Expanded(
@@ -258,7 +243,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                     radius: 40.0,
                     circularColor: Constants.themeButton(context: context),
 
-                    isExtendedImage: true,
+                    isExtendedImage: false,
                   ),
           ]),
     );
@@ -301,6 +286,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                           iconColor: AppColors.PINK_COLOR,
                           iconPath: AssetPaths.SEND_ICON,
                           onTap: () {
+                            Constants.unFocusKeyboardMethod(context: context);
                             if (message_controlller.text.isNotEmpty) {
                               setState(() {
                                 chatDataList.insert(
@@ -308,7 +294,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                                   ChatThreadData(
                                     firstName: "Bob",
                                     lastName: "Miller",
-                                    profileImage: "profile_image/user2.jpg",
+                                    profileImage:
+                                        AssetPaths.TEMP_PROFILE_IMAGES,
                                     id: 4,
                                     conversationId: 3,
                                     senderId: 16,
@@ -323,6 +310,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                                 );
                               });
                             }
+                            message_controlller.clear();
                           }),
                       5.pw,
                     ],

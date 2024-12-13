@@ -257,7 +257,7 @@ class CustomDrawerWidget extends StatelessWidget {
             title:
                 '${AppStrings.ARE_YOU_SURE} \n${AppStrings.LOGOUT.toLowerCase()}?',
             haveTwoButton: true,
-            b1Text: AppStrings.CANCEL,
+            b1Text: AppStrings.NOT_NOW,
             b2Text: AppStrings.LOGOUT,
             imagePath: AssetPaths.LOGOUT_ICON,
             b1onTap: () {

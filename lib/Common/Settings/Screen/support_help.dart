@@ -1,8 +1,10 @@
+import 'package:artgig/Common/Settings/Screen/supoort_chat.dart';
 import 'package:artgig/Utils/app_colors.dart';
 import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../Utils/app_constants.dart';
 import '../../../Utils/app_strings.dart';
@@ -123,23 +125,34 @@ class _SupportHelpScreenState extends State<SupportHelpScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.support_agent,
-              color: Constants.primaryTitleTextThemeColor(context: context)),
+          GestureDetector(
+            onTap: () {
+              Get.to(() => SupportChatDetailScreen());
+            },
+            child: Row(
+              children: [
+                Icon(Icons.support_agent,
+                    color:
+                        Constants.primaryTitleTextThemeColor(context: context)),
+                5.pw,
+                CustomText(
+                  text: 'Chat with support',
+                  fontSize: 13.sp,
+                  fontFamily: AppFonts.JONES_REGULAR,
+                  fontColor:
+                      Constants.primaryTitleTextThemeColor(context: context),
+                ),
+              ],
+            ),
+          ),
           5.pw,
-          // CustomText(
-          //   text: 'Chat with support',
-          //   fontSize: 13.sp,
-          //   fontFamily: AppFonts.JONES_REGULAR,
-          //   fontColor: Constants.primaryTitleTextThemeColor(context: context),
-          // ),
-          // 5.pw,
-          // CustomText(
-          //   text: 'OR',
-          //   fontSize: 13.sp,
-          //   fontFamily: AppFonts.JONES_REGULAR,
-          //   fontColor: Constants.primaryTitleTextThemeColor(context: context),
-          // ),
-          // const SizedBox(width: 8),
+          CustomText(
+            text: 'OR',
+            fontSize: 13.sp,
+            fontFamily: AppFonts.JONES_REGULAR,
+            fontColor: Constants.primaryTitleTextThemeColor(context: context),
+          ),
+          const SizedBox(width: 8),
           GestureDetector(
             onTap: () {
               // Open email

@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:artgig/Utils/app_strings.dart';
+import 'package:artgig/Widgets/Dialog/cs_delete_account_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../Module/PaymentCard/Screen/add_new_card_screen.dart';
@@ -78,6 +80,23 @@ class AppDialogs {
               child: CustomEventTypeDialog(
                 headerTitle: 'What Type Of Event',
                 onTap: onTap,
+              ));
+        });
+  }
+
+  Future showDeleteAccountDialog(context, {required Function() onTap}) {
+    return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 5.0,
+                sigmaY: 5.0,
+              ),
+              child: CustomDeleteAccountDialog(
+                headerTitle: 'Delete account',
+                onTapCancel: onTap,
               ));
         });
   }

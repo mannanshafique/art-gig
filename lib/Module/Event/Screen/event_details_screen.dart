@@ -5,6 +5,7 @@ import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/app_navigation.dart';
 import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
+import 'package:artgig/Widgets/Bottom_Navigation/bottom_navigation_controller.dart';
 import 'package:artgig/Widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,8 @@ import '../../../Widgets/user_avatar_widget.dart';
 import '../Model/event_model.dart';
 
 class EventDetailScreen extends StatelessWidget {
-  const EventDetailScreen({super.key, this.eventData, required this.havingButton});
+  const EventDetailScreen(
+      {super.key, this.eventData, required this.havingButton});
 
   final EventData? eventData;
   final bool havingButton;
@@ -44,6 +46,7 @@ class EventDetailScreen extends StatelessWidget {
                     verticalPadding: 12.h,
                     onTap: () {
                       AppNavigation.navigatorPop(context);
+                      BottomNavigationController.i.selectedIndex.value = 1;
                     },
                     title: 'Accept Request'),
                 8.ph,
