@@ -1,4 +1,5 @@
 import 'package:artgig/Common/Profile/rating_reviews_screen.dart';
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -64,42 +65,44 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
               fontSize: 18.sp,
               fontColor: Constants.primaryTitleTextThemeColor(context: context),
             ),
-            10.ph,
-            GestureDetector(
-              onTap: () {
-                Get.to(() => RatingReviewsScreen());
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+            if (RoleController.isArtist()) ...[
+              10.ph,
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => RatingReviewsScreen());
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(
+                      text: '4.8',
+                      textAlign: TextAlign.start,
+                      fontColor: Constants.primaryTitleTextThemeColor(
+                          context: context),
+                      fontSize: 40.sp,
+                      fontFamily: AppFonts.JONES_BOLD,
+                    ),
+                    5.pw,
+                    CustomRatingBarWidget(
+                        rating: double.parse('4.2'),
+                        itemSize: 14.h,
+                        fillIconColor: AppColors.ORANGE_COLOR,
+                        isIgnoreGesture: true,
+                        onRatingUpdate: (value) {}),
+                  ],
+                ),
+              ),
+              10.ph,
+              Row(
                 children: [
-                  CustomText(
-                    text: '4.8',
-                    textAlign: TextAlign.start,
-                    fontColor:
-                        Constants.primaryTitleTextThemeColor(context: context),
-                    fontSize: 40.sp,
-                    fontFamily: AppFonts.JONES_BOLD,
-                  ),
-                  5.pw,
-                  CustomRatingBarWidget(
-                      rating: double.parse('4.2'),
-                      itemSize: 14.h,
-                      fillIconColor: AppColors.ORANGE_COLOR,
-                      isIgnoreGesture: true,
-                      onRatingUpdate: (value) {}),
+                  totalEventAndEarningWigdet(
+                      title: 'Total Event Host', subTitle: '257K'),
+                  10.pw,
+                  totalEventAndEarningWigdet(
+                      title: 'Total Earning', subTitle: '\$27K'),
                 ],
               ),
-            ),
-            10.ph,
-            Row(
-              children: [
-                totalEventAndEarningWigdet(
-                    title: 'Total Event Host', subTitle: '257K'),
-                10.pw,
-                totalEventAndEarningWigdet(
-                    title: 'Total Earning', subTitle: '\$27K'),
-              ],
-            ),
+            ],
             10.ph,
             _customTextField(
               prefixIconPath: AssetPaths.EMAIL_ICON,
@@ -131,41 +134,43 @@ class _HostProfileScreenState extends State<HostProfileScreen> {
                   TextEditingController(text: AppStrings.loremIpsum),
               isBio: true,
             ),
-            10.ph,
-            Row(
-              children: [
-                CustomText(
-                  text: AppStrings.portfolio,
-                  fontSize: 18.sp,
-                  fontColor:
-                      Constants.primaryTitleTextThemeColor(context: context),
-                ),
-              ],
-            ),
-            10.ph,
-            SizedBox(
-              height: 120,
-              child: ListView.builder(
-                itemCount: 4,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 6.0),
-                    child: SizedBox(
-                      height: 120,
-                      width: 120,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: Image.asset(
-                          AssetPaths.TEMP_EVENT_IMAGES,
-                          fit: BoxFit.cover,
+            if (RoleController.isArtist()) ...[
+              10.ph,
+              Row(
+                children: [
+                  CustomText(
+                    text: AppStrings.portfolio,
+                    fontSize: 18.sp,
+                    fontColor:
+                        Constants.primaryTitleTextThemeColor(context: context),
+                  ),
+                ],
+              ),
+              10.ph,
+              SizedBox(
+                height: 120,
+                child: ListView.builder(
+                  itemCount: 4,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 6.0),
+                      child: SizedBox(
+                        height: 120,
+                        width: 120,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12.r),
+                          child: Image.asset(
+                            AssetPaths.TEMP_EVENT_IMAGES,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
+            ],
             30.ph,
           ],
         ),

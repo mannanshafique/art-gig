@@ -122,17 +122,17 @@ class FieldValidator {
     }
   }
 
-  bool validateEducationDataProfile(
-      String gradeLevel, String institueName, String cgpaData, context) {
-    if (gradeLevel.isEmpty) {
-      FlushBar().showFlushBar(context, "Grade level field can't be empty.");
+  bool validatePortfolio(
+      String portfolioTitle, String perHour, String howLong, context) {
+    if (portfolioTitle.isEmpty) {
+      FlushBar().showFlushBar(context, "${AppStrings.PORTFOLIO_TITLE} field can't be empty.");
       return false;
-    } else if (institueName.isEmpty) {
+    } else if (perHour.isEmpty) {
       FlushBar()
-          .showFlushBar(context, "Institution name field can't be empty.");
+          .showFlushBar(context, "${AppStrings.PER_HOUR} field can't be empty.");
       return false;
-    } else if (cgpaData.isEmpty) {
-      FlushBar().showFlushBar(context, "GPA/Percentage field can't be empty.");
+    } else if (howLong.isEmpty) {
+      FlushBar().showFlushBar(context, "${AppStrings.HOW_LONG} field can't be empty.");
       return false;
     } else {
       return true;

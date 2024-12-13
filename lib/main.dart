@@ -1,4 +1,5 @@
 import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
+import 'package:artgig/Module/Studio/Screen/studio_listing.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:io';
@@ -8,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Common/Auth/Screens/Setup_Profile/tutorial_guide_screen.dart';
 import 'Common/Splash/Controller/splash_controller.dart';
+import 'Module/MainMenu/Screen/main_menu_screen.dart';
 import 'Module/Studio/Screen/add_edit_studio.dart';
 import 'Utils/app_constants.dart';
 import 'Utils/app_routers.dart';
@@ -50,8 +52,8 @@ class MyApp extends StatelessWidget {
                     themeMode: splashController.themeMode,
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
-                    // onGenerateRoute: AppRouter.onGenerateRoute,
-                    home: AddEditStudio()
+                    onGenerateRoute: AppRouter.onGenerateRoute,
+                    // home: StudioListing()
                     // home: MainMenuScreen()
                     );
               });

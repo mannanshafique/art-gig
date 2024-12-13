@@ -1,7 +1,9 @@
 import 'package:artgig/Module/Event/Model/event_model.dart';
+import 'package:artgig/Utils/asset_paths.dart';
 import 'package:get/get.dart';
 
 import '../../PaymentCard/Model/payment_card_model.dart';
+import '../../Studio/Model/studio_model.dart';
 
 class MainController extends GetxController {
   static MainController get i => Get.find();
@@ -30,6 +32,29 @@ class MainController extends GetxController {
           'By providing event organizers with intuitive tools for event creation...',
       eventFee: '\$99.00',
       location: '36 Guild Street London, USA',
+    ),
+  ].obs;
+
+//!---Studio
+
+  RxList<StudioModel> studioList = [
+    StudioModel(
+      portfolioTitle: "Modern Photography Studio",
+      perHour: "150",
+      howLong: "2",
+      imagePath: AssetPaths.TEMP_STUDIO_IMAGES,
+    ),
+    StudioModel(
+      portfolioTitle: "Creative Art Space",
+      perHour: "100",
+      howLong: "1",
+      imagePath: AssetPaths.TEMP_STUDIO_IMAGES,
+    ),
+    StudioModel(
+      portfolioTitle: "Professional Film Studio",
+      perHour: "200",
+      howLong: "3",
+      imagePath: AssetPaths.TEMP_STUDIO_IMAGES,
     ),
   ].obs;
 

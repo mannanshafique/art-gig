@@ -36,14 +36,15 @@ class _CustomFilterBottomSheetState extends State<CustomFilterBottomSheet> {
     return StatefulBuilder(builder: (context, setState) {
       return Container(
         height: 500,
-        color: Constants.isDarkTheme(context: context)
-            ? AppColors.BLACK_COLOR
-            : AppColors.WHITE_COLOR,
+        decoration: BoxDecoration(
+            color: Constants.isDarkTheme(context: context)
+                ? AppColors.BLACK_COLOR
+                : AppColors.WHITE_COLOR,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(12.r),
+                topLeft: Radius.circular(12.r))),
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(
-            parent: ClampingScrollPhysics(),
-          ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 0.015.sw),
             child: Column(

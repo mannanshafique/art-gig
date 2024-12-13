@@ -17,6 +17,8 @@ class AssetPaths {
 
   static const String TEMP_EVENT_IMAGES = "$images/temp_event.png";
   static const String TEMP_PROFILE_IMAGES = "$images/temp_profile.png";
+  static const String TEMP_PROFILE1_IMAGES = "$images/temp_profile_1.png";
+  static const String TEMP_STUDIO_IMAGES = "$images/tem_studio.png";
 
   //----------------------- ICONS -------------------------//
   static const String LOGO_ICON = "$icons/ic_logo.png";
@@ -42,6 +44,7 @@ class AssetPaths {
   static const String MASTERCARD_ICON = "$icons/ic_mastercard.png";
   static const String TICK_ICON = "$icons/ic_tick.png";
   static const String ORDER_SUCESS_ICON = "$icons/ic_order_sucess.png";
+  static const String EDIT_ICON = "$icons/ic_edit.png";
 
 //!--Old
   static const String GUEST_ICON = "$icons/ic_guest.png";
@@ -56,7 +59,6 @@ class AssetPaths {
   static const String COPY_COMMENT_ICON = "$icons/ic_copy_comment.png";
   static const String DELETE_ICON = "$icons/ic_delete.png";
   static const String DRAWER_ICON = "$icons/ic_drawer.png";
-  static const String EDIT_POST_ICON = "$icons/ic_edit_post.png";
   static const String FILTER_ICON = "$icons/ic_filter.png";
   static const String GALLERY_ICON = "$icons/ic_gallery.png";
   static const String GROUP_ICON = "$icons/ic_group.png";

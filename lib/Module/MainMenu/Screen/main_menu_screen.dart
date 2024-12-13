@@ -11,6 +11,7 @@ import 'package:artgig/Widgets/no_data_found_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../Common/Auth/Screens/Setup_Profile/create_edit_profile_screen.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_dialogs.dart';
 import '../../../Utils/app_navigation.dart';
@@ -120,54 +121,90 @@ class MainMenuScreen extends StatelessWidget {
   Widget actionWidget({required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 14, 10),
-      child: Row(
-        children: [
-          bottomNavigationController.selectedIndex.value == 0
-              ? GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      // barrierLabel: 'sad',
-                      enableDrag: true,
-                      isDismissible: true,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(0.08.sw),
+      child: bottomNavigationController.selectedIndex.value == 2
+          ? GestureDetector(
+              onTap: () {
+                Get.to(() => CreateEditProfileScreen(
+                      isFromEdit: true,
+                    ));
+              },
+              child: Image.asset(
+                AssetPaths.EDIT_ICON,
+                height: 21.h,
+              ),
+            )
+          : Row(
+              children: [
+                bottomNavigationController.selectedIndex.value == 0
+                    ? GestureDetector(
+                        onTap: () {
+                          // showModalBottomSheet(
+                          //   isScrollControlled: true,
+                          //   enableDrag: true,
+                          //   isDismissible: true,
+                          //   shape: RoundedRectangleBorder(
+                          //     borderRadius: BorderRadius.vertical(
+                          //       top: Radius.circular(0.08.sw),
+                          //     ),
+                          //   ),
+                          //   backgroundColor: AppColors.WHITE_COLOR,
+                          //   context: context,
+                          //   builder: (BuildContext context) {
+                          //     return CustomFilterBottomSheet();
+                          //   },
+                          // );
+
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled:
+                                true, // Allow the bottom sheet to adjust for the keyboard
+                            backgroundColor: Colors
+                                .transparent, // To handle rounded corners properly
+                            builder: (context) {
+                              return DraggableScrollableSheet(
+                                expand: false,
+                                builder: (context, scrollController) {
+                                  return SingleChildScrollView(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom, // Dynamic keyboard padding
+                                      ),
+                                      child: CustomFilterBottomSheet(),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                        child: Image.asset(
+                          AssetPaths.FILTER_ICON,
+                          height: 21.h,
+                        ),
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          Get.to(() => ChatScreen());
+                        },
+                        child: Image.asset(
+                          AssetPaths.MESSAGE_ICON,
+                          height: 21.h,
                         ),
                       ),
-                      backgroundColor: AppColors.WHITE_COLOR,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return CustomFilterBottomSheet();
-                      },
-                    );
-                  },
-                  child: Image.asset(
-                    AssetPaths.FILTER_ICON,
-                    height: 21.h,
-                  ),
-                )
-              : GestureDetector(
+                10.pw,
+                GestureDetector(
                   onTap: () {
-                    Get.to(() => ChatScreen());
+                    Get.to(() => NotificationScreen());
                   },
                   child: Image.asset(
-                    AssetPaths.MESSAGE_ICON,
-                    height: 21.h,
+                    AssetPaths.NOTIFICATION_ICON,
+                    height: 22.h,
                   ),
                 ),
-          10.pw,
-          GestureDetector(
-            onTap: () {
-              Get.to(() => NotificationScreen());
-            },
-            child: Image.asset(
-              AssetPaths.NOTIFICATION_ICON,
-              height: 22.h,
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 

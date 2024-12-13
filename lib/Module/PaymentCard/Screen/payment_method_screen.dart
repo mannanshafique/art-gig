@@ -166,10 +166,11 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
       child: CustomContainerBorderWidget(
         bgColor: Constants.isDarkTheme(context: context)
             ? AppColors.TRANSPARENT_COLOR
-            : AppColors.WHITE_COLOR,
+            : AppColors.ORANGE_COLOR,
         borderColor: Constants.isDarkTheme(context: context)
             ? AppColors.WHITE_COLOR
             : AppColors.TRANSPARENT_COLOR,
+        borderRadius: 40.r,
         child: Row(
           children: [
             Container(
@@ -193,8 +194,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                 children: [
                   CustomText(
                     text: paymentCardData.brand,
-                    fontColor:
-                        Constants.primaryTextThemeColor(context: context),
+                    fontColor: AppColors.WHITE_COLOR,
                     fontSize: 15.sp,
                     maxLines: 1,
                     fontFamily: AppFonts.JONES_MEDIUM,
@@ -202,7 +202,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                   6.ph,
                   CustomText(
                     text: '*******${paymentCardData.last4}',
-                    fontColor: AppColors.GREY_COLOR,
+                    fontColor: AppColors.WHITE_COLOR,
                     fontSize: 14.sp,
                     fontFamily: AppFonts.JONES_REGULAR,
                   ),
@@ -212,7 +212,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
             10.pw,
             Radio(
               visualDensity: VisualDensity.compact,
-              activeColor: Constants.primaryTextThemeColor(context: context),
+              activeColor: AppColors.WHITE_COLOR,
               value: optionValue,
               groupValue: groupValue,
               onChanged: onChanged,

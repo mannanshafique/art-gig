@@ -54,7 +54,7 @@ class _ContentScreenState extends State<ContentScreen> {
           ? Visibility(
               visible: _isLoading!,
               child: const Center(
-                child: CircularProgressIndicator(color: AppColors.YELLOW_COLOR),
+                child: CircularProgressIndicator(color: AppColors.ORANGE_COLOR),
               ),
             )
           : Stack(
@@ -80,7 +80,7 @@ class _ContentScreenState extends State<ContentScreen> {
                   visible: _isLoading!,
                   child: const Center(
                     child: CircularProgressIndicator(
-                        color: AppColors.YELLOW_COLOR),
+                        color: AppColors.ORANGE_COLOR),
                   ),
                 )
               ],

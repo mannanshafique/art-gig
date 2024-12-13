@@ -21,7 +21,7 @@ class AppThemes {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.WHITE_COLOR,
+      fillColor: AppColors.TRANSPARENT_COLOR,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
         borderSide: BorderSide.none,
@@ -47,7 +47,7 @@ class AppThemes {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.BLACK_COLOR,
+      fillColor: AppColors.TRANSPARENT_COLOR,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
         borderSide: BorderSide.none,

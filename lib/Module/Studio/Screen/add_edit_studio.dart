@@ -1,4 +1,9 @@
+import 'package:artgig/Module/MainMenu/Controller/main_controller.dart';
+import 'package:artgig/Module/Studio/Model/studio_model.dart';
 import 'package:artgig/Utils/app_fonts.dart';
+import 'package:artgig/Utils/app_navigation.dart';
+import 'package:artgig/Utils/app_validator.dart';
+import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,7 +57,24 @@ class _AddEditStudioState extends State<AddEditStudio> {
             title: AppStrings.CREATE_STUDIO),
         bottomNavigationBar: CustomBottomNavigationWidget(
           buttonTitle: AppStrings.UPLOAD_PORTFOLIO,
-          onTap: () {},
+          onTap: () {
+            bool isValidate = FieldValidator().validatePortfolio(
+                portfolioTitleEditingController.text,
+                perHourEditingController.text,
+                howLongEditingController.text,
+                context);
+            if (isValidate) {
+              MainController.i.studioList.insert(
+                  0,
+                  StudioModel(
+                      portfolioTitle: portfolioTitleEditingController.text,
+                      howLong: perHourEditingController.text,
+                      imagePath: AssetPaths.TEMP_STUDIO_IMAGES,
+                      perHour: howLongEditingController.text));
+              AppNavigation.navigatorPop(context);
+              AppDialogs.showToast(message: 'Portfoilio Added Sucessfully');
+            }
+          },
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -61,7 +83,7 @@ class _AddEditStudioState extends State<AddEditStudio> {
               10.ph,
               CustomText(
                 text: AppStrings.ADD_PORTFOLIO,
-                fontSize: 20.sp,
+                fontSize: 18.sp,
                 fontFamily: AppFonts.JONES_BOLD,
                 fontColor: Constants.primaryTextThemeColor(context: context),
               ),
@@ -83,10 +105,8 @@ class _AddEditStudioState extends State<AddEditStudio> {
               _customTextField(
                 hint: AppStrings.HOW_LONG,
                 textEditingController: howLongEditingController,
-                keyboardType: TextInputType.text,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(Constants.NAME_MAX_LENGHT)
-                ],
+                keyboardType: TextInputType.number,
+                inputFormatters: [LengthLimitingTextInputFormatter(2)],
               ),
               10.ph,
               pictureUploadWidget()

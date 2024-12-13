@@ -336,14 +336,15 @@ class Constants {
       },
     );
     if (picked != null) {
-      return '${picked.year}-${picked.month}-${picked.day}';
+      return '${picked.month}-${picked.day}-${picked.year}';
     } else {
       return '';
     }
   }
 
-static String formatTimeOfDay(TimeOfDay time) {
-    final hour = time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
+  static String formatTimeOfDay(TimeOfDay time) {
+    final hour =
+        time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
     final minute = time.minute.toString().padLeft(2, '0'); // Add leading zero
     final period = time.hour >= 12 ? "PM" : "AM";
 

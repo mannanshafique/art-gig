@@ -76,10 +76,10 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
       authController.fullNameEditingController.text =
           'John'; // Prefill first name
       authController.locationEditingController.text =
-          '123 Main St'; // Prefill location
-      authController.cityEditingController.text = 'New York'; // Prefill city
-      authController.stateEditingController.text = 'NY'; // Prefill state
-      authController.zipEditingController.text = '10001'; // Prefill zip code
+          '123 Main St'; // Prefill location  MM-DD-YYYY
+      authController.dateOfBirthEditingController.text = '06-24-1999';
+      authController.genderEditingController.text = 'Male';
+      authController.descriptionEditingController.text = 'having expertise in painting';
     }
   }
 

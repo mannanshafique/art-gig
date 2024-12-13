@@ -29,9 +29,9 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final List<ChatThreadData> chatDataList = [
     ChatThreadData(
-      firstName: "Alice",
-      lastName: "Smith",
-      profileImage: "profile_image/user1.jpg",
+      firstName: "Lisa",
+      lastName: "Mira",
+      profileImage: AssetPaths.TEMP_PROFILE1_IMAGES,
       id: 3,
       conversationId: 2,
       senderId: 1,
@@ -46,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
     ChatThreadData(
       firstName: "Bob",
       lastName: "Miller",
-      profileImage: "profile_image/user2.jpg",
+      profileImage: AssetPaths.TEMP_PROFILE_IMAGES,
       id: 4,
       conversationId: 3,
       senderId: 16,
@@ -55,21 +55,6 @@ class _ChatScreenState extends State<ChatScreen> {
       message: "Check out this photo!",
       readAt: null,
       status: null,
-      createdAt: '2024-07-10T09:15:00.000Z',
-      updatedAt: null,
-    ),
-    ChatThreadData(
-      firstName: "Jane",
-      lastName: "Doe",
-      profileImage: "profile_image/user3.jpg",
-      id: 5,
-      conversationId: 4,
-      senderId: 1,
-      receiverId: 16,
-      type: "text",
-      message: "Good morning!",
-      readAt: "2024-07-10T09:20:00.000Z",
-      status: "read",
       createdAt: '2024-07-10T09:15:00.000Z',
       updatedAt: null,
     ),
@@ -174,7 +159,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Row(
               children: [
                 CustomCicrleAvatarWidget(
-                  imgPath: AssetPaths.HOME_ICON,
+                  imgPath: chatData.profileImage,
                   radius: 40.h,
                   isExtendedImage: false,
                   circularColor: Constants.themeButton(context: context),

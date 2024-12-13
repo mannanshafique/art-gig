@@ -1,4 +1,5 @@
 import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
+import 'package:artgig/Module/Studio/Screen/studio_listing.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:artgig/Widgets/Bottom_Navigation/bottom_navigation_controller.dart';
@@ -96,9 +97,9 @@ class CustomDrawerWidget extends StatelessWidget {
         ),
         10.ph,
         CustomCicrleAvatarWidget(
-          isExtendedImage: true,
+          isExtendedImage: false,
           circularColor: AppColors.WHITE_COLOR,
-          imgPath: userDataModel?.imageName ?? '',
+          imgPath: AssetPaths.TEMP_PROFILE1_IMAGES,
           radius: 90.h,
         ),
         8.ph,
@@ -172,12 +173,43 @@ class CustomDrawerWidget extends StatelessWidget {
             },
             title: AppStrings.HOME),
         if (RoleController.i.selectedRole.value == AppStrings.ARTIST) ...[
-          _createDrawerItem(
-              iconPath: AssetPaths.CIRCULAR_ADD_ICON,
-              onTap: () {
-                scffoldKey?.currentState!.closeDrawer();
-              },
-              title: AppStrings.CREATE_STUDIO),
+          // _createDrawerItem(
+          //     iconPath: AssetPaths.CIRCULAR_ADD_ICON,
+          //     onTap: () {
+          // scffoldKey?.currentState!.closeDrawer();
+          // Get.to(() => StudioListing());
+          //     },
+          //     title: AppStrings.CREATE_STUDIO),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 20.0, right: 60.0, bottom: 25.0),
+            child: Row(
+              children: [
+                Image.asset(
+                  AssetPaths.CIRCULAR_ADD_ICON,
+                  height: 22,
+                  width: 22,
+                ),
+                20.pw,
+                GestureDetector(
+                  onTap: () {
+                    scffoldKey?.currentState!.closeDrawer();
+                    Get.to(() => StudioListing());
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      CustomText(
+                        text: AppStrings.CREATE_STUDIO,
+                        fontColor: AppColors.WHITE_COLOR,
+                        fontSize: 16.sp,
+                        fontFamily: AppFonts.JONES_BOLD,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
         if (RoleController.i.selectedRole.value == AppStrings.USER) ...[
           _createDrawerItem(
