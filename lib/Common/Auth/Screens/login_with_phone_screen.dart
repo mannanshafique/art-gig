@@ -6,6 +6,9 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_constants.dart';
 import '../../../Utils/app_fonts.dart';
+import '../../../Utils/app_navigation.dart';
+import '../../../Utils/app_route_name.dart';
+import '../../../Utils/app_routing_arguments.dart';
 import '../../../Utils/app_strings.dart';
 import '../../../Utils/app_validator.dart';
 import '../../../Utils/asset_paths.dart';
@@ -130,6 +133,9 @@ class LoginWithPhoneScreen extends StatelessWidget {
             AuthController.i.phNoEditingController.text, context);
         if (isPhoneValidate) {
           AuthController.i.loginType.value = AppStrings.PHONE_NUMBER;
+          AppNavigation.navigateReplacement(
+              context, AppRouteName.VERIFICATION_SCREEN_ROUTE,
+              arguments: OtpVerificationArguments(userId: ''));
           // FirebaseAuthBloc().signInWithPhone(
           //   setProgressBar: () =>
           //       AppDialogs.progressAlertDialog(context: context),

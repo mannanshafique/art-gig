@@ -15,7 +15,8 @@ import '../custom_button.dart';
 import '../custom_text.dart';
 
 class CustomEventTypeDialog extends StatefulWidget {
-  CustomEventTypeDialog({Key? key, required this.headerTitle, required this.onTap})
+  CustomEventTypeDialog(
+      {Key? key, required this.headerTitle, required this.onTap})
       : super(key: key);
 
   final String headerTitle;
@@ -61,6 +62,7 @@ class _CustomEventTypeDialogState extends State<CustomEventTypeDialog> {
                 value: "Canvas Painting",
                 groupValue: selectedOption,
                 title: "Canvas Painting",
+                fontColor: AppColors.BLACK_COLOR,
                 onChanged: (value) {
                   setState(() {
                     selectedOption = value;
@@ -69,6 +71,7 @@ class _CustomEventTypeDialogState extends State<CustomEventTypeDialog> {
               ),
               CustomRadioListTile<String>(
                 value: "Wine Painting",
+                fontColor: AppColors.BLACK_COLOR,
                 groupValue: selectedOption,
                 title: "Wine Painting",
                 onChanged: (value) {
@@ -80,6 +83,7 @@ class _CustomEventTypeDialogState extends State<CustomEventTypeDialog> {
               CustomRadioListTile<String>(
                 value: "Tote Bag Painting",
                 groupValue: selectedOption,
+                fontColor: AppColors.BLACK_COLOR,
                 title: "Tote Bag Painting",
                 onChanged: (value) {
                   setState(() {
@@ -113,6 +117,7 @@ class _CustomEventTypeDialogState extends State<CustomEventTypeDialog> {
 class CustomRadioListTile<T> extends StatelessWidget {
   final T value;
   final T? groupValue;
+  final Color? fontColor;
   final String title;
   final ValueChanged<T?> onChanged;
 
@@ -121,6 +126,7 @@ class CustomRadioListTile<T> extends StatelessWidget {
     required this.value,
     required this.groupValue,
     required this.title,
+    this.fontColor,
     required this.onChanged,
   }) : super(key: key);
 
@@ -131,13 +137,16 @@ class CustomRadioListTile<T> extends StatelessWidget {
       dense: true,
       value: value,
       groupValue: groupValue,
+      visualDensity: const VisualDensity(vertical: -1, horizontal: -4),
       activeColor: AppColors.ORANGE_COLOR,
       // activeColor: Constants.primaryTitleTextThemeColor(context: context),
       title: CustomText(
         text: title,
-        fontColor: AppColors.BLACK_COLOR,
-        // fontColor: Constants.primaryTextThemeColor(context: context),
+        // fontColor: AppColors.BLACK_COLOR,
+        fontColor:
+            fontColor ?? Constants.primaryTextThemeColor(context: context),
         fontSize: 16.sp,
+        maxLines: 2,
         textAlign: TextAlign.start,
         fontFamily: AppFonts.JONES_REGULAR,
       ),

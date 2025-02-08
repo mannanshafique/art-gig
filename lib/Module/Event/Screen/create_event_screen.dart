@@ -15,10 +15,12 @@ import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_dialogs.dart';
 import '../../../Utils/app_fonts.dart';
 import '../../../Utils/app_navigation.dart';
+import '../../../Utils/app_padding.dart';
 import '../../../Utils/app_strings.dart';
 import '../../../Widgets/cs_appbar.dart';
 import '../../../Widgets/cs_bottom_navg_button.dart';
 import '../../../Widgets/cs_container_border.dart';
+import '../../../Widgets/custom_drop_down_widget.dart';
 import '../../../Widgets/custom_image_preview.dart';
 import '../../../Widgets/custom_text.dart';
 import '../../../Widgets/custom_textfield.dart';
@@ -43,6 +45,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
   List<ImageModel> selectedMediaPath = <ImageModel>[];
 
+// Corporate Event, Birthday Party, Ladies Night, Casual Getogether, Kids Party, Other (Drop down)
+
   void setImage(String imagePath) {
     if (selectedMediaPath.isNotEmpty) {
       selectedMediaPath[0] = ImageModel(path: imagePath, type: 'File');
@@ -54,6 +58,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
     log('selected media length : ${selectedMediaPath.length}');
   }
+
+  String? eventFor;
+  List<String> eventForDropDownList = [
+    "Corporate Event",
+    "Birthday Party",
+    "Ladies Night",
+    "Casual Getogether",
+    "Kids Party",
+    "Other"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +88,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
           children: [
             paintingUploadWidget(),
             10.ph,
-            _customTextField(
-              textEditingController: eventForController,
-              hintText: 'What is the event for?',
-              keybordType: TextInputType.text,
-              inputFormatters: [LengthLimitingTextInputFormatter(50)],
-            ),
+            customizedDropDown(
+                dropDownDataList: eventForDropDownList,
+                dropDownValue: eventFor,
+                hintValue: 'What is the event for?',
+                fontSize: 14.sp,
+                onChangeFunction: (selectedValue) {
+                  setState(() {
+                    eventFor = selectedValue ?? '';
+                  });
+                }),
             10.ph,
             _customTextField(
               textEditingController: howManyPeopleController,
@@ -106,9 +124,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                 onTap: () async {
                   whenIsEventController.text = await Constants().datePicker(
                     context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2026),
+                    initialDate: DateTime.now().add(const Duration(
+                        days: 15)), // Ensure it's AFTER firstDate
+                    firstDate: DateTime.now()
+                        .add(const Duration(days: 14)), // First date allowed
+                    lastDate: DateTime.now()
+                        .add(const Duration(days: 2 * 365)), // 2 years ahead
                   );
                 }),
             10.ph,
@@ -245,6 +266,37 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
           textCapitalization: TextCapitalization.none,
           inputFormatters: inputFormatters),
     );
+  }
+
+  Widget customizedDropDown(
+      {required List<String> dropDownDataList,
+      required String hintValue,
+      required String? dropDownValue,
+      String? iconPath,
+      double? fontSize,
+      required Function(String?)? onChangeFunction}) {
+    return CustomDropDown2(
+        dropIconSize: 16.h,
+        errorBorder: AppColors.RED_COLOR,
+        hintColor: AppColors.GREY_COLOR.withOpacity(0.8),
+        isBorder: true,
+        dropDownData: dropDownDataList,
+        hintText: hintValue,
+        dropdownValue: dropDownValue,
+        borderRadius: 50.r,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: AppPadding.textFieldVerticalPadding.h,
+        ),
+        dropDownWidth: 0.914.sw,
+        offset: const Offset(-5, -25),
+        horizontalPadding: 0.w,
+        buttonPadding: 7.w,
+        dropDownFontSize: fontSize,
+        fontSize: fontSize,
+        borderColor: AppColors.RED_COLOR,
+        validator: (value) =>
+            (value == null || value.isEmpty) ? hintValue + 'App' : null,
+        onChanged: onChangeFunction);
   }
 }
 

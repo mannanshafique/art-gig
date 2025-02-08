@@ -7,6 +7,10 @@ class AppStrings {
   static const String LOGIN_AS_COUNSELOR = "Login as a Counselor/Consultant";
   static const String ROLE_SELECTION = "Role Selection";
   static const String ARTIST = "Artist";
+  static const String ARTIST_ROLE_TITLE =
+      "Artist (I want to make money instructing Gigs)";
+  static const String USER_ROLE_TITLE =
+      "Host (I wasnt to book an artist for an Event)";
   static const String USER = "User";
   static const String CONSELOR = "consultant";
   static const String ADD_PORTFOLIO = "Add Portfolio";

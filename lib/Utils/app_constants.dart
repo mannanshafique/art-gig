@@ -315,7 +315,7 @@ class Constants {
   }) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: initialDate,
       firstDate: firstDate,
       lastDate: lastDate,
       builder: (BuildContext context, Widget? child) {

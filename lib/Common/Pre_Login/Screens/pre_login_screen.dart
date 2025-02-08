@@ -17,6 +17,7 @@ import '../../../Widgets/custom_auth_scaffold.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_padding.dart';
 import '../../Auth/Controller/auth_controller.dart';
+import '../../Role_Selection/Controller/role_controller.dart';
 import '../../TermsPrivacy/routing_argument/content_routing_argument.dart';
 
 class PreLoginScreen extends StatelessWidget {
@@ -32,60 +33,85 @@ class PreLoginScreen extends StatelessWidget {
         title: AppStrings.LOGIN,
         child: CustomPadding(
           child: Column(children: [
-            _loginWithButton(
-                title: AppStrings.LOGIN_WITH_EMAIL,
-                iconPath: AssetPaths.EMAIL_ICON,
-                context: context,
-                bgColor: AppColors.PINK_COLOR,
-                onTap: () {
-                  authController.clearAllAuthControllerData();
-                  AppNavigation.navigateTo(
-                      context, AppRouteName.EMAIL_LOGIN_SCREEN_ROUTE);
-                }),
-            10.ph,
-            _loginWithButton(
-                title: AppStrings.LOGIN_WITH_PHONE,
-                iconPath: AssetPaths.PHONE_ICON,
-                fontColor: AppColors.BLACK_COLOR,
-                bgColor: AppColors.YELLOW_COLOR,
-                context: context,
-                onTap: () {
-                  authController.clearAllAuthControllerData();
-
-                  AppNavigation.navigateTo(
-                      context, AppRouteName.PHONE_LOGIN_SCREEN_ROUTE);
-                }),
-            10.ph,
-            _loginWithButton(
-                title: AppStrings.LOGIN_WITH_GOOGLE,
-                iconPath: AssetPaths.GOOGLE_ICON,
-                bgColor: AppColors.RED_COLOR,
-                context: context,
-                onTap: () {
-                  AppNavigation.navigateToRemovingAll(
-                      context, AppRouteName.MAIN_MENU_SCREEN);
-                  // FirebaseAuthBloc().signInWithGoogle(
-                  //   context: context,
-                  // );
-                  // AppNavigation.navigateToRemovingAll(
-                  //     context, AppRouteName.MAIN_MENU_SCREEN_ROUTE);
-                }),
-            10.ph,
-            if (Platform.isIOS) ...[
+            if (RoleController.isArtist()) ...[
               _loginWithButton(
-                  title: AppStrings.LOGIN_WITH_APPLE,
-                  iconPath: AssetPaths.APPLE_ICON,
-                  bgColor: AppColors.WHITE_COLOR,
+                  title: AppStrings.LOGIN_WITH_PHONE,
+                  iconPath: AssetPaths.PHONE_ICON,
                   fontColor: AppColors.BLACK_COLOR,
+                  bgColor: AppColors.YELLOW_COLOR,
                   context: context,
                   onTap: () {
-                    // FirebaseAuthBloc().signInWithApple(
-                    //   context: context,
-                    // );
+                    authController.clearAllAuthControllerData();
+                    AppNavigation.navigateTo(
+                        context, AppRouteName.PHONE_LOGIN_SCREEN_ROUTE);
                   }),
-              10.ph,
             ],
-            50.ph,
+            if (!RoleController.isArtist()) ...[
+              _loginWithButton(
+                  title: AppStrings.LOGIN_WITH_EMAIL,
+                  iconPath: AssetPaths.EMAIL_ICON,
+                  context: context,
+                  bgColor: AppColors.PINK_COLOR,
+                  onTap: () {
+                    authController.clearAllAuthControllerData();
+                    AppNavigation.navigateTo(
+                        context, AppRouteName.EMAIL_LOGIN_SCREEN_ROUTE);
+                  }),
+            ],
+            //!-----Closed Bcz Client Requirment
+            // _loginWithButton(
+            //     title: AppStrings.LOGIN_WITH_EMAIL,
+            //     iconPath: AssetPaths.EMAIL_ICON,
+            //     context: context,
+            //     bgColor: AppColors.PINK_COLOR,
+            //     onTap: () {
+            //       authController.clearAllAuthControllerData();
+            //       AppNavigation.navigateTo(
+            //           context, AppRouteName.EMAIL_LOGIN_SCREEN_ROUTE);
+            //     }),
+            // 10.ph,
+            // _loginWithButton(
+            //     title: AppStrings.LOGIN_WITH_PHONE,
+            //     iconPath: AssetPaths.PHONE_ICON,
+            //     fontColor: AppColors.BLACK_COLOR,
+            //     bgColor: AppColors.YELLOW_COLOR,
+            //     context: context,
+            //     onTap: () {
+            //       authController.clearAllAuthControllerData();
+
+            //       AppNavigation.navigateTo(
+            //           context, AppRouteName.PHONE_LOGIN_SCREEN_ROUTE);
+            //     }),
+            // 10.ph,
+            // _loginWithButton(
+            //     title: AppStrings.LOGIN_WITH_GOOGLE,
+            //     iconPath: AssetPaths.GOOGLE_ICON,
+            //     bgColor: AppColors.RED_COLOR,
+            //     context: context,
+            //     onTap: () {
+            //       AppNavigation.navigateToRemovingAll(
+            //           context, AppRouteName.MAIN_MENU_SCREEN);
+            //       // FirebaseAuthBloc().signInWithGoogle(
+            //       //   context: context,
+            //       // );
+            //     }),
+            // 10.ph,
+            // if (Platform.isIOS) ...[
+            //   _loginWithButton(
+            //       title: AppStrings.LOGIN_WITH_APPLE,
+            //       iconPath: AssetPaths.APPLE_ICON,
+            //       bgColor: AppColors.WHITE_COLOR,
+            //       fontColor: AppColors.BLACK_COLOR,
+            //       context: context,
+            //       onTap: () {
+            //         // FirebaseAuthBloc().signInWithApple(
+            //         //   context: context,
+            //         // );
+            //       }),
+            //   10.ph,
+            // ],
+
+            90.ph,
             _termsAndPrivacyNavigationWidget(context),
             20.ph,
           ]),

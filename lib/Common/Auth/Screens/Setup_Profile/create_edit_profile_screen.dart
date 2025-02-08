@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Common/Splash/Controller/splash_controller.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -129,9 +131,12 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
           onTap: () {
             Constants.unFocusKeyboardMethod(context: context);
             // validateCreateProfile
+            log(AuthController.i.loginType.value);
             bool isValidate = FieldValidator().validateCreateProfile(
                 AuthController.i.fullNameEditingController.text,
-                AuthController.i.emailEditingController.text,
+                AuthController.i.loginType.value == AppStrings.PHONE_NUMBER
+                    ? 'test@gmail.com'
+                    : AuthController.i.emailEditingController.text,
                 AuthController.i.locationEditingController.text,
                 AuthController.i.phNoEditingController.text,
                 AuthController.i.dateOfBirthEditingController.text,
@@ -442,4 +447,6 @@ class _CreateEditProfileScreenState extends State<CreateEditProfileScreen> {
             (value == null || value.isEmpty) ? hintValue + 'App' : null,
         onChanged: onChangeFunction);
   }
+
+
 }
