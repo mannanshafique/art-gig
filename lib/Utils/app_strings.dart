@@ -365,6 +365,7 @@ class AppStrings {
   static const String PAYMENT = "Payment";
   static const String PAYMENT_SETTINGS = "Payment Settings";
   static const String SETTINGS = "Settings";
+  static const String WALLET = "Wallet";
   static const String CREATE_MENU = "Create Menu";
   static const String CREATE_EVENT = "Create Event";
   static const String CREATED_MENU = "Created Menu";

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Utils/app_colors.dart';
@@ -82,8 +83,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 bottomNavigationController.onItemTap(0);
               },
               title: AppStrings.HOME,
-              isSelected:
-                  bottomNavigationController.selectedIndex == 0 ? true : false),
+              isSelected: bottomNavigationController.selectedIndex.value == 0
+                  ? true
+                  : false),
         ),
         Expanded(
           child: bottomCustomButton(
@@ -92,8 +94,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 bottomNavigationController.onItemTap(1);
               },
               title: AppStrings.EVENTS,
-              isSelected:
-                  bottomNavigationController.selectedIndex == 1 ? true : false),
+              isSelected: bottomNavigationController.selectedIndex.value == 1
+                  ? true
+                  : false),
         ),
         Expanded(
           child: bottomCustomButton(
@@ -102,8 +105,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 bottomNavigationController.onItemTap(2);
               },
               title: AppStrings.PROFILE,
-              isSelected:
-                  bottomNavigationController.selectedIndex == 2 ? true : false),
+              isSelected: bottomNavigationController.selectedIndex.value == 2
+                  ? true
+                  : false),
         ),
         Expanded(
           child: bottomCustomButton(
@@ -112,9 +116,22 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 bottomNavigationController.onItemTap(3);
               },
               title: AppStrings.SETTINGS,
-              isSelected:
-                  bottomNavigationController.selectedIndex == 3 ? true : false),
+              isSelected: bottomNavigationController.selectedIndex.value == 3
+                  ? true
+                  : false),
         ),
+        if (RoleController.i.selectedRole.value == AppStrings.ARTIST)
+          Expanded(
+            child: bottomCustomButton(
+                iconPath: AssetPaths.WALLET_ICON,
+                onPressed: () {
+                  bottomNavigationController.onItemTap(4);
+                },
+                title: AppStrings.WALLET,
+                isSelected: bottomNavigationController.selectedIndex.value == 4
+                    ? true
+                    : false),
+          ),
       ],
     );
   }

@@ -22,7 +22,9 @@ class AssetPaths {
 
   //----------------------- ICONS -------------------------//
   static const String LOGO_ICON = "$icons/ic_logo.png";
+  static const String LOGO1_ICON = "$icons/ic_logo1.png";
   static const String EMAIL_ICON = "$icons/ic_email.png";
+  static const String WALLET_ICON = "$icons/ic_wallet.png";
   static const String CALENDER_ICON = "$icons/ic_calender.png";
   static const String NOTIFICATION_ICON = "$icons/ic_notification.png";
   static const String APPLE_ICON = "$icons/ic_apple.png";

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:artgig/Common/Chat/Screen/chat_screen.dart';
 import 'package:artgig/Common/Notifications/Screens/notification_screen.dart';
@@ -27,33 +28,49 @@ import '../../../Widgets/custom_scaffold.dart';
 import '../../../Widgets/custom_text.dart';
 import '../../Event/Screen/event_listing.dart';
 import '../../../Common/Profile/host_profile.dart';
+import '../../Event/Screen/select_painting_screen.dart';
 import '../../Event_History/Screen/event_history.dart';
 import '../../PaymentCard/Screen/payment_method_screen.dart';
 import '../../Shop/Screen/product_listing.dart';
 import '../../order_sucess_screen.dart';
 import '../Controller/main_controller.dart';
 
-class MainMenuScreen extends StatelessWidget {
+class MainMenuScreen extends StatefulWidget {
   MainMenuScreen({super.key});
+  static final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>();
+  @override
+  State<MainMenuScreen> createState() => _MainMenuScreenState();
+}
+
+class _MainMenuScreenState extends State<MainMenuScreen> {
   final bottomNavigationController =
       Get.isRegistered<BottomNavigationController>()
           ? Get.find<BottomNavigationController>()
           : Get.put(BottomNavigationController());
+
   final initMainController = Get.put(MainController());
 
-  static final GlobalKey<ScaffoldState> _scaffoldKey =
-      GlobalKey<ScaffoldState>(); //drawer
-
+  //drawer
   final List<Widget> screensList = [
     EventListingScreen(),
     EventHistoryScreen(),
     HostProfileScreen(isFromMainMenu: true),
     SettingScreen(),
+    if (RoleController.i.selectedRole.value != AppStrings.USER)
+      Container(
+        child: Text('data'),
+      ),
   ];
+  @override
+  void initState() {
+    bottomNavigationController.onItemTap(0);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // log('IS USEE ${RoleController.i.fromUser.value}');
+    log(RoleController.i.selectedRole.value);
     return WillPopScope(
       onWillPop: () async {
         return await AppDialogs().showOptionsDialog(
@@ -73,8 +90,8 @@ class MainMenuScreen extends StatelessWidget {
       },
       child: Obx(
         () => CustomScaffold(
-          scffoldKey: _scaffoldKey,
-          drawer: CustomDrawerWidget(scffoldKey: _scaffoldKey),
+          scffoldKey: MainMenuScreen._scaffoldKey,
+          drawer: CustomDrawerWidget(scffoldKey: MainMenuScreen._scaffoldKey),
           bottomNavBarPadding: EdgeInsets.zero,
           appBar: customAppBar(
               context: context,
@@ -84,7 +101,7 @@ class MainMenuScreen extends StatelessWidget {
               actionWidget: actionWidget(context: context),
               leadingWidget: leadingWidget(context: context),
               onTap: () {
-                _scaffoldKey.currentState!.openDrawer();
+                MainMenuScreen._scaffoldKey.currentState!.openDrawer();
               }),
           floatingActionButton: floatingActionWidget(context: context),
           extendedBoy: true,
@@ -113,6 +130,11 @@ class MainMenuScreen extends StatelessWidget {
         break;
       case 3:
         data = AppStrings.SETTINGS;
+        break;
+      case 4:
+        if (RoleController.i.selectedRole.value != AppStrings.USER) {
+          data = AppStrings.WALLET; // Show Wallet only if not a user
+        }
         break;
     }
     return data;
@@ -205,7 +227,8 @@ class MainMenuScreen extends StatelessWidget {
               onTap: () {
                 AppDialogs().showEventTypeDialog(context, onTap: () {
                   AppNavigation.navigatorPop(context);
-                  Get.to(() => CreateEventScreen());
+                  // Get.to(() => CreateEventScreen());
+                  Get.to(() => SelectPaintingScreen());
                 });
               },
               fontSize: 14.sp,
