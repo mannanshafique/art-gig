@@ -237,7 +237,7 @@ class SettingWidget extends StatelessWidget {
       iconPath: AssetPaths.FORWARD_ARROW_ICON,
       containerColor: Constants.isDarkTheme(context: context)
           ? AppColors.BLACK_COLOR
-          : AppColors.PINK_COLOR,
+          : AppColors.BLUE_COLOR,
       borderColor: Constants.isDarkTheme(context: context)
           ? AppColors.WHITE_COLOR
           : AppColors.TRANSPARENT_COLOR,

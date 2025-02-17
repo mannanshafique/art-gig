@@ -22,7 +22,7 @@ class OrderSuccessScreen extends StatelessWidget {
         bottomNavigationBar: CustomBottomNavigationWidget(
           buttonTitle: AppStrings.BACK_TO_HOME,
           onTap: () {
-            AppNavigation.navigateToRemovingAll(
+            AppNavigation.navigatorPopUnitl(
                 context, AppRouteName.MAIN_MENU_SCREEN);
           },
         ),

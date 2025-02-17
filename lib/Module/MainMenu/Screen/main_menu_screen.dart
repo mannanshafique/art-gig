@@ -5,6 +5,7 @@ import 'package:artgig/Common/Notifications/Screens/notification_screen.dart';
 import 'package:artgig/Common/Role_Selection/Controller/role_controller.dart';
 import 'package:artgig/Common/Settings/Screen/settings_screen.dart';
 import 'package:artgig/Module/Event/Screen/create_event_screen.dart';
+import 'package:artgig/Module/Wallet/Screen/wallet_screen.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/app_fonts.dart';
 import 'package:artgig/Utils/extensions.dart';
@@ -57,10 +58,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     EventHistoryScreen(),
     HostProfileScreen(isFromMainMenu: true),
     SettingScreen(),
-    if (RoleController.i.selectedRole.value != AppStrings.USER)
-      Container(
-        child: Text('data'),
-      ),
+    if (RoleController.i.selectedRole.value != AppStrings.USER) WalletScreen()
   ];
   @override
   void initState() {

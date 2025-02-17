@@ -10,7 +10,11 @@ import 'package:get/get.dart';
 import '../../../Common/Splash/Controller/splash_controller.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_constants.dart';
+import '../../../Utils/app_dialogs.dart';
 import '../../../Utils/app_fonts.dart';
+import '../../../Utils/app_navigation.dart';
+import '../../../Utils/app_route_name.dart';
+import '../../../Utils/app_strings.dart';
 import '../../../Widgets/cs_appbar.dart';
 import '../../../Widgets/cs_container_border.dart';
 import '../../../Widgets/cs_slidable_widget.dart';
@@ -62,7 +66,9 @@ class _CartScreenState extends State<CartScreen> {
                   title: 'Checkout',
                   fontFamily: AppFonts.JONES_MEDIUM,
                   onTap: () {
-                    Get.to(() => PaymentMethodsScreen(isFromOrderPage: true,));
+                    Get.to(() => const PaymentMethodsScreen(
+                          isFromOrderPage: true,
+                        ));
                   },
                   containerColor: AppColors.PINK_COLOR,
                   verticalPadding: 0.0,
@@ -90,7 +96,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 60),
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 30),
             child: Column(
               children: [
                 rowWidget(title: 'Booking Fee', value: '\$25.00'),
@@ -98,6 +104,51 @@ class _CartScreenState extends State<CartScreen> {
                 rowWidget(title: 'Artist Fee', value: '\$15.00'),
                 5.ph,
                 rowWidget(title: 'Booking Fee', value: '\$5.00', isTip: true),
+                15.ph,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        AppDialogs().showOptionsDialog(
+                            headertitle: AppStrings.CANCEL_ORDER,
+                            title:
+                                '${AppStrings.ARE_YOU_SURE} \n cancel that order ?',
+                            haveTwoButton: true,
+                            b1Text: AppStrings.CANCEL,
+                            b2Text: AppStrings.YES,
+                            // imagePath: AssetPaths.logout,
+                            b1onTap: () {
+                              AppNavigation.navigatorPop(context);
+                            },
+                            b2onTap: () {
+                              AppDialogs.showToast(
+                                message:
+                                    "Your order has been canceled, Successfully",
+                              );
+                              AppNavigation.navigatorPopUnitl(
+                                  context, AppRouteName.MAIN_MENU_SCREEN);
+                            },
+                            context: context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.h, vertical: 5.h),
+                        decoration: BoxDecoration(
+                            color: Constants.isDarkTheme(context: context)
+                                ? AppColors.PINK_COLOR
+                                : AppColors.ORANGE_COLOR,
+                            borderRadius: BorderRadius.circular(50.r)),
+                        child: CustomText(
+                          text: 'Cancel',
+                          fontSize: 15.sp,
+                          fontColor: AppColors.WHITE_COLOR,
+                          fontFamily: AppFonts.JONES_BOLD,
+                        ),
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           ),

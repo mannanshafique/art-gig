@@ -25,7 +25,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Container(
         decoration: BoxDecoration(
-            color: AppColors.BLUE_COLOR,
+            color: AppColors.PINK_COLOR,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.r),
               topRight: Radius.circular(20.r),

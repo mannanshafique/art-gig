@@ -322,7 +322,7 @@ class Constants {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.light(
-              primary: AppColors.PINK_COLOR, // Header background color
+              primary: AppColors.BLUE_COLOR, // Header background color
               onPrimary: AppColors.WHITE_COLOR, // Header text color
               surface:
                   AppColors.WHITE_COLOR, // Background color of the calendar
@@ -361,7 +361,7 @@ class Constants {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme.light(
-                primary: AppColors.PINK_COLOR, // header background color
+                primary: AppColors.BLUE_COLOR, // header background color
                 //onPrimary: Colors.black, // header text color
                 //onSurface: Colors.green, // body text color
               ),

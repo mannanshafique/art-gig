@@ -38,6 +38,7 @@ class AppStrings {
 
   static const String WRITE_YOUR_REVIEW = "Write Your Review";
   static const String DELETE_REVIEW = "Delete Review";
+  static const String CANCEL_ORDER = "Cancel Order";
 
   static const String NEXT = "Next";
   static const String RATING_REVIEWS = "Rating & Reviews";
@@ -182,6 +183,7 @@ class AppStrings {
   static const String CAMERA = "Camera";
   static const String GALLERY = "Gallery";
   static const String CONTINUE = "Continue";
+  static const String SELECT_PAINTING = "Select Painting";
   static const String ACCOUNT_DETAILS = "Account Details";
   static const String EDIT_ACCOUNT_DETAILS = "Edit Account Details";
   static const String ACCOUNT_HOLDER_NAME = "Account Holder Name";
@@ -559,6 +561,8 @@ class AppStrings {
 
   ///////////////// My Appointments //////////////////////
   static const String ACTIVE = "Active";
+  static const String WEEKLY = "Weekly";
+  static const String MONTHLY = "Monthly";
   static const String completedBookings = "Completed Bookings";
   static const String markAsComplete = "Mark as Complete";
   static const String successfullyMarkCompleted =

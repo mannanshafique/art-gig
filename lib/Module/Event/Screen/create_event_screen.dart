@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:artgig/Module/Shop/Screen/cart_screen.dart';
 import 'package:artgig/Utils/app_constants.dart';
 import 'package:artgig/Utils/app_route_name.dart';
+import 'package:artgig/Utils/asset_paths.dart';
 import 'package:artgig/Utils/extensions.dart';
 import 'package:artgig/Widgets/custom_button.dart';
 import 'package:artgig/Widgets/custom_scaffold.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:place_picker/place_picker.dart';
 
 import '../../../Utils/app_colors.dart';
@@ -69,6 +72,34 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     "Other"
   ];
 
+  List<String> dummyImages = [
+    AssetPaths.TEMP_EVENT_IMAGES,
+    AssetPaths.TEMP_EVENT_IMAGES,
+    AssetPaths.TEMP_EVENT_IMAGES,
+  ];
+
+  //!---Time (Artist)
+  List<String> timeSlots = [];
+  String? selectedTime;
+
+  @override
+  void initState() {
+    super.initState();
+    generateTimeSlots();
+  }
+
+  void generateTimeSlots() {
+    DateTime now = DateTime.now();
+    DateTime startTime =
+        now.add(const Duration(minutes: 30)); // Start after 30 min
+    DateTime endTime = now.add(const Duration(hours: 2)); // End after 2 hours
+
+    while (startTime.isBefore(endTime)) {
+      timeSlots.add(DateFormat.jm().format(startTime)); // Format as "10:30 AM"
+      startTime = startTime.add(const Duration(minutes: 15)); // Add 15 min
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -80,7 +111,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
       bottomNavigationBar: CustomBottomNavigationWidget(
         buttonTitle: AppStrings.CONTINUE,
         onTap: () {
-          Get.to(() => NestedCreateEvent());
+          Get.to(() => const NestedCreateEvent());
         },
       ),
       body: SingleChildScrollView(
@@ -152,18 +183,25 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
               textEditingController: eventFeeController,
               hintText: 'Event Fee',
               keybordType: TextInputType.number,
+              inputFormatters: [LengthLimitingTextInputFormatter(6)],
             ),
             10.ph,
-            _customTextField(
-              textEditingController: hourlyRateController,
-              hintText: 'Hourly Rate',
-              keybordType: TextInputType.number,
-            ),
+            customizedDropDown(
+                dropDownDataList: timeSlots,
+                dropDownValue: selectedTime,
+                hintValue: 'Setup Artist',
+                fontSize: 14.sp,
+                onChangeFunction: (selectedValue) {
+                  setState(() {
+                    selectedTime = selectedValue ?? '';
+                  });
+                }),
             10.ph,
             _customTextField(
               textEditingController: timeDurationController,
               hintText: 'Time Duration',
               keybordType: TextInputType.number,
+              inputFormatters: [LengthLimitingTextInputFormatter(2)],
             ),
             10.ph,
             _customTextField(
@@ -193,31 +231,49 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
       },
       child: Column(
         children: [
-          CustomContainerBorderWidget(
-            padding: const EdgeInsets.symmetric(vertical: 30.0),
-            bgColor: AppColors.TRANSPARENT_COLOR,
-            borderRadius: 12.r,
-            oppacityValue: 0.0,
-            borderColor: Constants.isDarkTheme(context: context)
-                ? AppColors.WHITE_COLOR
-                : AppColors.ORANGE_COLOR,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add,
-                  size: 20.h,
-                  color: Constants.primaryTitleTextThemeColor(context: context),
+          // CustomContainerBorderWidget(
+          //   padding: const EdgeInsets.symmetric(vertical: 30.0),
+          //   bgColor: AppColors.TRANSPARENT_COLOR,
+          //   borderRadius: 12.r,
+          //   oppacityValue: 0.0,
+          //   borderColor: Constants.isDarkTheme(context: context)
+          //       ? AppColors.WHITE_COLOR
+          //       : AppColors.ORANGE_COLOR,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Icon(
+          //         Icons.add,
+          //         size: 20.h,
+          //         color: Constants.primaryTitleTextThemeColor(context: context),
+          //       ),
+          //       5.pw,
+          //       CustomText(
+          //         text: 'Upload Painting',
+          //         fontSize: 16.sp,
+          //         fontColor:
+          //             Constants.primaryTitleTextThemeColor(context: context),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          Row(
+            children: [
+              for (String path in dummyImages) ...[
+                Container(
+                  height: 80.h,
+                  width: 80.h,
+                  decoration: BoxDecoration(
+                      color: AppColors.PINK_COLOR,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  padding: const EdgeInsets.all(2.0),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.asset(path, fit: BoxFit.cover)),
                 ),
-                5.pw,
-                CustomText(
-                  text: 'Upload Painting',
-                  fontSize: 16.sp,
-                  fontColor:
-                      Constants.primaryTitleTextThemeColor(context: context),
-                ),
-              ],
-            ),
+                10.pw,
+              ]
+            ],
           ),
           10.ph,
           ImagePreviewWidget(
@@ -368,6 +424,23 @@ class _NestedCreateEventState extends State<NestedCreateEvent> {
           fontFamily: AppFonts.JONES_MEDIUM,
         ),
         20.ph,
+        CustomText(
+          text: 'Disclaimer!',
+          fontColor: Constants.primaryTextThemeColor(context: context),
+          fontSize: 14.sp,
+          maxLines: 2,
+          fontFamily: AppFonts.JONES_MEDIUM,
+        ),
+        10.ph,
+        CustomText(
+          text: 'Please review your order carefully before confirming',
+          fontColor: Constants.primaryTextThemeColor(context: context),
+          fontSize: 14.sp,
+          maxLines: 2,
+          textAlign: TextAlign.start,
+          fontFamily: AppFonts.JONES_LIGHT,
+        ),
+        20.ph,
         CustomButton(verticalPadding: 10.h, onTap: onYesTap, title: 'Yes'),
         10.ph,
         CustomButton(
@@ -441,9 +514,10 @@ class _NestedCreateEventState extends State<NestedCreateEvent> {
         CustomButton(
             verticalPadding: 10.h,
             onTap: () {
-              AppNavigation.navigateToRemovingAll(
-                  context, AppRouteName.MAIN_MENU_SCREEN);
-              AppDialogs.showToast(message: 'Event Craeted Sucessfull');
+              Get.to(() => CartScreen());
+              // AppNavigation.navigateToRemovingAll(
+              //     context, AppRouteName.MAIN_MENU_SCREEN);
+              // AppDialogs.showToast(message: 'Event Craeted Sucessfull');
             },
             title: 'Next'),
       ],
